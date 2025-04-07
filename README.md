@@ -11,12 +11,20 @@
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
 ## v1.1 Tyrimas 
+
 **Struct vs class (vector)**
-| Implementacijos tipas | 1000000.txt | 10000000.txt |
+| Implementacijos tipas | Laikas 1000000.txt | Laikas 10000000.txt |
 |-----------------------|-------------|--------------|
 |Class|9.04668|102.168|
 |Struct|5.157186|54.86644|
 
+**Optimizacijos veliaveles**
+| Veliavele | Laikas (s) | Failo dydis (kB) |
+|-----------|--------|-------------|
+|None|100|262.5|
+|O1|25.34|123.4|
+|O2|24.64|145.6|
+|O3|23.54|147.6|
 ----------------------------------------------------------------------------------
 
 ## Pirma strategija 
