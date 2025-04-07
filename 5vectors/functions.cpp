@@ -1,5 +1,5 @@
 #include "header.h"
-
+//#include "student.hpp"
 bool isValid ( string number ) {
     try {
         int mark = stoi(number);
@@ -55,7 +55,7 @@ int lineCount (string filename) {
     return count;
 
 }
-
+/*
 void count_marks (vector<Student>& stud) {
     for (int i = 0; i < stud.size(); i++) {
         double sum = 0;
@@ -75,36 +75,9 @@ void count_marks (vector<Student>& stud) {
     }
 }
 
-void print_marks (vector<Student> stud) {
-    int g = 15;
-    cout << endl << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
-     cout<<"__________________________________________________________________________________"<<endl;
-    for (int i = 0; i < stud.size(); i++) {
-        cout <<setw(g)<< left<< stud[i].name << setw(g)<< left<< stud[i].surname; 
-        cout << setw(g) <<left<<std::setprecision(3)<< stud[i].result << setw(g)<< left << std::setprecision(3) <<  stud[i].median << endl; // kur mediana vietoj vidurkio imti mediana
-    }
-    cout<<endl;
-    //-----------------------Writing-to-file-----------------------
-    write_marks(stud, "output.txt");
-    //-------------------------------------------------------------
-}
+*/
 
-void write_marks (vector<Student> stud, string name) {
 
-    int g = 15;
-    auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    std::ofstream out (name);
-    out << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
-    out<<"__________________________________________________________________________________"<<endl;
-    for (int i = 0; i < stud.size(); i++) {
-        out <<setw(g)<< left<< stud[i].name << setw(g)<< left<< stud[i].surname; 
-        out << setw(g) <<left<<std::setprecision(3)<< stud[i].result << setw(g)<< left << std::setprecision(3) <<  stud[i].median << endl; // kur mediana vietoj vidurkio imti mediana
-    }
-    out.close();
-    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-    std::chrono::duration<double> diff = end-start;
-    cout << "Writing file " <<name<<" was successful. Took: "<< diff.count() << " s"<<endl;
-}
 vector<string> listTxtFiles() {
   std::vector<std::string> txtFiles;
   for (const auto& entry : std::filesystem::directory_iterator("../studentai/")) {
@@ -115,40 +88,7 @@ vector<string> listTxtFiles() {
   return txtFiles;
 }
 
-void import_file (vector<Student>& stud, string filename) {
 
-    string temp;
-    ifstream in(filename);
-    auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    int lineNum = lineCount(filename);
-    getline(in, temp);
-    stud.reserve(lineNum);                    
-    string word;
-    Student temp_student{};
-    while (getline(in, temp)) {   
-        std::istringstream stream (temp);
-        while (stream) {
-            stream >> temp_student.name >> temp_student.surname;
-            while (stream) {
-                stream >> word;
-                temp_student.mark.push_back(std::stoi(word));
-            }
-            temp_student.exam = temp_student.mark.back();
-            temp_student.mark.pop_back();
-            //stud.push_back(std::move(temp_student));
-            
-            stud.push_back(temp_student);
-            temp_student.mark.clear();
-        }
-    }
-        count_marks(stud);
-        auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-        std::chrono::duration<double> diff = end-start;
-        cout << "Importing file " <<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
-        //print_metrics(filename, diff.count(), 0);
-        in.close();
-        
-}
 
 void generate_file (int number) {
 
@@ -187,14 +127,6 @@ void generate_file (int number) {
     outt.close();
 }
 
-void sort_file (vector<Student>& stud, string name) {
-    auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    std::sort(stud.begin(), stud.end(), [](const Student& a, const Student& b) {return a.result > b.result;});    
-    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-    std::chrono::duration<double> diff = end-start;
-    cout << "Sorting file "<<name<<" was successful. Took: "<< diff.count() << " s"<<endl;
-    //print_metrics(name, diff.count(), 0);
-}
 /*
 // tikrai galima geriau, bet kaip? kazakda reikes pasidometi.
 void divide_file (vector<Student>& stud,vector<Student>& nuskriaustukai, string filename) {
@@ -221,151 +153,9 @@ void divide_file (vector<Student>& stud,vector<Student>& nuskriaustukai, string 
 }
 */
 
-void divide_file1 (vector<Student>& stud,vector<Student>& kietiakai,vector<Student>& nuskriaustukai, string filename) {
-    string name = "studentai" + std::to_string(stud.size()) + ".txt";
-    auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    nuskriaustukai.reserve(stud.size());
-    kietiakai.reserve(stud.size());
-    
-    for (auto &a: stud) {
-        if (a.result >= 5.00) kietiakai.push_back(a);
-        else nuskriaustukai.push_back(a);
-    }
 
-    nuskriaustukai.shrink_to_fit();
-    kietiakai.shrink_to_fit();
-    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-    std::chrono::duration<double> diff = end-start;
-    cout << "Dividing file "<<name<<" was successful. Took: "<< diff.count() << " s"<<endl;
-    //print_metrics(filename, diff.count(), 0, 0);
-}
 
-void divide_file2 (vector<Student>& stud,vector<Student>& nuskriaustukai, string filename) {
-    string name = "studentai" + std::to_string(stud.size()) + ".txt";
-    auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    nuskriaustukai.reserve(stud.size());
-    
-    while (stud.back().result < 5.00) {
-        nuskriaustukai.push_back(stud.back());
-        stud.pop_back();
-    }
 
-    nuskriaustukai.shrink_to_fit();
-    stud.shrink_to_fit();
-    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-    std::chrono::duration<double> diff = end-start;
-    cout << "Dividing file "<<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
-    //print_metrics(filename, diff.count(), 0, 0);
-}
-
-void divide_file3(vector<Student>& stud, vector<Student>& nuskriaustukai, string filename) {
-    auto start = std::chrono::high_resolution_clock::now();
-    
-    // Partition the students based on the result
-    auto partition_point = std::stable_partition(stud.begin(), stud.end(), [](const Student& s) { return s.result >= 5.0; });
-    //print_marks(stud);
-    
-    // Move the failing students to nuskriaustukai
-    nuskriaustukai = vector<Student>(std::make_move_iterator(partition_point), std::make_move_iterator(stud.end()));
-    stud.erase(partition_point, stud.end());
-    
-    // Shrink to fit
-    nuskriaustukai.shrink_to_fit();
-    stud.shrink_to_fit();
-    
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<double> diff = end - start;
-    std::cout << "Dividing file " << filename << " was successful. Took: " << diff.count() << " s" << std::endl;
-    //print_metrics(filename, diff.count(), 0);
-}
-
-void pagrindinis_divide (vector<Student> &stud, vector<Student> &kietiakai, vector<Student> &nuskriaustukai, int num) {
-    const vector<int> file_size = {1000, 10000, 100000, 1000000, 10000000};
-
-    for (int i = 0; i < file_size.size(); i++) {
-        string filename = "../studentai/studentai" + std::to_string(file_size[i])+ ".txt";
-        //generate_file(file_size[i]);
-        
-        auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-        import_file(stud,filename);
-        sort_file(stud, filename);
-        if (num == 1) divide_file1(stud, kietiakai, nuskriaustukai, filename);
-        if (num == 2) divide_file2(stud, nuskriaustukai, filename);
-        if (num == 3) divide_file3(stud, nuskriaustukai, filename);
-        
-        
-        auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-        std::chrono::duration<double> diff = end-start;
-        /*
-        cout<<endl<< "Sorting kietiakai:"<<endl;
-        sort_students(kietiakai);
-        cout<< "Sorting nuskriaustukai:"<<endl;
-        sort_students(nuskriaustukai);
-        */
-        
-        //if (num == 1) write_marks(kietiakai, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-        //else write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-        //write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
-        stud.clear();
-        nuskriaustukai.clear();
-        
-        cout <<"==================================================================="<<endl;
-        cout << "| Processed file "<< setw(30)<< left<<filename<<" Took: "<< std::setprecision(3)<<setw(5) <<left<<diff.count() << " s |"<<endl;
-        cout <<"==================================================================="<<endl<<endl;
-        print_metrics(filename, diff.count(), 1, num);
-    }
-}
-
-void sort_students (vector<Student>& stud) {
-    cout <<"There are: "<<stud.size()<<" Students"<<endl;
-    cout << R"(Sort by:
-1) student name
-2) student surname
-3) student mark (average)
-4) student mark (median)
---> )";
-    char choice1;
-    while (true) {
-    cin >> choice1;
-    switch (choice1) {
-            case '1': {
-                std::sort(stud.begin(), stud.end(), [](const Student& a, const Student& b) {
-                
-                return (a.name) < (b.name);});
-                //print_marks(stud);            
-                return;
-            }
-            case '2': {
-                std::sort(stud.begin(), stud.end(), [](const Student& a, const Student& b) {
-
-                return a.surname < b.surname;});
-                //print_marks(stud);            
-                return;
-            }
-            case '3': {
-                std::sort(stud.begin(), stud.end(), [](const Student& a, const Student& b) {
-
-                return a.result < b.result;});
-                //print_marks(stud);            
-                return;
-            }
-            case '4': {
-                std::sort(stud.begin(), stud.end(), [](const Student& a, const Student& b) {
-
-                return a.median < b.median;
-                });
-                //print_marks(stud);            
-                return;
-            }
-            default: {
-                cout << "\n\nInvalid choice. Please try again.\n--> ";
-                continue;
-            }
-            break;   
-        }
-        
-    }
-}
 
 void print_metrics (string filename, float data, int num, int strategija) {
     string const type = "vector";
@@ -390,3 +180,4 @@ string extractNumbers(const std::string& str) {
     }
     return result;
 }
+

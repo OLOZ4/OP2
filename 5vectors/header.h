@@ -13,7 +13,7 @@
 #include <filesystem>
 #include <ios>
 #include <stdexcept>
-
+//#include "student.hpp"
 using std::cout;
 using std::cin;
 using std::endl;
@@ -46,30 +46,17 @@ string get_name(vector <string> name);
 
 int lineCount (string filename);
 
-void count_marks (vector<Student>& stud);
+//void count_marks (vector<Student>& stud);
 
-void print_marks (vector<Student> stud);
 
-void write_marks (vector<Student> stud, string name);
 
 vector<string> listTxtFiles();
 
-void import_file (vector<Student>& stud, string filename);
-
 void generate_file (int number);
 
-void sort_file (vector<Student>& stud, string name);
 
-void divide_file1 (vector<Student>& stud,vector<Student>& kietiakai,vector<Student>& nuskriaustukai, string filename);
-
-void divide_file2 (vector<Student>& stud,vector<Student>& nuskriaustukai, string filename);
-
-void divide_file3 (vector<Student>& stud,vector<Student>& nuskriaustukai, string filename);
-
-void pagrindinis_divide (vector<Student>& stud,vector<Student>& kietiakai,vector<Student>& nuskriaustukai, int num);
-
-void sort_students (vector<Student>& stud);
 
 void print_metrics (string filename, float data, int num, int strategija);
 
 string extractNumbers(const std::string& str);
+

@@ -119,7 +119,8 @@ int main() {
                 try {
                     ifstream in(filename);
                     in.exceptions ( ifstream::eofbit | ifstream::failbit | ifstream::badbit );
-                }catch(std::exception const& e){
+                }
+                catch(std::exception const& e){
                 cout << "Klaida atidarant faila: " << e.what() << std::endl;
                 break;
                 }
