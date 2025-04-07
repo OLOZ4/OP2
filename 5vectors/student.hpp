@@ -2,7 +2,11 @@
 #include <string>
 #include <vector>
 #include <iostream>
-using namespace std;
+
+using std::string;
+using std::vector;
+
+
 
 class Student1 {
 

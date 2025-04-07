@@ -1,7 +1,5 @@
 #include "header.h"
 #include "student.hpp"
-#include <string>
-#include <vector>
 
 
 int main() {
