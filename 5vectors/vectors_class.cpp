@@ -1,5 +1,8 @@
 #include "header.h"
 #include "student.hpp"
+#include <algorithm>
+#include <cstdlib>
+#include <vector>
 
 
 int main() {
@@ -17,7 +20,8 @@ int main() {
 4) to read from file
 5) to process and print all students
 6) to generate files
-7) to quit
+7) to test Rule of Five
+8) to quit
 --> )";
     cin >> choice;
     switch (choice) {
@@ -200,10 +204,84 @@ int main() {
             }  
             break;
         }
-        case '7': {
+        
+        case '7':{
+            system("clear");
+            //----------Rule-of-Five----------
+            char choice2;
+cout << R"(Select:
+1) Copy constructor
+2) Copy Assignment Operator
+3) Move Constructor
+4) Move Assignment Operator
+--> )"; 
+
+            cin >> choice2;
+            switch (choice2) {
+                while (true) {
+                      
+                    case '1': {
+                        cout <<"Creating student a"<<endl;
+                        Student1 a ("Tomas", "Tomaitis",10,vector<int>{1,2,3});
+                        cout <<"a: "<<a<<endl;
+                        cout <<"Creating student b, so that b = a"<<endl;
+                        Student1 b = a;
+                        cout <<"b: "<<b<<endl;
+                        break;
+                    }
+
+                    case '2': {
+                        cout <<"Creating student a"<<endl;
+                        Student1 a ("Kostas", "Kostaitis",9,vector<int>{10,10,10});
+                        cout <<"a: "<<a<<endl;
+                        cout <<"Creating student b"<<endl;
+                        Student1 b;
+                        cout <<"b: "<<b<<endl;
+                        cout <<"Now lets use operator '=' to make b = a "<<endl<<endl;
+                        b = a;
+                        cout <<"b: "<<b<<endl;
+                        b=b;
+                        break;
+                    }
+
+                    case '3': {
+                        
+                        break;
+                    }
+
+                    case '4': {
+
+                        break;
+                    }
+
+                    default: {
+                        cout <<"Ivedete neteisinga skaiciu, bandykite dar karta"<<endl;
+                        continue;
+                    }
+                }
+            }
+            //1. Destructor
+            //2. Copy constructor
+            
+            //cout <<a<<b;
+            //3. Copy Assignment Operator
+            //Student1 a ("Tomas", "Tomaitis",10,vector<int>{123});
+            //Student1 b = a;
+            //cout <<a<<b;
+            //4. Move Constructor
+            //Student1 a ("Tomas", "Tomaitis",10,vector<int>{123});
+            //cout <<a;
+            //Student1 b = std::move(a);
+            //cout <<a<<b;
+            //5. Move Assignment Operator
+            break;
+        }
+
+        case '8': {
             cout <<endl<< "quitting... bye" << endl;
             return 0;
         }
+
         default: {
             cout << "\n\nInvalid choice. Please try again.\n";
         }

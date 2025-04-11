@@ -1,5 +1,6 @@
 //#include "header.h"
 #include <string>
+#include <utility>
 #include <vector>
 #include <iostream>
 
@@ -18,15 +19,43 @@ class Student1 {
     public:
 
     // konstruktorius
-    Student1(string v ="Default", string p = "Default", int e = 0, vector<int> m = {}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {}
+    Student1(string v ="Default", string p = "Default", int e = 0, vector<int> m = {0}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {std::cout << "Iskviestas Konstruktorius studentui " << v <<std::endl;}
     
     // destruktorius
     ~Student1() {
-        //cout << "Destructor for student "<<vardas<<" was called"<<endl;
+        std::cout << "Iskviestas Destruktorius studentui "<<vardas<<std::endl;
         mark.clear();
     }
 
-    //setteriai
+    // copy konstruktorius
+    //Student1 (const Student1 &other) : Student1(other.vardas, other.pavarde, other.egzaminas, other.mark) { // kodel jei cia parasau : Student1 vardas = other.vardas....
+    Student1 (const Student1 &other) { // kodel jei cia parasau : Student1 vardas = other.vardas....
+        vardas = other.vardas;
+        pavarde = other.pavarde;
+        egzaminas = other.egzaminas;
+        mark = other.mark;
+        std::cout<<"Iskviestas Copy Konstruktorius studentui "<<vardas<<std::endl;
+    }
+
+    // copy assignment
+    Student1& operator=(const Student1 &other) {
+        if (this != &other) { // Patikrinti ar ne self-asigninama
+            vardas = other.vardas;
+            pavarde = other.pavarde;
+            egzaminas = other.egzaminas;
+            mark = other.mark;
+        }
+        else std::cout <<"Self-assignment, skipping"<<std::endl;
+        std::cout<<"Iskviestas Copy Assignmentas studentui "<<vardas<<std::endl;
+        return *this;
+    }
+
+    //move konstruktorius
+    Student1(Student1&& other) noexcept : Student1(other.vardas ,other.pavarde, other.egzaminas, other.mark) {
+        other = Student1();
+        std::cout<<"Iskviestas Move Konstruktorius studentui "<<vardas<<std::endl;
+    }
+    // setteriai
 
     void setVardas(string vardas_);
 
@@ -52,6 +81,11 @@ class Student1 {
 
     vector<int> getMark() const {
         return mark;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Student1& stud) {
+    os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
+    return os;
     }
 
     float getMedian() const;
