@@ -48,13 +48,9 @@ int lineCount (string filename);
 
 //void count_marks (vector<Student>& stud);
 
-
-
 vector<string> listTxtFiles();
 
 void generate_file (int number);
-
-
 
 void print_metrics (string filename, float data, int num, int strategija);
 

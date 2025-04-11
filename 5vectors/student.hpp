@@ -1,4 +1,7 @@
 //#include "header.h"
+#include <istream>
+#include <ostream>
+#include <shared_mutex>
 #include <string>
 #include <utility>
 #include <vector>
@@ -63,7 +66,7 @@ class Student1 {
             pavarde = other.pavarde;
             egzaminas = other.egzaminas;
             mark = other.mark;
-            
+
             other.vardas = "Default";
             other.pavarde = "Default";
             other.egzaminas = 0;
@@ -103,8 +106,46 @@ class Student1 {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Student1& stud) {
-    os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
-    return os;
+        os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
+        return os;
+    }
+
+    friend std::istream& operator>>(std::istream& is, Student1& stud) {
+        std::string egzaminas, mark_temp;
+        vector<int> mark {};
+
+        std::cout << "Enter name: ";
+        is >> stud.vardas;
+
+        std::cout << "Enter surname: ";
+        is >> stud.pavarde;
+
+        while (true) {
+            std::cout << "Enter exam mark (0-10): ";
+            std::cin >> egzaminas;
+            if (std::stoi(egzaminas) >= 0 && std::stoi(egzaminas) <= 10) {
+                stud.egzaminas = std::stoi(egzaminas); 
+                break;
+            }
+        }
+
+        while (true) {
+            std::cout << "Enter a mark (or 'q' to quit): ";
+            std::cin >> mark_temp;
+
+            if (mark_temp == "q") {
+                stud.mark = mark;
+                mark.clear();
+                system("clear");
+                break;
+            }
+
+            if (std::stoi(mark_temp) >= 0 && std::stoi(mark_temp) <= 10) {
+                mark.push_back(std::stoi(mark_temp));
+            }
+        }
+
+        return is;
     }
 
     float getMedian() const;
@@ -133,4 +174,8 @@ void divide_file3 (vector<Student1>& stud,vector<Student1>& nuskriaustukai, stri
 
 void pagrindinis_divide (vector<Student1>& stud,vector<Student1>& kietiakai,vector<Student1>& nuskriaustukai, int num);
 
+void pagrindinis_divide_choice(vector<Student1>& stud);
+
 void sort_file (vector<Student1>& stud, string name);
+
+void rule_of_five();

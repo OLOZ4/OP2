@@ -26,6 +26,7 @@ int main() {
     cin >> choice;
     switch (choice) {
         case '1': {
+            
             Student1 temp_student;
             string vardas, pavarde, mark_temp;
             string egzaminas;
@@ -175,128 +176,24 @@ int main() {
 
         case '6': {
             system("clear");
-            vector<Student1> nuskriaustukai, kietiakai;
-            cout << R"(Select:
-1) Pirma strategija
-2) Antra strategija
-3) Trečia strategija
---> )";
-            char pasirinkimas;
-            cin >> pasirinkimas;
-            switch (pasirinkimas) {
-                while (true) {
-                    case '1': {
-                        pagrindinis_divide(stud, kietiakai, nuskriaustukai, 1);
-                        break;
-                    }
-                    case '2': {
-                        pagrindinis_divide(stud, kietiakai, nuskriaustukai, 2);
-                        break;
-                    }
-                    case '3': {
-                        pagrindinis_divide(stud, kietiakai, nuskriaustukai, 3);
-                        break;
-                    }
-                    default: {
-                        cout << "Klaida. Neteisingas pasirinkimas!";
-                    }
-                }                 
-            }  
+            pagrindinis_divide_choice(stud);
             break;
         }
         
         case '7':{
             system("clear");
             //----------Rule-of-Five----------
-            char choice2;
-cout << R"(Select:
-1) Copy constructor
-2) Copy Assignment Operator
-3) Move Constructor
-4) Move Assignment Operator
---> )"; 
-
-            cin >> choice2;
-            switch (choice2) {
-                while (true) {
-                      
-                    case '1': {
-                        cout <<"Creating student a"<<endl;
-                        Student1 a ("Tomas", "Tomaitis",10,vector<int>{1,2,3});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b, so that b = a"<<endl;
-                        Student1 b = a;
-                        cout <<"b: "<<b<<endl;
-                        break;
-                    }
-
-                    case '2': {
-                        cout <<"Creating student a"<<endl;
-                        Student1 a ("Kostas", "Kostaitis",9,vector<int>{10,10,10});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b"<<endl;
-                        Student1 b;
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's use operator '=' to make b = a "<<endl<<endl;
-                        b = a;
-                        cout <<"b: "<<b<<endl;
-                        b = b;
-                        break;
-                    }
-
-                    case '3': {
-                        cout <<"Creating student a"<<endl;
-                        Student1 a ("Genute", "Genutaite",2,vector<int>{1});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b with move constructor:"<<endl<<endl;
-                        Student1 b = std::move(a);
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's check a"<<endl<<endl;
-                        cout <<"a: "<<a<<endl;
-                        break;
-                    }
-
-                    case '4': {
-                        cout <<"Creating student a"<<endl;
-                        Student1 a ("Mykolas", "Mykolaitis",2,vector<int>{3,3});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b"<<endl;
-                        Student1 b;
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's use operator '=' to move from a to b "<<endl<<endl;
-                        b = std::move(a);
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's check a"<<endl<<endl;
-                        cout <<"a: "<<a<<endl<<endl;
-                        break;
-                    }
-
-                    default: {
-                        cout << "\n\nInvalid choice. Please try again.\n";
-                        continue;
-                    }
-                }
-            }
-            //1. Destructor
-            //2. Copy constructor
-            
-            //cout <<a<<b;
-            //3. Copy Assignment Operator
-            //Student1 a ("Tomas", "Tomaitis",10,vector<int>{123});
-            //Student1 b = a;
-            //cout <<a<<b;
-            //4. Move Constructor
-            //Student1 a ("Tomas", "Tomaitis",10,vector<int>{123});
-            //cout <<a;
-            //Student1 b = std::move(a);
-            //cout <<a<<b;
-            //5. Move Assignment Operator
+            rule_of_five();
             break;
-        }
 
         case '8': {
             cout <<endl<< "quitting... bye" << endl;
             return 0;
+        }
+
+        case '9': {
+            Student1 a;
+            cin >> a;
         }
 
         default: {
@@ -304,4 +201,5 @@ cout << R"(Select:
         }
     }
   }
+}
 }
