@@ -237,25 +237,42 @@ cout << R"(Select:
                         cout <<"Creating student b"<<endl;
                         Student1 b;
                         cout <<"b: "<<b<<endl;
-                        cout <<"Now lets use operator '=' to make b = a "<<endl<<endl;
+                        cout <<"Now let's use operator '=' to make b = a "<<endl<<endl;
                         b = a;
                         cout <<"b: "<<b<<endl;
-                        b=b;
+                        b = b;
                         break;
                     }
 
                     case '3': {
-                        
+                        cout <<"Creating student a"<<endl;
+                        Student1 a ("Genute", "Genutaite",2,vector<int>{1});
+                        cout <<"a: "<<a<<endl;
+                        cout <<"Creating student b with move constructor:"<<endl<<endl;
+                        Student1 b = std::move(a);
+                        cout <<"b: "<<b<<endl;
+                        cout <<"Now let's check a"<<endl<<endl;
+                        cout <<"a: "<<a<<endl;
                         break;
                     }
 
                     case '4': {
-
+                        cout <<"Creating student a"<<endl;
+                        Student1 a ("Mykolas", "Mykolaitis",2,vector<int>{3,3});
+                        cout <<"a: "<<a<<endl;
+                        cout <<"Creating student b"<<endl;
+                        Student1 b;
+                        cout <<"b: "<<b<<endl;
+                        cout <<"Now let's use operator '=' to move from a to b "<<endl<<endl;
+                        b = std::move(a);
+                        cout <<"b: "<<b<<endl;
+                        cout <<"Now let's check a"<<endl<<endl;
+                        cout <<"a: "<<a<<endl<<endl;
                         break;
                     }
 
                     default: {
-                        cout <<"Ivedete neteisinga skaiciu, bandykite dar karta"<<endl;
+                        cout << "\n\nInvalid choice. Please try again.\n";
                         continue;
                     }
                 }

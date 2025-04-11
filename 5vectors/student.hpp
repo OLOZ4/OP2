@@ -55,6 +55,25 @@ class Student1 {
         other = Student1();
         std::cout<<"Iskviestas Move Konstruktorius studentui "<<vardas<<std::endl;
     }
+
+    // move assignment
+    Student1& operator=(Student1&& other) noexcept {
+        if (this != &other) { // Patikrinti ar ne self-moving
+            vardas = other.vardas;
+            pavarde = other.pavarde;
+            egzaminas = other.egzaminas;
+            mark = other.mark;
+            
+            other.vardas = "Default";
+            other.pavarde = "Default";
+            other.egzaminas = 0;
+            other.mark = {0};
+        }
+        else std::cout <<"Self-moving, skipping"<<std::endl;
+        std::cout<<"Iskviestas Move Assignmentas studentui "<<vardas<<std::endl;
+        return *this;
+    }
+
     // setteriai
 
     void setVardas(string vardas_);
