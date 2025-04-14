@@ -10,7 +10,25 @@
 + Paleidžiame esantį failą komanda ```./main```
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
-## v1.1 Tyrimas 
+
+## v1.2 Aprašymas
+
+# Implementuota "Rule of Five" Studentų klasei
+
+| Funkcijos pavadinimas | Funkcijos implementacija | 
+|-----------------------|--------------------------|
+|Destruktorius|!()[images/destruktorius.png]
+|Copy konstruktorius|
+|Copy assignmentas|
+|Move konstruktorius|
+|Move assignmentas|
+
+
+# Perdengti įvesties ir išvesties metodai
+
+
+
+## v1.1 Tyrimas
 
 **Struct vs class (vector)**
 | Implementacijos tipas | Laikas 1000000.txt | Laikas 10000000.txt |
