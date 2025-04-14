@@ -17,7 +17,7 @@
 
 | Funkcijos pavadinimas | Funkcijos implementacija | 
 |-----------------------|--------------------------|
-|Destruktorius|!()[images/destruktorius.png]
+|Destruktorius|!()[/images/destruktorius.png]
 |Copy konstruktorius|
 |Copy assignmentas|
 |Move konstruktorius|
