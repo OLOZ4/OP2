@@ -17,14 +17,18 @@
 
 | Funkcijos pavadinimas | Funkcijos implementacija | 
 |-----------------------|--------------------------|
-|Destruktorius|!()[/images/destruktorius.png]
-|Copy konstruktorius|
-|Copy assignmentas|
-|Move konstruktorius|
-|Move assignmentas|
+|Destruktorius|![](images/destruktorius.png)|
+|Copy konstruktorius|![](images/copy%20konstruktorius.png)|
+|Copy assignmentas|![](images/copy%20assignmentas.png)|
+|Move konstruktorius|![](images/move%20konstruktorius.png)|
+|Move assignmentas|![](images/move%20assignmentas.png)|
 
 
 # Perdengti įvesties ir išvesties metodai
+|||
+|-|-|
+|Įvestis|![](images/operator>>.png)|
+|Išvestis|![](images/operator<<.png)|
 
 
 
