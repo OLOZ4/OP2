@@ -2,7 +2,6 @@
 #include "functions.cpp"
 #include <algorithm>
 
-
 float Student1::getMedian() const {
     vector<int> marks = mark;
     double med{};
@@ -151,6 +150,47 @@ void sort_students (vector<Student1>& stud) {
     }
 }
 
+void choose_printing_method (vector<Student1>& stud) {
+    sort_students(stud);
+    char choice;
+    string filename;
+    cout << R"(Print:
+1) To terminal
+2) To file
+3) Both
+--> )";
+    while (true) {
+        cin >> choice;
+        switch (choice) {
+            case '1': {
+                print_marks(stud);
+                return;
+            }
+
+            case '2': {
+                cout << "Enter file name, press 'd' for default name 'output.txt'"<<endl << "-->";
+                cin >> filename;
+                if (filename == "d" ) write_marks(stud, "output.txt");
+                else write_marks(stud, filename);
+                return;
+            }
+            
+            case '3': {
+                cout << endl <<"Enter file name, press 'd' for default name 'output.txt'"<< endl << "-->";
+                cin >> filename;
+                if (filename == "d" ) write_marks(stud, "output.txt");
+                else write_marks(stud, filename);
+                print_marks(stud);
+                return;
+            }
+
+            default: {
+                cout << "\n\nInvalid choice. Please try again.\n--> ";
+            }
+        }
+    }
+}
+
 void print_marks (vector<Student1> stud) {
     int g = 15;
     cout << endl << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
@@ -159,10 +199,6 @@ void print_marks (vector<Student1> stud) {
         cout << stud[i];
     }
     cout<<endl;
-
-    //-----------------------Writing-to-file-----------------------
-    write_marks(stud, "output.txt");
-    //-------------------------------------------------------------
 }
 
 void write_marks (vector<Student1> stud, string name) {

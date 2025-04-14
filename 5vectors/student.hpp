@@ -108,7 +108,7 @@ class Student1 {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Student1& stud) {
-        int g = 15;
+        int g = 20;
         //os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
         os << std::setw(g) << std::left << stud.getVardas() << std::setw(g) << std::left << stud.getPavarde() << std::setw(g) << std::left << std::setprecision(3) << stud.getResult() << std::setw(g) << std::left << std::setprecision(3) << stud.getMedian() << std::endl;
         return os;
@@ -165,6 +165,8 @@ void print(vector<Student1> &stud);
 void import_file (vector<Student1> &stud, string filename);
 
 void sort_students (vector<Student1>& stud);
+
+void choose_printing_method (vector<Student1>& stud);
 
 void print_marks (vector<Student1> stud);
 
