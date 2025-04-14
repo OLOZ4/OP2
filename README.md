@@ -68,7 +68,7 @@
   out << studentas; // kadangi objektui nebuvo priskirta jokių reikšmių, bus išvestos defaultinės reikšmės
   ```
   
-+ Objektus galima taip pat išvesti / gauti naudojant Getterius
++ Objektus galima taip pat išvesti / gauti naudojant Getterius:
   ```
   Student1 studentas ("Vardenis", "Pavardenis", 10, {9,8,7}); // sukuriame objektą ir priskiriame jam reikšmes
 
@@ -77,6 +77,10 @@
   int egzaminas = studentas.GetEgzaminas() // result: 10
   std::vector<int> mark = studentas.GetMark() // result: {9,8,7}
   ```
+
+### Apibendrinimas
+
+Duomenis apie objektus galima labai paprastai išvesti tiek į failą tiek į ekraną/terminalą naudojant operatorių <<, arba getterius, norint failus nuskaityti iš failo, naudojami setteriai, jeigu duomenys generuojami pačios programos, taip pat yra naudojami setteriai, tačiau jei vartotojas nori įvesti duomenis programos eigoje galima naudoti įvesties operatorių >>.
 
 # v1.1 Tyrimas
 
