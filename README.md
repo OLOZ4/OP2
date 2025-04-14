@@ -11,9 +11,9 @@
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
 
-## v1.2 Aprašymas
+# v1.2 Aprašymas
 
-# Implementuota "Rule of Five" Studentų klasei
+## Implementuota "Rule of Five" Studentų klasei
 
 | Funkcijos pavadinimas | Funkcijos implementacija | 
 |-----------------------|--------------------------|
@@ -24,15 +24,61 @@
 |Move assignmentas|![](images/move%20assignmentas.png)|
 
 
-# Perdengti įvesties ir išvesties metodai
+## Perdengti įvesties ir išvesties metodai
 |||
 |-|-|
 |Įvestis|![](images/operator>>.png)|
 |Išvestis|![](images/operator<<.png)|
 
+## **Klasės Student1** Objektų įvestis / išvestis
 
+### Įvestis
 
-## v1.1 Tyrimas
++ Obejktus galima įvesti naudotjat įvesties operatorių `>>`:
+  ```
+  Student1 studentas; // inicializuojame studentą su defaultinėmis reikšmėmis
+  std::cin >> studentas; // užpildome norimomis reikšmėmis
+  ```
++ Taip pat galima įvesti duomenis į objektus juos inicializuojant:
+  ```
+  Student1 studentas ("Vardenis", "Pavardenis", 10, {9,8,7});
+  ```
++ Galima naudoti Setterius:
+  ```
+  Student1 studentas; // inicializuojame studenta su defaultinėmis reikšmėmis
+  // priskiriame reikšmes:
+  studentas.SetVardas("Tomas");
+  studentas.SetPavarde("Tomaitis");
+  studentas.SetEgzaminas(10);
+  studentas.SetMark({1,2,3,4});
+  ```
+### Išvestis
+
++ Obejktus galima išvesti naudotjat įvesties operatorių `<<`:
+  ```
+  // Išvedimas į ekraną
+  
+  Student1 studentas; // inicializuojame studentą su defaultinėmis reikšmėmis
+  std::cout << studentas; // kadangi objektui nebuvo priskirta jokių reikšmių, bus išvestos defaultinės reikšmės
+
+  // Išvedimas į failą
+
+  Student1 studentas; // inicializuojame studentą su defaultinėmis reikšmėmis
+  std::ofstream out ("output.txt");
+  out << studentas; // kadangi objektui nebuvo priskirta jokių reikšmių, bus išvestos defaultinės reikšmės
+  ```
+  
++ Objektus galima taip pat išvesti / gauti naudojant Getterius
+  ```
+  Student1 studentas ("Vardenis", "Pavardenis", 10, {9,8,7}); // sukuriame objektą ir priskiriame jam reikšmes
+
+  std::string vardas = studentas.GetVardas() // result: Vardenis
+  std::string pavarde = studentas.GetPavarde() // result: Pavardenis
+  int egzaminas = studentas.GetEgzaminas() // result: 10
+  std::vector<int> mark = studentas.GetMark() // result: {9,8,7}
+  ```
+
+# v1.1 Tyrimas
 
 **Struct vs class (vector)**
 | Implementacijos tipas | Laikas 1000000.txt | Laikas 10000000.txt |
