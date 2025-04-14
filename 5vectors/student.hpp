@@ -3,9 +3,7 @@
 #include <ios>
 #include <istream>
 #include <ostream>
-#include <shared_mutex>
 #include <string>
-#include <utility>
 #include <vector>
 #include <iostream>
 
@@ -50,15 +48,15 @@ class Student1 {
             egzaminas = other.egzaminas;
             mark = other.mark;
         }
-        else std::cout <<"Self-assignment, skipping"<<std::endl;
-        std::cout<<"Iskviestas Copy Assignmentas studentui "<<vardas<<std::endl;
+        else std::cout << "Self-assignment, skipping" <<std::endl;
+        std::cout << "Iskviestas Copy Assignmentas studentui " << vardas <<std::endl;
         return *this;
     }
 
     //move konstruktorius
     Student1(Student1&& other) noexcept : Student1(other.vardas ,other.pavarde, other.egzaminas, other.mark) {
         other = Student1();
-        std::cout<<"Iskviestas Move Konstruktorius studentui "<<vardas<<std::endl;
+        std::cout << "Iskviestas Move Konstruktorius studentui " << vardas << std::endl;
     }
 
     // move assignment
@@ -109,8 +107,11 @@ class Student1 {
 
     friend std::ostream& operator<<(std::ostream& os, const Student1& stud) {
         int g = 20;
-        //os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
-        os << std::setw(g) << std::left << stud.getVardas() << std::setw(g) << std::left << stud.getPavarde() << std::setw(g) << std::left << std::setprecision(3) << stud.getResult() << std::setw(g) << std::left << std::setprecision(3) << stud.getMedian() << std::endl;
+        os << std::setw(g) << std::left << stud.getVardas() 
+        << std::setw(g) << std::left << stud.getPavarde() 
+        << std::setw(g) << std::left << std::setprecision(3) 
+        << stud.getResult() << std::setw(g) << std::left 
+        << std::setprecision(3) << stud.getMedian() << std::endl;
         return os;
     }
 
