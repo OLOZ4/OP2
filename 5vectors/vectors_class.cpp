@@ -1,8 +1,5 @@
 #include "header.h"
 #include "student.hpp"
-#include <algorithm>
-#include <cstdlib>
-#include <vector>
 
 
 int main() {
@@ -28,45 +25,11 @@ int main() {
         case '1': {
             
             Student1 temp_student;
-            string vardas, pavarde, mark_temp;
-            string egzaminas;
-            vector<int> mark {};
-
-            cout << "Enter name: ";
-            cin >> vardas;
-            temp_student.setVardas(vardas);
-
-            cout << "Enter surname: ";
-            cin >> pavarde;
-            temp_student.setPavarde(pavarde);
-
-            while (true) {
-                cout << "Enter exam mark (0-10): ";
-                cin >> egzaminas;
-                if (isValid(std::stoi(egzaminas))) {
-                    temp_student.setEgzaminas(std::stoi(egzaminas));
-                    break;
-                }
-            }
-
-            while (true) {
-                cout << "Enter a mark (or 'q' to quit): ";
-                cin >> mark_temp;
-
-                if (mark_temp == "q") {
-                    temp_student.setMark(mark);
-                    mark.clear();
-                    system("clear");
-                    break;
-                }
-                if (isValid(mark_temp)) {
-                mark.push_back(std::stoi(mark_temp));
-                }  
-            }
+            cin >> temp_student;
         
             stud.push_back(temp_student);
-            mark.clear();
             //print(stud);
+            //cout << stud[0];
             break;
         }
 
@@ -189,11 +152,6 @@ int main() {
         case '8': {
             cout <<endl<< "quitting... bye" << endl;
             return 0;
-        }
-
-        case '9': {
-            Student1 a;
-            cin >> a;
         }
 
         default: {

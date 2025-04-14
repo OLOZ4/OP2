@@ -156,10 +156,10 @@ void print_marks (vector<Student1> stud) {
     cout << endl << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
      cout<<"__________________________________________________________________________________"<<endl;
     for (int i = 0; i < stud.size(); i++) {
-        cout <<setw(g)<< left<< stud[i].getVardas() << setw(g)<< left<< stud[i].getPavarde(); 
-        cout << setw(g) <<left<<std::setprecision(3)<< stud[i].getResult() << setw(g)<< left << std::setprecision(3) <<  stud[i].getMedian() << endl; // kur mediana vietoj vidurkio imti mediana
+        cout << stud[i];
     }
     cout<<endl;
+
     //-----------------------Writing-to-file-----------------------
     write_marks(stud, "output.txt");
     //-------------------------------------------------------------
@@ -173,8 +173,7 @@ void write_marks (vector<Student1> stud, string name) {
     out << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
     out<<"__________________________________________________________________________________"<<endl;
     for (int i = 0; i < stud.size(); i++) {
-        out <<setw(g)<< left<< stud[i].getVardas() << setw(g)<< left<< stud[i].getPavarde(); 
-        out << setw(g) <<left<<std::setprecision(3)<< stud[i].getResult() << setw(g)<< left << std::setprecision(3) <<  stud[i].getMedian() << endl; // kur mediana vietoj vidurkio imti mediana
+        out << stud[i];
     }
     out.close();
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti

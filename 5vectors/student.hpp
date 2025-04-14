@@ -1,4 +1,6 @@
 //#include "header.h"
+#include <iomanip>
+#include <ios>
 #include <istream>
 #include <ostream>
 #include <shared_mutex>
@@ -22,7 +24,7 @@ class Student1 {
     public:
 
     // konstruktorius
-    Student1(string v ="Default", string p = "Default", int e = 0, vector<int> m = {0}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {std::cout << "Iskviestas Konstruktorius studentui " << v <<std::endl;}
+    Student1(string v = "Default", string p = "Default", int e = 0, vector<int> m = {0}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {std::cout << "Iskviestas Konstruktorius studentui " << v <<std::endl;}
     
     // destruktorius
     ~Student1() {
@@ -106,7 +108,9 @@ class Student1 {
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Student1& stud) {
-        os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
+        int g = 15;
+        //os << "Vardas: " << stud.getVardas() << " || Pavarde: "<< stud.pavarde<<" || Rezultatas: "<< stud.getResult()<<std::endl;
+        os << std::setw(g) << std::left << stud.getVardas() << std::setw(g) << std::left << stud.getPavarde() << std::setw(g) << std::left << std::setprecision(3) << stud.getResult() << std::setw(g) << std::left << std::setprecision(3) << stud.getMedian() << std::endl;
         return os;
     }
 
