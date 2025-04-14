@@ -22,11 +22,13 @@ class Student1 {
     public:
 
     // konstruktorius
-    Student1(string v = "Default", string p = "Default", int e = 0, vector<int> m = {0}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {std::cout << "Iskviestas Konstruktorius studentui " << v <<std::endl;}
+    Student1(string v = "Default", string p = "Default", int e = 0, vector<int> m = {0}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {
+        //std::cout << "Iskviestas Konstruktorius studentui " << v <<std::endl;
+    }
     
     // destruktorius
     ~Student1() {
-        std::cout << "Iskviestas Destruktorius studentui "<<vardas<<std::endl;
+        //std::cout << "Iskviestas Destruktorius studentui "<<vardas<<std::endl;
         mark.clear();
     }
 
@@ -37,7 +39,7 @@ class Student1 {
         pavarde = other.pavarde;
         egzaminas = other.egzaminas;
         mark = other.mark;
-        std::cout<<"Iskviestas Copy Konstruktorius studentui "<<vardas<<std::endl;
+        //std::cout<<"Iskviestas Copy Konstruktorius studentui "<<vardas<<std::endl;
     }
 
     // copy assignment
@@ -49,14 +51,14 @@ class Student1 {
             mark = other.mark;
         }
         else std::cout << "Self-assignment, skipping" <<std::endl;
-        std::cout << "Iskviestas Copy Assignmentas studentui " << vardas <<std::endl;
+        //std::cout << "Iskviestas Copy Assignmentas studentui " << vardas <<std::endl;
         return *this;
     }
 
     //move konstruktorius
     Student1(Student1&& other) noexcept : Student1(other.vardas ,other.pavarde, other.egzaminas, other.mark) {
         other = Student1();
-        std::cout << "Iskviestas Move Konstruktorius studentui " << vardas << std::endl;
+        //std::cout << "Iskviestas Move Konstruktorius studentui " << vardas << std::endl;
     }
 
     // move assignment
@@ -73,7 +75,7 @@ class Student1 {
             other.mark = {0};
         }
         else std::cout <<"Self-moving, skipping"<<std::endl;
-        std::cout<<"Iskviestas Move Assignmentas studentui "<<vardas<<std::endl;
+        //std::cout<<"Iskviestas Move Assignmentas studentui "<<vardas<<std::endl;
         return *this;
     }
 

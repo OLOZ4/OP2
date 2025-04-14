@@ -1,6 +1,5 @@
 #include "student.hpp"
 #include "functions.cpp"
-#include <algorithm>
 
 float Student1::getMedian() const {
     vector<int> marks = mark;
@@ -63,6 +62,7 @@ void import_file (vector<Student1> &stud, string filename) {
     string temp;
     string vardas, pavarde;
     vector<int> mark;
+    int egz;
     ifstream in("../studentai/"+filename);
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
     int lineNum = lineCount(filename);
@@ -74,19 +74,21 @@ void import_file (vector<Student1> &stud, string filename) {
         std::istringstream stream (temp);
         while (stream) {
             stream >> vardas >> pavarde;
-            temp_student.setVardas(vardas);
-            temp_student.setPavarde(pavarde);
+            //temp_student.setVardas(vardas);
+            //temp_student.setPavarde(pavarde);
+            int marks;
             while (stream) {
-                stream >> word;
-                mark.push_back(std::stoi(word));
+                stream >> marks;
+                mark.push_back(marks);
             }
-            temp_student.setEgzaminas(mark.back());
+            egz = mark.back();
             mark.pop_back();
 
-            temp_student.setMark(mark);
+            //temp_student.setMark(mark);
             //stud.push_back(std::move(temp_student));
-            
-            stud.push_back(temp_student);
+            //Student1 temp_student (vardas, pavarde, egz, mark);
+            //stud.push_back(std::move(temp_student));
+            stud.emplace_back(vardas, pavarde, egz, mark);
             mark.clear();
         }
     }
