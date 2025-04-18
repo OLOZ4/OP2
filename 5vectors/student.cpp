@@ -1,6 +1,5 @@
 #include "student.hpp"
 #include "header.h"
-//#include "functions.cpp"
 
 float Student1::getMedian() const {
     vector<int> marks = mark;

@@ -2,6 +2,7 @@
 #include <ios>
 #include <istream>
 #include <ostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <iostream>
@@ -70,10 +71,7 @@ class Student1 : private Human {
             egzaminas = other.egzaminas;
             mark = other.mark;
 
-            other.vardas = "Default";
-            other.pavarde = "Default";
-            other.egzaminas = 0;
-            other.mark = {0};
+            other = Student1();
         }
         else std::cout <<"Self-moving, skipping"<<std::endl;
         //std::cout<<"Iskviestas Move Assignmentas studentui "<<vardas<<std::endl;
@@ -117,7 +115,13 @@ class Student1 : private Human {
         << std::setprecision(3) << stud.getMedian() << std::endl;
         return os;
     }
-     // ifstreama dar padaryt
+
+    // ifstreama dar padaryt
+    friend std::ifstream& operator>>(std::ifstream& ifs, Student1& stud) {
+        ifs >> stud.vardas >> stud.pavarde;
+        return ifs;
+    }
+    
     friend std::istream& operator>>(std::istream& is, Student1& stud) {
         std::string egzaminas, mark_temp;
         vector<int> mark {};
