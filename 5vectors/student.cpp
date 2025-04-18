@@ -1,5 +1,6 @@
 #include "student.hpp"
-#include "functions.cpp"
+#include "header.h"
+//#include "functions.cpp"
 
 float Student1::getMedian() const {
     vector<int> marks = mark;
@@ -301,9 +302,9 @@ void pagrindinis_divide (vector<Student1> &stud, vector<Student1> &kietiakai, ve
         sort_students(nuskriaustukai);
         */
         
-        //if (num == 1) write_marks(kietiakai, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-        //else write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-        //write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
+        if (num == 1) write_marks(kietiakai, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
+        else write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
+        write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
         stud.clear();
         nuskriaustukai.clear();
         
@@ -371,7 +372,7 @@ cout << R"(Select:
                         Student1 a ("Tomas", "Tomaitis",10,vector<int>{1,2,3});
                         cout <<"a: "<<a<<endl;
                         cout <<"Creating student b, so that b = a"<<endl;
-                        Student1 b = a;
+                        Student1 b (a);
                         cout <<"b: "<<b<<endl;
                         break;
                     }
@@ -391,12 +392,13 @@ cout << R"(Select:
                         break;
                     }
 
+                    // konstruktorius nepatinkrintas blogai padaryta
                     case '3': {
                         cout <<"Creating student a"<<endl;
                         Student1 a ("Genute", "Genutaite",2,vector<int>{1});
                         cout <<"a: "<<a<<endl;
                         cout <<"Creating student b with move constructor:"<<endl<<endl;
-                        Student1 b = std::move(a);
+                        Student1 b (std::move(a));
                         cout <<"b: "<<b<<endl;
                         cout <<"Now let's check a"<<endl<<endl;
                         cout <<"a: "<<a<<endl;

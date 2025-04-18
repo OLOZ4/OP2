@@ -117,7 +117,7 @@ class Student1 : private Human {
         << std::setprecision(3) << stud.getMedian() << std::endl;
         return os;
     }
-
+     // ifstreama dar padaryt
     friend std::istream& operator>>(std::istream& is, Student1& stud) {
         std::string egzaminas, mark_temp;
         vector<int> mark {};
