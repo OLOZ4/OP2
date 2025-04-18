@@ -21,5 +21,4 @@ class Human {
     virtual std::string getVardas() const = 0;
  
     virtual std::string getPavarde() const = 0;
-    
 };
