@@ -11,6 +11,13 @@
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
 
+# v1.5 Aprašymas
+
+## Human klasė
+
+Sukurta bazinę (abstrakti) klasė skirtą bendrai aprašyti žmogų.\
+Iš jos išeina (dervied) klasė Student1.
+
 # v1.2 Aprašymas
 
 ## Implementuota "Rule of Five" Studentų klasei
