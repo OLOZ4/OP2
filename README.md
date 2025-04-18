@@ -15,7 +15,7 @@
 
 ## Human klasė
 
-Sukurta bazinę (abstrakti) klasė skirtą bendrai aprašyti žmogų.\
+Sukurta bazinę (abstrakti) klasė skirta bendrai aprašyti žmogų.\
 Iš jos išeina (dervied) klasė Student1.
 
 # v1.2 Aprašymas
