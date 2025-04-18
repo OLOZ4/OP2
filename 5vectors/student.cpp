@@ -385,7 +385,8 @@ cout << R"(Select:
                         cout <<"b: "<<b<<endl;
                         cout <<"Now let's use operator '=' to make b = a "<<endl<<endl;
                         b = a;
-                        cout <<"b: "<<b<<endl;
+                        cout << "b: " <<b<<endl;
+                        cout << "let's try b = b:" << endl;  
                         b = b;
                         break;
                     }
