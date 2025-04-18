@@ -10,20 +10,45 @@
 using std::string;
 using std::vector;
 
+class Human {
+    protected:
 
+    string vardas;
+    string pavarde;
 
-class Student1 {
+    public:
+
+    // virtualus destruktorius
+    virtual ~Human() {
+        //std::cout << "Virtual destructor Human was called"<<std::endl;
+    }
+
+    //virtualus setteriai
+    virtual void setVardas(string vardas_) = 0;
+
+    virtual void setPavarde(string pavarde_) = 0;
+
+    //virtualus getteriai
+    virtual string getVardas() const = 0;
+ 
+    virtual string getPavarde() const = 0;
+    
+};
+
+class Student1 : public Human {
 
     private:
-        string vardas;
-        string pavarde;
+        //string vardas;
+        //string pavarde;
         int egzaminas;
         vector<int> mark;
     public:
 
     // konstruktorius
-    Student1(string v = "Default", string p = "Default", int e = 0, vector<int> m = {0}) : vardas(v), pavarde(p), egzaminas(e), mark(m) {
+    Student1(string v = "Default", string p = "Default", int e = 0, vector<int> m = {0}) :  egzaminas(e), mark(m) {
         //std::cout << "Iskviestas Konstruktorius studentui " << v <<std::endl;
+        vardas = v;
+        pavarde = p;
     }
     
     // destruktorius
@@ -81,9 +106,9 @@ class Student1 {
 
     // setteriai
 
-    void setVardas(string vardas_);
+    void setVardas (string vardas_) override;
 
-    void setPavarde(string pavarde_);
+    void setPavarde(string pavarde_) override;
 
     void setEgzaminas(int egzaminas_);
 
@@ -91,11 +116,11 @@ class Student1 {
 
     // getteriai
 
-    string getVardas() const {
+    string getVardas() const override {
         return vardas;
     }
 
-    string getPavarde() const {
+    string getPavarde() const override {
         return pavarde;
     }
 
