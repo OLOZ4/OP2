@@ -6,34 +6,11 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "human.hpp"
 
 using std::string;
 using std::vector;
 
-class Human {
-    protected:
-
-    string vardas;
-    string pavarde;
-
-    public:
-
-    // virtualus destruktorius
-    virtual ~Human() {
-        //std::cout << "Virtual destructor Human was called"<<std::endl;
-    }
-
-    //virtualus setteriai
-    virtual void setVardas(string vardas_) = 0;
-
-    virtual void setPavarde(string pavarde_) = 0;
-
-    //virtualus getteriai
-    virtual string getVardas() const = 0;
- 
-    virtual string getPavarde() const = 0;
-    
-};
 
 class Student1 : public Human {
 
