@@ -11,7 +11,7 @@ using std::string;
 using std::vector;
 
 
-class Student1 : public Human {
+class Student1 : private Human {
 
     private:
         //string vardas;
