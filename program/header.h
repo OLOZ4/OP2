@@ -25,15 +25,6 @@ using std::cerr;
 using std::left;
 using std::right;
 
-struct Student {
-    string name{};
-    string surname{};
-    int exam{};
-    vector<int> mark{};
-    double result;
-    double median;
-};
-
 bool isValid ( string number );
 
 bool isValid ( int number );
