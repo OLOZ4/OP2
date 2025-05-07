@@ -1,4 +1,4 @@
-## Paleidimo instrukcijos
+# Paleidimo instrukcijos
 
 + Klonuojame arba parsisiunčiame šitą repozitoriją
 + Šio projekto direktorijoje atsidarome terminalą ir rašome ```make```
