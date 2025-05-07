@@ -260,3 +260,9 @@ void pagrindinis_divide_choice(vector<Student1>& stud);
 void sort_file (vector<Student1>& stud, string name);
 
 void rule_of_five();
+
+void print_metrics (string filename, float data, int num, int strategija);
+
+int lineCount (string filename);
+
+string extractNumbers(const std::string& str);
