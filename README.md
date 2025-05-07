@@ -3,7 +3,6 @@
 + Klonuojame arba parsisiunčiame šitą repozitoriją
 + Šio projekto direktorijoje atsidarome terminalą ir rašome ```make```
 + Turi atsirasti aplankas: ```obj```
-<!-- + Nueiname į aplanką ```programa``` -->
 + Paleidžiame prorgamą naudodami komandą ```./main```
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
