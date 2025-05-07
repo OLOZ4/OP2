@@ -1,12 +1,14 @@
 #include "student.hpp"
 #include "header.h"
 
+
 float Student1::getMedian() const {
     vector<int> marks = mark;
     double med{};
     std::sort(marks.begin(), marks.end());
     if ((marks.size()-1) % 2 != 0) med = marks[marks.size()/2.0];
     else med = (marks[(marks.size()-1)/2.0] + marks[marks.size()/2.0])/2;
+    marks.clear();
     return 0.4*med+0.6*egzaminas;
 }
 
@@ -60,6 +62,35 @@ void print(vector<Student1> &stud) {
 void import_file (vector<Student1> &stud, string filename) {
 
     string temp;
+    
+    ifstream in("../studentai/"+filename);
+
+    if (!in) {
+        std::cerr << "Error: Could not open the file." << std::endl;
+    }
+
+    auto start = std::chrono::high_resolution_clock::now(); // Paleisti
+    int lineNum = lineCount(filename);
+    getline(in, temp);
+    stud.reserve(lineNum);
+                        
+    Student1 temp_student;
+    while (in>>temp_student) {
+        stud.push_back(temp_student);
+    }
+    //count_marks(stud);y
+    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
+    std::chrono::duration<double> diff = end-start;
+    cout << "Importing file " <<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
+    //print_metrics(filename, diff.count(), 0);
+    in.close();
+        
+}
+
+/*
+void import_file (vector<Student1> &stud, string filename) {
+
+    string temp;
     string vardas, pavarde;
     vector<int> mark;
     int egz;
@@ -100,6 +131,7 @@ void import_file (vector<Student1> &stud, string filename) {
         in.close();
         
 }
+*/
 
 void sort_students (vector<Student1>& stud) {
     cout <<"There are: "<<stud.size()<<" Students"<<endl;

@@ -9,6 +9,13 @@ class Human {
 
     public:
 
+    // Default constructor
+    Human() : vardas(""), pavarde("") {}
+
+    // Parameterized constructor
+    Human(const std::string& v, const std::string& p) : vardas(v), pavarde(p) {}
+
+    
     // virtualus destruktorius
     virtual ~Human() {
         //std::cout << "Virtual destructor Human was called"<<std::endl;
