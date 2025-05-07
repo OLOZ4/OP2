@@ -1,15 +1,14 @@
 ## Paleidimo instrukcijos
 
 + Klonuojame arba parsisiunčiame šitą repozitoriją
-+ Surandame failą pavadinimu "Makefile"
-+ Trečioje eilutėje yra nurodoma, kokia realizacija šio projekto bus paleista, standartiškai bus paleista ```3vectors``` realizacija. Tai galima pakeisti į kitą konteinerį ar strategiją. Pvz. jūs norite paleisti antros strategijos realiaciją dekais, tada trčia makefile eilutė turėtų atrodyti šitaip: ``` SRC_PATH = 2deque/``` . **Svarbu gale nepamiršti  simbolio "```/```"**
-+ Išsaugome failą
 + Šio projekto direktorijoje atsidarome terminalą ir rašome ```make```
-+ Turi atsirasti du aplankai: ```obj``` ir ```programa```
-+ Nueiname į aplanką ```programa```
-+ Paleidžiame esantį failą komanda ```./main```
++ Turi atsirasti aplankas: ```obj```
+<!-- + Nueiname į aplanką ```programa``` -->
++ Paleidžiame prorgamą naudodami komandą ```./main```
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
+
+# v2.0 Aprašymas
 
 # v1.5 Aprašymas
 
