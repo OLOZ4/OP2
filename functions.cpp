@@ -1,4 +1,5 @@
 #include "header.h"
+
 bool isValid ( string number ) {
     try {
         int mark = stoi(number);
