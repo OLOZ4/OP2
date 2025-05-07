@@ -1,6 +1,4 @@
 #include "student.hpp"
-#include "header.h"
-
 
 float Student1::getMedian() const {
     vector<int> marks = mark;
@@ -42,20 +40,19 @@ void Student1::GenerateNames() {
 
 void print(vector<Student1> &stud) {
     for (auto &student : stud) {
-      cout << "Student: " << student.getVardas() << " " << student.getPavarde()
-           << endl;
-      cout << "Egzaminas: " << student.getEgzaminas() << endl;
-      cout << "Marks: ";
+      std::cout << "Student: " << student.getVardas() << " " << student.getPavarde() << std::endl;
+           std::cout << "Egzaminas: " << student.getEgzaminas() << std::endl;
+           std::cout << "Marks: ";
       for (int mark : student.getMark()) {
-        cout << mark << " ";
+        std::cout << mark << " ";
       }
-      cout << endl;
+      std::cout << std::endl;
   
-      cout << "Median: " << student.getMedian() << endl;
+      std::cout << "Median: " << student.getMedian() << std::endl;
   
-      cout << "Vid: " << student.getResult();
+      std::cout << "Vid: " << student.getResult();
   
-      cout << endl << endl;
+      std::cout << std::endl << std::endl;
     }
   }
 
@@ -63,7 +60,7 @@ void import_file (vector<Student1> &stud, string filename) {
 
     string temp;
     
-    ifstream in("../studentai/"+filename);
+    std::ifstream in("../studentai/"+filename);
 
     if (!in) {
         std::cerr << "Error: Could not open the file." << std::endl;
@@ -81,7 +78,7 @@ void import_file (vector<Student1> &stud, string filename) {
     //count_marks(stud);y
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
     std::chrono::duration<double> diff = end-start;
-    cout << "Importing file " <<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
+    std::cout << "Importing file " <<filename<<" was successful. Took: "<< diff.count() << " s"<<std::endl;
     //print_metrics(filename, diff.count(), 0);
     in.close();
         
@@ -126,7 +123,7 @@ void import_file (vector<Student1> &stud, string filename) {
         //count_marks(stud);
         auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
         std::chrono::duration<double> diff = end-start;
-        cout << "Importing file " <<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
+        std::cout << "Importing file " <<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
         //print_metrics(filename, diff.count(), 0);
         in.close();
         
@@ -134,8 +131,8 @@ void import_file (vector<Student1> &stud, string filename) {
 */
 
 void sort_students (vector<Student1>& stud) {
-    cout <<"There are: "<<stud.size()<<" Students"<<endl;
-    cout << R"(Sort by:
+    std::cout <<"There are: "<<stud.size()<<" Students"<<std::endl;
+    std::cout << R"(Sort by:
 1) student name
 2) student surname
 3) student mark (average)
@@ -143,7 +140,7 @@ void sort_students (vector<Student1>& stud) {
 --> )";
     char choice1;
     while (true) {
-    cin >> choice1;
+    std::cin >> choice1;
     switch (choice1) {
             case '1': {
                 std::sort(stud.begin(), stud.end(), [](const Student1& a, const Student1& b) {
@@ -175,7 +172,7 @@ void sort_students (vector<Student1>& stud) {
                 return;
             }
             default: {
-                cout << "\n\nInvalid choice. Please try again.\n--> ";
+                std::cout << "\n\nInvalid choice. Please try again.\n--> ";
                 continue;
             }
             break;   
@@ -188,13 +185,13 @@ void choose_printing_method (vector<Student1>& stud) {
     sort_students(stud);
     char choice;
     string filename;
-    cout << R"(Print:
+    std::cout << R"(Print:
 1) To terminal
 2) To file
 3) Both
 --> )";
     while (true) {
-        cin >> choice;
+        std::cin >> choice;
         switch (choice) {
             case '1': {
                 print_marks(stud);
@@ -202,16 +199,16 @@ void choose_printing_method (vector<Student1>& stud) {
             }
 
             case '2': {
-                cout << "Enter file name, press 'd' for default name 'output.txt'"<<endl << "-->";
-                cin >> filename;
+                std::cout << "Enter file name, press 'd' for default name 'output.txt'"<<std::endl << "-->";
+                std::cin >> filename;
                 if (filename == "d" ) write_marks(stud, "output.txt");
                 else write_marks(stud, filename);
                 return;
             }
             
             case '3': {
-                cout << endl <<"Enter file name, press 'd' for default name 'output.txt'"<< endl << "-->";
-                cin >> filename;
+                std::cout << std::endl <<"Enter file name, press 'd' for default name 'output.txt'"<< std::endl << "-->";
+                std::cin >> filename;
                 if (filename == "d" ) write_marks(stud, "output.txt");
                 else write_marks(stud, filename);
                 print_marks(stud);
@@ -219,7 +216,7 @@ void choose_printing_method (vector<Student1>& stud) {
             }
 
             default: {
-                cout << "\n\nInvalid choice. Please try again.\n--> ";
+                std::cout << "\n\nInvalid choice. Please try again.\n--> ";
             }
         }
     }
@@ -227,12 +224,12 @@ void choose_printing_method (vector<Student1>& stud) {
 
 void print_marks (vector<Student1> stud) {
     int g = 15;
-    cout << endl << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
-     cout<<"__________________________________________________________________________________"<<endl;
+    std::cout << std::endl << std::setw(g) << std::left<< "Vardas: "<< std::setw(g) << std::left<< "Pavardė: "<< std::setw(g) << std::left<< "Pažymys(vid.): "<< std::setw(g) << std::left<< "Pažymys(med.): "<< std::endl;
+    std::cout<<"__________________________________________________________________________________"<<std::endl;
     for (int i = 0; i < stud.size(); i++) {
-        cout << stud[i];
+        std::cout << stud[i];
     }
-    cout<<endl;
+    std::cout<<std::endl;
 }
 
 void write_marks (vector<Student1> stud, string name) {
@@ -240,15 +237,15 @@ void write_marks (vector<Student1> stud, string name) {
     int g = 15;
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
     std::ofstream out (name);
-    out << setw(g) << left<< "Vardas: "<< setw(g) << left<< "Pavardė: "<< setw(g) << left<< "Pažymys(vid.): "<< setw(g) << left<< "Pažymys(med.): "<< endl;
-    out<<"__________________________________________________________________________________"<<endl;
+    out << std::setw(g) << std::left<< "Vardas: "<< std::setw(g) << std::left<< "Pavardė: "<< std::setw(g) << std::left<< "Pažymys(vid.): "<< std::setw(g) << std::left<< "Pažymys(med.): "<< std::endl;
+    out<<"__________________________________________________________________________________"<<std::endl;
     for (int i = 0; i < stud.size(); i++) {
         out << stud[i];
     }
     out.close();
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
     std::chrono::duration<double> diff = end-start;
-    cout << "Writing file " <<name<<" was successful. Took: "<< diff.count() << " s"<<endl;
+    std::cout << "Writing file " <<name<<" was successful. Took: "<< diff.count() << " s"<<std::endl;
 }
 
 void divide_file1 (vector<Student1>& stud, vector<Student1>& kietiakai, vector<Student1>& nuskriaustukai, string filename) {
@@ -266,7 +263,7 @@ void divide_file1 (vector<Student1>& stud, vector<Student1>& kietiakai, vector<S
     kietiakai.shrink_to_fit();
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
     std::chrono::duration<double> diff = end-start;
-    cout << "Dividing file "<<name<<" was successful. Took: "<< diff.count() << " s"<<endl;
+    std::cout << "Dividing file "<<name<<" was successful. Took: "<< diff.count() << " s"<<std::endl;
     //print_metrics(filename, diff.count(), 0, 0);
 }
 
@@ -284,7 +281,7 @@ void divide_file2 (vector<Student1>& stud, vector<Student1>& nuskriaustukai, str
     stud.shrink_to_fit();
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
     std::chrono::duration<double> diff = end-start;
-    cout << "Dividing file "<<filename<<" was successful. Took: "<< diff.count() << " s"<<endl;
+    std::cout << "Dividing file "<<filename<<" was successful. Took: "<< diff.count() << " s"<<std::endl;
     //print_metrics(filename, diff.count(), 0, 0);
 }
 
@@ -327,9 +324,9 @@ void pagrindinis_divide (vector<Student1> &stud, vector<Student1> &kietiakai, ve
         auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
         std::chrono::duration<double> diff = end-start;
         /*
-        cout<<endl<< "Sorting kietiakai:"<<endl;
+        std::cout<<endl<< "Sorting kietiakai:"<<endl;
         sort_students(kietiakai);
-        cout<< "Sorting nuskriaustukai:"<<endl;
+        std::cout<< "Sorting nuskriaustukai:"<<endl;
         sort_students(nuskriaustukai);
         */
         
@@ -339,22 +336,22 @@ void pagrindinis_divide (vector<Student1> &stud, vector<Student1> &kietiakai, ve
         stud.clear();
         nuskriaustukai.clear();
         
-        cout <<"==================================================================="<<endl;
-        cout << "| Processed file "<< setw(30)<< left<<filename<<" Took: "<< std::setprecision(3)<<setw(5) <<left<<diff.count() << " s |"<<endl;
-        cout <<"==================================================================="<<endl<<endl;
+        std::cout <<"==================================================================="<<std::endl;
+        std::cout << "| Processed file "<< std::setw(30)<< std::left<<filename<<" Took: "<< std::setprecision(3)<<std::setw(5) <<std::left<<diff.count() << " s |"<<std::endl;
+        std::cout <<"==================================================================="<<std::endl<<std::endl;
         print_metrics(filename, diff.count(), 1, num);
     }
 }
 
 void pagrindinis_divide_choice(vector<Student1> &stud) {
     vector<Student1> nuskriaustukai, kietiakai;
-    cout << R"(Select:
+    std::cout << R"(Select:
 1) Pirma strategija
 2) Antra strategija
 3) Trečia strategija
 --> )";
             char pasirinkimas;
-            cin >> pasirinkimas;
+            std::cin >> pasirinkimas;
             switch (pasirinkimas) {
                 while (true) {
                     case '1': {
@@ -370,7 +367,7 @@ void pagrindinis_divide_choice(vector<Student1> &stud) {
                         break;
                     }
                     default: {
-                        cout << "Klaida. Neteisingas pasirinkimas!";
+                        std::cout << "Klaida. Neteisingas pasirinkimas!";
                     }
                 }                 
             } 
@@ -381,78 +378,78 @@ void sort_file (vector<Student1>& stud, string name) {
     std::sort(stud.begin(), stud.end(), [](const Student1& a, const Student1& b) {return a.getResult() > b.getResult();});    
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
     std::chrono::duration<double> diff = end-start;
-    cout << "Sorting file "<<name<<" was successful. Took: "<< diff.count() << " s"<<endl;
+    std::cout << "Sorting file "<<name<<" was successful. Took: "<< diff.count() << " s"<<std::endl;
     //print_metrics(name, diff.count(), 0);
 }
 
 void rule_of_five() {
     char choice2;
-cout << R"(Select:
+std::cout << R"(Select:
 1) Copy constructor
 2) Copy Assignment Operator
 3) Move Constructor
 4) Move Assignment Operator
 --> )"; 
 
-            cin >> choice2;
+        std::cin >> choice2;
             switch (choice2) {
                 while (true) {
                       
                     case '1': {
-                        cout <<"Creating student a"<<endl;
+                        std::cout <<"Creating student a"<<std::endl;
                         Student1 a ("Tomas", "Tomaitis",10,vector<int>{1,2,3});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b, so that b = a"<<endl;
+                        std::cout <<"a: "<<a<<std::endl;
+                        std::cout <<"Creating student b, so that b = a"<<std::endl;
                         Student1 b (a);
-                        cout <<"b: "<<b<<endl;
+                        std::cout <<"b: "<<b<<std::endl;
                         break;
                     }
 
                     case '2': {
-                        cout <<"Creating student a"<<endl;
+                        std::cout <<"Creating student a"<<std::endl;
                         Student1 a ("Kostas", "Kostaitis",9,vector<int>{10,10,10});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b"<<endl;
+                        std::cout <<"a: "<<a<<std::endl;
+                        std::cout <<"Creating student b"<<std::endl;
                         Student1 b;
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's use operator '=' to make b = a "<<endl<<endl;
+                        std::cout <<"b: "<<b<<std::endl;
+                        std::cout <<"Now let's use operator '=' to make b = a "<<std::endl<<std::endl;
                         b = a;
-                        cout << "b: " <<b<<endl;
-                        cout << "let's try b = b:" << endl;  
+                        std::cout << "b: " <<b<<std::endl;
+                        std::cout << "let's try b = b:" << std::endl;  
                         b = b;
                         break;
                     }
 
                     // konstruktorius nepatinkrintas blogai padaryta
                     case '3': {
-                        cout <<"Creating student a"<<endl;
+                        std::cout <<"Creating student a"<<std::endl;
                         Student1 a ("Genute", "Genutaite",2,vector<int>{1});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b with move constructor:"<<endl<<endl;
+                        std::cout <<"a: "<<a<<std::endl;
+                        std::cout <<"Creating student b with move constructor:"<<std::endl<<std::endl;
                         Student1 b (std::move(a));
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's check a"<<endl<<endl;
-                        cout <<"a: "<<a<<endl;
+                        std::cout <<"b: "<<b<<std::endl;
+                        std::cout <<"Now let's check a"<<std::endl<<std::endl;
+                        std::cout <<"a: "<<a<<std::endl;
                         break;
                     }
 
                     case '4': {
-                        cout <<"Creating student a"<<endl;
+                        std::cout <<"Creating student a"<<std::endl;
                         Student1 a ("Mykolas", "Mykolaitis",2,vector<int>{3,3});
-                        cout <<"a: "<<a<<endl;
-                        cout <<"Creating student b"<<endl;
+                        std::cout <<"a: "<<a<<std::endl;
+                        std::cout <<"Creating student b"<<std::endl;
                         Student1 b;
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's use operator '=' to move from a to b "<<endl<<endl;
+                        std::cout <<"b: "<<b<<std::endl;
+                        std::cout <<"Now let's use operator '=' to move from a to b "<<std::endl<<std::endl;
                         b = std::move(a);
-                        cout <<"b: "<<b<<endl;
-                        cout <<"Now let's check a"<<endl<<endl;
-                        cout <<"a: "<<a<<endl<<endl;
+                        std::cout <<"b: "<<b<<std::endl;
+                        std::cout <<"Now let's check a"<<std::endl<<std::endl;
+                        std::cout <<"a: "<<a<<std::endl<<std::endl;
                         break;
                     }
 
                     default: {
-                        cout << "\n\nInvalid choice. Please try again.\n";
+                        std::cout << "\n\nInvalid choice. Please try again.\n";
                         continue;
                     }
                 }
@@ -471,11 +468,11 @@ void print_metrics (string filename, float data, int num, int strategija) {
     out.open(name, std::fstream::app);
     //out<<"container type: "<<type<<endl;
     out <<"|" <<data;
-    if (num == 1) out <<"|"<< endl;
+    if (num == 1) out <<"|"<< std::endl;
 }
 
 int lineCount (string filename) {
-    ifstream in (filename);
+    std::ifstream in (filename);
     string temp;
     int count = 0;
     while (getline(in, temp)) {

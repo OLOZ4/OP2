@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <chrono>
+#include <algorithm>
 #include "human.hpp"
 
 using std::string;
