@@ -36,7 +36,6 @@ int main() {
             case '2': {
                 Student1 temp_student;
                 string vardas, pavarde, mark_temp;
-                int egzaminas;
                 vector<int> mark {};
 
                 cout << "Enter name: ";
@@ -103,7 +102,7 @@ int main() {
                         cin >> choice;
                         system("clear");
 
-                        if (choice >= 1 && choice <= txtFiles.size()) {
+                        if (choice >=1 && choice <=  static_cast<int>(txtFiles.size())) {
                             filename = txtFiles[choice-1];
                             break; 
                         } else {

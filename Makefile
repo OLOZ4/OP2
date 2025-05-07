@@ -1,8 +1,8 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17
-SRC_PATH = 3vectors/
+SRC_PATH = program/
 OBJ_DIR = obj
-BIN_DIR = programa
+BIN_DIR = .
 TARGET = $(BIN_DIR)/main
 
 SRCS = $(wildcard $(SRC_PATH)/*.cpp)
@@ -21,4 +21,5 @@ $(OBJ_DIR)/%.o: $(SRC_PATH)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+#	rm -rf $(OBJ_DIR) $(BIN_DIR) $(BIN_DIR)/main
+	rm -rf $(OBJ_DIR) $(BIN_DIR)/main

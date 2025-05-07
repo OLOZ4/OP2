@@ -93,7 +93,6 @@ vector<string> listTxtFiles() {
 void generate_file (int number) {
 
     int g = 15;
-    int counter = 0;
     int mark_count = randomNumber(2, 10);
 
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
