@@ -45,16 +45,7 @@ string get_name(vector <string> name) {
     return name[randomNumber(1, name.size())];
 }
 
-int lineCount (string filename) {
-    ifstream in (filename);
-    string temp;
-    int count = 0;
-    while (getline(in, temp)) {
-        count++;
-    }
-    return count;
 
-}
 /*
 void count_marks (vector<Student>& stud) {
     for (int i = 0; i < stud.size(); i++) {
@@ -156,27 +147,7 @@ void divide_file (vector<Student>& stud,vector<Student>& nuskriaustukai, string 
 
 
 
-void print_metrics (string filename, float data, int num, int strategija) {
-    string const type = "vector";
-    std::ofstream out;
-    
-    std::string command = "mkdir -p data";
-    system(command.c_str());
-    string name = "data/"+std::to_string(strategija)+"."+extractNumbers(filename)+"."+type+".txt";
-    
-    out.open(name, std::fstream::app);
-    //out<<"container type: "<<type<<endl;
-    out <<"|" <<data;
-    if (num == 1) out <<"|"<< endl;
-}
 
-string extractNumbers(const std::string& str) {
-    std::string result;
-    for (char ch : str) {
-        if (std::isdigit(ch)) {
-            result += ch;
-        }
-    }
-    return result;
-}
+
+
 
