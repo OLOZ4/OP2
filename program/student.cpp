@@ -1,4 +1,4 @@
-#include "student.hpp"
+#include "../program/student.hpp"
 
 float Student1::getMedian() const {
     vector<int> marks = mark;

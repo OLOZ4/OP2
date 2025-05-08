@@ -1,6 +1,5 @@
 #include "catch.hpp"
-#include "student.hpp"
-#include <fstream>
+#include "../program/student.hpp"
 
 TEST_CASE("Setters") {
     Student1 studentas;
@@ -80,3 +79,28 @@ TEST_CASE("Reading from file") {
     REQUIRE(studentas.getMark() == vector<int>{6,0,10,0,2,8,4,6,6,8});
 }
 
+TEST_CASE("Student1 objects are stored correctly in a container", "[container]") {
+    Student1 student1("Jonas", "Ponas", 8, {9, 8, 7});
+    Student1 student2("Donatas", "Mykolas", 5, {8, 7, 0});
+    Student1 student3("Austeja", "Aiste", 9, {10, 9, 9});
+
+    std::vector<Student1> students;
+
+    students.push_back(student1);
+    students.push_back(student2);
+    students.push_back(student3);
+
+    REQUIRE(students.size() == 3);
+
+    REQUIRE(students[0].getResult() == student1.getResult());
+    REQUIRE(students[1].getResult() == student2.getResult());
+    REQUIRE(students[2].getResult() == student3.getResult());
+
+    REQUIRE(students[0].getMedian() == student1.getMedian());
+    REQUIRE(students[1].getMedian() == student2.getMedian());
+    REQUIRE(students[2].getMedian() == student3.getMedian());
+
+    REQUIRE(students[0].getVardas() == student1.getVardas());
+    REQUIRE(students[1].getVardas() == student2.getVardas());
+    REQUIRE(students[2].getVardas() == student3.getVardas());
+}

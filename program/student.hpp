@@ -9,7 +9,7 @@
 #include <iostream>
 #include <chrono>
 #include <algorithm>
-#include "human.hpp"
+#include "../program/human.hpp"
 
 using std::string;
 using std::vector;
