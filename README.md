@@ -9,6 +9,86 @@
 
 # v2.0 Aprašymas
 
+## Sukurti unit testai naudojant [Catch2](https://github.com/catchorg/Catch2)
+
+### Kas yra tikrinama unit testuose?
+
+Unit testuose yra tikrinamas klasės **Student1** funkcionalumas ir veikimas.
+
+Specifiškai yra tikrinami:
+
++ Setter'iai
++ Default konstruktorius
++ Copy konstruktorius
++ Copy assignment operatorius
++ Move konstruktorius
++ Move assignment operatorius
++ Objektų skaitymas iš failo
++ Objektų saugojimas ```std::vector``` konteineryje
+
+### Kaip paleisti unit testus
+
++ Pirmiausia reikia nueiti į aplanką **unit_tests**. Tai galima padaryti naudojant\
+  ```cd unit_tests```
++ Sukompiliuoti jame esančius failus. Tam galima naudoti komandą \
+   ```g++ *.cpp -o unit_tests```
++ Tada paleidžiame sukompiliuotus unit testus naudodami komandą \
+  ```./unit_tests```
++ Jei testai buvo įvykdyti **sėkmingai**, po programos paleidimo turėtumėte matyti šį tekstą:
+```
+Randomness seeded to: 2873484529
+===============================================================================
+All tests passed (34 assertions in 8 test cases)
+```
+_* "Randomness seeded to:" skaičius gali skirtis_
++ Jei testai buvo įvykdyti **nesėkmingai**, po programos paleidimo turėtumėte matyti šį tekstą:
+```
+Randomness seeded to: 1317810014
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+unit_tests is a Catch2 v3.8.1 host application.
+Run with -? for options
+
+-------------------------------------------------------------------------------
+Setters
+-------------------------------------------------------------------------------
+main.cpp:4
+...............................................................................
+
+main.cpp:12: FAILED:
+  REQUIRE( studentas.getVardas() == "Admas" )
+with expansion:
+  "Adomas" == "Admas"
+
+-------------------------------------------------------------------------------
+Move Constructor
+-------------------------------------------------------------------------------
+main.cpp:42
+...............................................................................
+
+main.cpp:47: FAILED:
+  REQUIRE( b.getVardas() == "Gente" )
+with expansion:
+  "Genute" == "Gente"
+
+-------------------------------------------------------------------------------
+Reading from file
+-------------------------------------------------------------------------------
+main.cpp:70
+...............................................................................
+
+main.cpp:77: FAILED:
+  REQUIRE( studentas.getPavarde() == "Pavrde0" )
+with expansion:
+  "Pavarde0" == "Pavrde0"
+
+===============================================================================
+test cases:  8 |  5 passed | 3 failed
+assertions: 25 | 22 passed | 3 failed
+```
+Programos išvestis parodo, ko test case'as tikėjosi, ir kokią reikšmę gavo. T.y. parodo kur testai įvyko nesėkmingai.\
+Išvesties apačioje galima matyti bendrą statistiką - kiek testų įvyko sėkmingai ir kiek nesėkmingai. 
+
 # v1.5 Aprašymas
 
 ## Human klasė
