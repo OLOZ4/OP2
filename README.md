@@ -89,6 +89,40 @@ assertions: 25 | 22 passed | 3 failed
 Programos išvestis parodo, ko test case'as tikėjosi, ir kokią reikšmę gavo. T.y. parodo kur testai įvyko nesėkmingai.\
 Išvesties apačioje galima matyti bendrą statistiką - kiek testų įvyko sėkmingai ir kiek nesėkmingai. 
 
+## Sukurta dokumentacija naudojant [Doxygen](https://www.doxygen.nl/index.html)
+
+### Kaip naudotis šia dokumentacija?
+
+Dokumentaciją galima peržiūrėti dviejais būdais:
+
++ Kaip ```.html``` failą
++ Kaip ```.pdf``` failą
+
++ Norint dokumentaciją peržiūrėti kaip ```.html``` failą, jums reikės jį atsidaryti bet kurioje naršyklėje.\
+Šis failas yra šioje lokacijoje: ```/documentation/hmtl/index.html```
++ Norint dokumentaciją peržiūrėti kaip ```.pdf``` failą, jums reikės jį atsidaryti bet kurioje ```.pdf``` failus skaitančioje programoje.\
+Šis failas yra šioje lokacijoje: ```/documentation/latex/refman.pdf```
+
+### Dokumentacijos generavimas
+
+1. Pirmiausia reikia turėti šiuos įrankius:
++ ```doxygen```
++ ```graphviz```
++ ```texlive texlive-latex-extra texlive-fonts-recommended```
++ ```make```
+
+2. Reikia nueiti į direktoriją ```documentation```
+3. Tada terminale parašome komandą:
+   ```doxygen config```
+4. Turi atsirasti du aplankai:
++ ```html```
++ ```latex```
+5. Nueiname į ```latex``` direktoriją ir parašome terminale komandą:
+ ```make```
+
+Tada sekdami žingsnius nurodytus anksčiau galima bus atsidaryti dokumentaciją norimu formatu
+
+
 # v1.5 Aprašymas
 
 ## Human klasė
