@@ -1,0 +1,38 @@
+\hypertarget{human_8hpp_source}{}\doxysection{human.\+hpp}
+\label{human_8hpp_source}\index{/home/xxmp/GitHub/OP2/program/human.hpp@{/home/xxmp/GitHub/OP2/program/human.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#include <string>}}
+\DoxyCodeLine{2 }
+\DoxyCodeLine{3 \textcolor{keyword}{class }\mbox{\hyperlink{classHuman}{Human}} \{}
+\DoxyCodeLine{4     \textcolor{keyword}{protected}:}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{6     std::string vardas;}
+\DoxyCodeLine{7     std::string pavarde;}
+\DoxyCodeLine{8 }
+\DoxyCodeLine{9     \textcolor{keyword}{public}:}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11     \textcolor{comment}{// Default constructor}}
+\DoxyCodeLine{12     \mbox{\hyperlink{classHuman}{Human}}() : vardas(\textcolor{stringliteral}{"{}"{}}), pavarde(\textcolor{stringliteral}{"{}"{}}) \{\}}
+\DoxyCodeLine{13 }
+\DoxyCodeLine{14     \textcolor{comment}{// Parameterized constructor}}
+\DoxyCodeLine{15     \mbox{\hyperlink{classHuman}{Human}}(\textcolor{keyword}{const} std::string\& v, \textcolor{keyword}{const} std::string\& p) : vardas(v), pavarde(p) \{\}}
+\DoxyCodeLine{16 }
+\DoxyCodeLine{17     }
+\DoxyCodeLine{18     \textcolor{comment}{// virtualus destruktorius}}
+\DoxyCodeLine{19     \textcolor{keyword}{virtual} \mbox{\hyperlink{classHuman}{\string~Human}}() \{}
+\DoxyCodeLine{20         \textcolor{comment}{//std::cout << "{}Virtual destructor Human was called"{}<<std::endl;}}
+\DoxyCodeLine{21     \}}
+\DoxyCodeLine{22 }
+\DoxyCodeLine{23     \textcolor{comment}{//virtualus setteriai}}
+\DoxyCodeLine{24     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setVardas(std::string vardas\_) = 0;}
+\DoxyCodeLine{25 }
+\DoxyCodeLine{26     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setPavarde(std::string pavarde\_) = 0;}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{//virtualus getteriai}}
+\DoxyCodeLine{29     \textcolor{keyword}{virtual} std::string getVardas() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{30  }
+\DoxyCodeLine{31     \textcolor{keyword}{virtual} std::string getPavarde() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{32 \};}
+
+\end{DoxyCode}

@@ -1,0 +1,24 @@
+\begin{theindex}
+
+  \item {/home/xxmp/GitHub/OP2/program/header.h}, \hyperpage{11}
+  \item {/home/xxmp/GitHub/OP2/program/human.hpp}, \hyperpage{11}
+  \item {/home/xxmp/GitHub/OP2/program/student.hpp}, \hyperpage{12}
+
+  \indexspace
+
+  \item {getPavarde}
+    \subitem {Student1}, \hyperpage{9}
+  \item {getVardas}
+    \subitem {Student1}, \hyperpage{10}
+
+  \indexspace
+
+  \item {Human}, \hyperpage{7}
+
+  \indexspace
+
+  \item {Student1}, \hyperpage{8}
+    \subitem {getPavarde}, \hyperpage{9}
+    \subitem {getVardas}, \hyperpage{10}
+
+\end{theindex}
