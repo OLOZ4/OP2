@@ -7,12 +7,13 @@ int main() {
     vector<int> test1;
     test.push_back(1);
     test.push_back(2);
-    test.push_back(3);
-    test.push_back(4);
-    //test.erase(2);
-    //std::cout<<test[2]<<std::endl;
-    //std::cout<<test.at(0)<<std::endl;
-    //std::cout<<test.get_size()<<std::endl;
+    test1.push_back(3);
+    test1.push_back(4);
+    vector<int>test3;
+    //int* it = test1.begin();
+    //std::cout<<*it<<std::endl;
+
+    std::cout<<test3.max_size()<<std::endl;
     //std::cout<<test.get_capacity()<<std::endl;
     //test.reserve(1000000000);
     //std::cout<<test.get_capacity()<<std::endl;
