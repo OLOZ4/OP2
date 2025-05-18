@@ -10,6 +10,7 @@
 #include <chrono>
 #include <algorithm>
 #include "../program/human.hpp"
+#include "vector.hpp"
 
 using std::string;
 using std::vector;
@@ -247,27 +248,27 @@ class Student1 : private Human {
 
 void print(vector<Student1> &stud);
 
-void import_file (vector<Student1> &stud, string filename);
+void import_file (Vector<Student1> &stud, string filename);
 
-void sort_students (vector<Student1>& stud);
+void sort_students (Vector<Student1>& stud);
 
-void choose_printing_method (vector<Student1>& stud);
+void choose_printing_method (Vector<Student1>& stud);
 
-void print_marks (vector<Student1> stud);
+void print_marks (Vector<Student1> stud);
 
-void write_marks (vector<Student1> stud, string name);
+void write_marks (Vector<Student1> stud, string name);
 
-void divide_file1 (vector<Student1>& stud,vector<Student1>& kietiakai,vector<Student1>& nuskriaustukai, string filename);
+void divide_file1 (Vector<Student1>& stud,Vector<Student1>& kietiakai,Vector<Student1>& nuskriaustukai, string filename);
 
-void divide_file2 (vector<Student1>& stud,vector<Student1>& nuskriaustukai, string filename);
+void divide_file2 (Vector<Student1>& stud,Vector<Student1>& nuskriaustukai, string filename);
 
-void divide_file3 (vector<Student1>& stud,vector<Student1>& nuskriaustukai, string filename);
+void divide_file3 (Vector<Student1>& stud,Vector<Student1>& nuskriaustukai, string filename);
 
-void pagrindinis_divide (vector<Student1>& stud,vector<Student1>& kietiakai,vector<Student1>& nuskriaustukai, int num);
+void pagrindinis_divide (Vector<Student1>& stud,Vector<Student1>& kietiakai,Vector<Student1>& nuskriaustukai, int num);
 
-void pagrindinis_divide_choice(vector<Student1>& stud);
+void pagrindinis_divide_choice(Vector<Student1>& stud);
 
-void sort_file (vector<Student1>& stud, string name);
+void sort_file (Vector<Student1>& stud, string name);
 
 void rule_of_five();
 

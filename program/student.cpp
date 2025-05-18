@@ -56,7 +56,7 @@ void print(vector<Student1> &stud) {
     }
   }
 
-void import_file (vector<Student1> &stud, string filename) {
+void import_file (Vector<Student1> &stud, string filename) {
 
     string temp;
     
@@ -130,8 +130,8 @@ void import_file (vector<Student1> &stud, string filename) {
 }
 */
 
-void sort_students (vector<Student1>& stud) {
-    std::cout <<"There are: "<<stud.size()<<" Students"<<std::endl;
+void sort_students (Vector<Student1>& stud) {
+    std::cout <<"There are: "<<stud.get_size()<<" Students"<<std::endl;
     std::cout << R"(Sort by:
 1) student name
 2) student surname
@@ -181,7 +181,7 @@ void sort_students (vector<Student1>& stud) {
     }
 }
 
-void choose_printing_method (vector<Student1>& stud) {
+void choose_printing_method (Vector<Student1>& stud) {
     sort_students(stud);
     char choice;
     string filename;
@@ -222,24 +222,24 @@ void choose_printing_method (vector<Student1>& stud) {
     }
 }
 
-void print_marks (vector<Student1> stud) {
+void print_marks (Vector<Student1> stud) {
     int g = 15;
     std::cout << std::endl << std::setw(g) << std::left<< "Vardas: "<< std::setw(g) << std::left<< "Pavardė: "<< std::setw(g) << std::left<< "Pažymys(vid.): "<< std::setw(g) << std::left<< "Pažymys(med.): "<< std::endl;
     std::cout<<"__________________________________________________________________________________"<<std::endl;
-    for (int i = 0; i < stud.size(); i++) {
+    for (int i = 0; i < stud.get_size(); i++) {
         std::cout << stud[i];
     }
     std::cout<<std::endl;
 }
 
-void write_marks (vector<Student1> stud, string name) {
+void write_marks (Vector<Student1> stud, string name) {
 
     int g = 15;
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
     std::ofstream out (name);
     out << std::setw(g) << std::left<< "Vardas: "<< std::setw(g) << std::left<< "Pavardė: "<< std::setw(g) << std::left<< "Pažymys(vid.): "<< std::setw(g) << std::left<< "Pažymys(med.): "<< std::endl;
     out<<"__________________________________________________________________________________"<<std::endl;
-    for (int i = 0; i < stud.size(); i++) {
+    for (int i = 0; i < stud.get_size(); i++) {
         out << stud[i];
     }
     out.close();
@@ -248,11 +248,11 @@ void write_marks (vector<Student1> stud, string name) {
     std::cout << "Writing file " <<name<<" was successful. Took: "<< diff.count() << " s"<<std::endl;
 }
 
-void divide_file1 (vector<Student1>& stud, vector<Student1>& kietiakai, vector<Student1>& nuskriaustukai, string filename) {
-    string name = "studentai" + std::to_string(stud.size()) + ".txt";
+void divide_file1 (Vector<Student1>& stud, Vector<Student1>& kietiakai, Vector<Student1>& nuskriaustukai, string filename) {
+    string name = "studentai" + std::to_string(stud.get_size()) + ".txt";
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    nuskriaustukai.reserve(stud.size());
-    kietiakai.reserve(stud.size());
+    nuskriaustukai.reserve(stud.get_size());
+    kietiakai.reserve(stud.get_size());
     
     for (auto &a: stud) {
         if (a.getResult() >= 5.00) kietiakai.push_back(a);
@@ -267,10 +267,10 @@ void divide_file1 (vector<Student1>& stud, vector<Student1>& kietiakai, vector<S
     //print_metrics(filename, diff.count(), 0, 0);
 }
 
-void divide_file2 (vector<Student1>& stud, vector<Student1>& nuskriaustukai, string filename) {
-    string name = "studentai" + std::to_string(stud.size()) + ".txt";
+void divide_file2 (Vector<Student1>& stud, Vector<Student1>& nuskriaustukai, string filename) {
+    string name = "studentai" + std::to_string(stud.get_size()) + ".txt";
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
-    nuskriaustukai.reserve(stud.size());
+    nuskriaustukai.reserve(stud.get_size());
     
     while (stud.back().getResult() < 5.00) {
         nuskriaustukai.push_back(stud.back());
@@ -285,7 +285,7 @@ void divide_file2 (vector<Student1>& stud, vector<Student1>& nuskriaustukai, str
     //print_metrics(filename, diff.count(), 0, 0);
 }
 
-void divide_file3(vector<Student1>& stud, vector<Student1>& nuskriaustukai, string filename) {
+void divide_file3(Vector<Student1>& stud, Vector<Student1>& nuskriaustukai, string filename) {
     auto start = std::chrono::high_resolution_clock::now();
     
     // Partition the students based on the result
@@ -293,7 +293,7 @@ void divide_file3(vector<Student1>& stud, vector<Student1>& nuskriaustukai, stri
     //print_marks(stud);
     
     // Move the failing students to nuskriaustukai
-    nuskriaustukai = vector<Student1>(std::make_move_iterator(partition_point), std::make_move_iterator(stud.end()));
+    nuskriaustukai = Vector<Student1>(std::make_move_iterator(partition_point), std::make_move_iterator(stud.end()));
     stud.erase(partition_point, stud.end());
     
     // Shrink to fit
@@ -306,7 +306,7 @@ void divide_file3(vector<Student1>& stud, vector<Student1>& nuskriaustukai, stri
     //print_metrics(filename, diff.count(), 0);
 }
 
-void pagrindinis_divide (vector<Student1> &stud, vector<Student1> &kietiakai, vector<Student1> &nuskriaustukai, int num) {
+void pagrindinis_divide (Vector<Student1> &stud, Vector<Student1> &kietiakai, Vector<Student1> &nuskriaustukai, int num) {
     const vector<int> file_size = {1000, 10000, 100000, 1000000, 10000000};
 
     for (int i = 0; i < file_size.size(); i++) {
@@ -343,8 +343,8 @@ void pagrindinis_divide (vector<Student1> &stud, vector<Student1> &kietiakai, ve
     }
 }
 
-void pagrindinis_divide_choice(vector<Student1> &stud) {
-    vector<Student1> nuskriaustukai, kietiakai;
+void pagrindinis_divide_choice(Vector<Student1> &stud) {
+    Vector<Student1> nuskriaustukai, kietiakai;
     std::cout << R"(Select:
 1) Pirma strategija
 2) Antra strategija
@@ -373,7 +373,7 @@ void pagrindinis_divide_choice(vector<Student1> &stud) {
             } 
 }
 
-void sort_file (vector<Student1>& stud, string name) {
+void sort_file (Vector<Student1>& stud, string name) {
     auto start = std::chrono::high_resolution_clock::now(); // Paleisti
     std::sort(stud.begin(), stud.end(), [](const Student1& a, const Student1& b) {return a.getResult() > b.getResult();});    
     auto end = std::chrono::high_resolution_clock::now(); // Stabdyti

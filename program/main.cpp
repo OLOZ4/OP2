@@ -1,11 +1,12 @@
 #include "header.h"
 #include "student.hpp"
+//#include "vector.hpp"
 
 int main() {
     //std::locale::global(std::locale("en_US.UTF-8")); 
     vector<string> name;
     vector<string> txtFiles;
-    vector<Student1> stud;
+    Vector<Student1> stud;
     char choice;
     readFile(name);
     while (true) {
@@ -181,7 +182,7 @@ int main() {
                     return 1;
                 }
             
-                std::cout << "Successfully imported " << stud.size() << " students." << std::endl;
+                std::cout << "Successfully imported " << stud.get_size() << " students." << std::endl;
                 break;
             }
 
