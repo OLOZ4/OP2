@@ -81,8 +81,8 @@ Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std::vector ir nuos
 |Container type|1000000|10000000|100000000|
 |--------------|-------|--------|---------|
 |**std::vector**|0.57|5.15|54.86|
-|**Vector**|1.15|13.4||
-|Difference|-0.58|-8.65||
+|**Vector**|1.15|13.4|168|
+|Difference|-0.58|-8.65|-113.14|
 
 + **Išvadaos**
 Savadarbis Vector pagrindu sukurtas konteineris yra neefektyvus saugant kompleksines duomenų struktūras lyginant su vektorium iš STL bibliotekos
