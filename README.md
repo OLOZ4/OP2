@@ -7,6 +7,87 @@
 + Baigus darbą ištriname visus komandos ```make``` sugeneruotus failus naudodami komandą ```make clean```
 + Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
 
+# v3.0 Aprašymas
+
+## Sukurta Vector klasė Student1 klasės objektų saugojimui
+
+### Vector klasės bazinės funkcijos ir jų aprašymai
+
++ **Konstruktorius**
+```
+Vector() : data(nullptr), size(0), capacity(0) {}
+```
++ **Move konstruktorius**
+```
+Vector(Vector&& other) noexcept
+  : data(other.data), size(other.size), capacity(other.capacity) {
+        other.data = nullptr;
+        other.size = 0;
+        other.capacity = 0;
+    }
+```
+Duomenys iš kito vektoriaus perkeliami į dabartinį vektorių ir duomenys yra pašalinami (other.data = nullptr)
++ **Destrukorius**
+```
+~Vector() {
+  delete[] data;
+}            
+```
+Ištrinamas masyvas - atlaisvinama nenaudojama vieta
++ **operator[]**
+```
+T& operator[](size_t index) {
+  return data[index];
+}
+```
+Leidžia pasiekti elementą naudojant [] operatorių
++ **.at()**
+```
+T& at(size_t index) {
+    if (index >= size) {
+        throw std::out_of_range("Index out of range");
+    }
+    return data[index];
+}
+```
+Leidžia pasiekti elementą taip pat kaip ir **operator[]**, tačiau dar patikrina ar vartotojo indeksas teisingas. Jei yra neteisingas, vartotojas yra informuojamas pranešimu
+
+### Papildyti unit testai dabar testuoja ir naująją Vector klasę
+
+Testus galite rasti: ``` unit_tests/main.cpp```
+Naudojimosi instrukcija yra aprašyta **V2.0** aprašyme
+
+### Atlikta spartumo analizė (Vector klasė vs std::vector)
+
++ **Analizės metodas**
+Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std::vector ir nuosavo Vector tipo tuščius vektorius : 10000, 100000, 1000000, 10000000 ir 100000000 int tipo elementų naudojant ```push_back()``` funkciją
+
++ **Duomenys (average in milliseconds)**
+
+|Container type|10000|100000|1000000|10000000|100000000|
+|--------------|-----|------|-------|--------|---------|
+|**std::vector**|0|7|41|202|2055|
+|**Vector**|0|3|14|110|1388|
+|Difference|0|4|27|92|667| 
+
++**Išvadaos**
+Savadarbis Vector pagrindu sukurtas konteineris yra beveik dvigubai efektyvesnis kai yra naudojama ```push_back()``` funkcija lyginant su vektorium iš STL bibliotekos
+
++ **Analizės metodas**
+Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std::vector ir nuosavo Vector tipo tuščius vektorius : 1000000, 10000000 ir 100000000 Student1 elementų
+
++ **Duomenys (average in seconds)**
+
+|Container type|1000000|10000000|100000000|
+|--------------|-------|--------|---------|
+|**std::vector**|0.57|5.15|54.86|
+|**Vector**|1.15|13.4||
+|Difference|-0.58|-8.65||
+
++**Išvadaos**
+Savadarbis Vector pagrindu sukurtas konteineris yra neefektyvus saugant kompleksines duomenų struktūras lyginant su vektorium iš STL bibliotekos
+  
+
 # v2.0 Aprašymas
 
 ## Sukurti unit testai naudojant [Catch2](https://github.com/catchorg/Catch2)
