@@ -24,15 +24,24 @@
 \DoxyCodeLine{20         \textcolor{comment}{//std::cout << "{}Virtual destructor Human was called"{}<<std::endl;}}
 \DoxyCodeLine{21     \}}
 \DoxyCodeLine{22 }
-\DoxyCodeLine{23     \textcolor{comment}{//virtualus setteriai}}
-\DoxyCodeLine{24     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setVardas(std::string vardas\_) = 0;}
-\DoxyCodeLine{25 }
-\DoxyCodeLine{26     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setPavarde(std::string pavarde\_) = 0;}
-\DoxyCodeLine{27 }
-\DoxyCodeLine{28     \textcolor{comment}{//virtualus getteriai}}
-\DoxyCodeLine{29     \textcolor{keyword}{virtual} std::string getVardas() \textcolor{keyword}{const} = 0;}
-\DoxyCodeLine{30  }
-\DoxyCodeLine{31     \textcolor{keyword}{virtual} std::string getPavarde() \textcolor{keyword}{const} = 0;}
-\DoxyCodeLine{32 \};}
+\DoxyCodeLine{23     \textcolor{comment}{// Copy assignment operator}}
+\DoxyCodeLine{24     \mbox{\hyperlink{classHuman}{Human}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classHuman}{Human}}\& other) \{}
+\DoxyCodeLine{25         \textcolor{keywordflow}{if} (\textcolor{keyword}{this} != \&other) \{}
+\DoxyCodeLine{26             vardas = other.vardas;}
+\DoxyCodeLine{27             pavarde = other.pavarde;}
+\DoxyCodeLine{28         \}}
+\DoxyCodeLine{29         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{30     \}}
+\DoxyCodeLine{31 }
+\DoxyCodeLine{32     \textcolor{comment}{//virtualus setteriai}}
+\DoxyCodeLine{33     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setVardas(std::string vardas\_) = 0;}
+\DoxyCodeLine{34 }
+\DoxyCodeLine{35     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} setPavarde(std::string pavarde\_) = 0;}
+\DoxyCodeLine{36 }
+\DoxyCodeLine{37     \textcolor{comment}{//virtualus getteriai}}
+\DoxyCodeLine{38     \textcolor{keyword}{virtual} std::string getVardas() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{39  }
+\DoxyCodeLine{40     \textcolor{keyword}{virtual} std::string getPavarde() \textcolor{keyword}{const} = 0;}
+\DoxyCodeLine{41 \};}
 
 \end{DoxyCode}

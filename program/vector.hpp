@@ -39,7 +39,7 @@ class Vector {
                 other.capacity = 0;
             }
         
-        // Copy konstuktorius
+        // Copy konstruktorius
         Vector(const Vector& other) : size(other.size), capacity(other.capacity) {
             data = new T[capacity];
             for (size_t i = 0; i < size; ++i) {
@@ -47,7 +47,7 @@ class Vector {
             }
         }
 
-        // Destrukorius
+        // Destruktorius
         ~Vector() {
             delete[] data;
             //std::cout<< "Iskviestas destruktorius"<< std::endl;

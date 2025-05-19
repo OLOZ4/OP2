@@ -1,8 +1,14 @@
 \begin{theindex}
 
-  \item {/home/xxmp/GitHub/OP2/program/header.h}, \hyperpage{11}
-  \item {/home/xxmp/GitHub/OP2/program/human.hpp}, \hyperpage{11}
-  \item {/home/xxmp/GitHub/OP2/program/student.hpp}, \hyperpage{12}
+  \item {/home/xxmp/GitHub/OP2/program/header.h}, \hyperpage{13}
+  \item {/home/xxmp/GitHub/OP2/program/human.hpp}, \hyperpage{13}
+  \item {/home/xxmp/GitHub/OP2/program/student.hpp}, \hyperpage{14}
+  \item {/home/xxmp/GitHub/OP2/program/vector.hpp}, \hyperpage{17}
+
+  \indexspace
+
+  \item {clear}
+    \subitem {Vector$<$ T $>$}, \hyperpage{11}
 
   \indexspace
 
@@ -20,5 +26,10 @@
   \item {Student1}, \hyperpage{8}
     \subitem {getPavarde}, \hyperpage{9}
     \subitem {getVardas}, \hyperpage{10}
+
+  \indexspace
+
+  \item {Vector$<$ T $>$}, \hyperpage{10}
+    \subitem {clear}, \hyperpage{11}
 
 \end{theindex}

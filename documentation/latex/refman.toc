@@ -11,8 +11,12 @@
 \contentsline {subsection}{\numberline {4.2.1}Member Function Documentation}{9}{subsection.4.2.1}%
 \contentsline {subsubsection}{\numberline {4.2.1.1}getPavarde()}{10}{subsubsection.4.2.1.1}%
 \contentsline {subsubsection}{\numberline {4.2.1.2}getVardas()}{10}{subsubsection.4.2.1.2}%
-\contentsline {chapter}{\numberline {5}File Documentation}{11}{chapter.5}%
-\contentsline {section}{\numberline {5.1}header.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{11}{section.5.1}%
-\contentsline {section}{\numberline {5.2}human.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{11}{section.5.2}%
-\contentsline {section}{\numberline {5.3}student.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{12}{section.5.3}%
-\contentsline {chapter}{Index}{17}{section*.9}%
+\contentsline {section}{\numberline {4.3}Vector$<$ T $>$ Class Template Reference}{10}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Member Function Documentation}{11}{subsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.1.1}clear()}{11}{subsubsection.4.3.1.1}%
+\contentsline {chapter}{\numberline {5}File Documentation}{13}{chapter.5}%
+\contentsline {section}{\numberline {5.1}header.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{13}{section.5.1}%
+\contentsline {section}{\numberline {5.2}human.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{13}{section.5.2}%
+\contentsline {section}{\numberline {5.3}student.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{14}{section.5.3}%
+\contentsline {section}{\numberline {5.4}vector.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{17}{section.5.4}%
+\contentsline {chapter}{Index}{23}{section*.10}%

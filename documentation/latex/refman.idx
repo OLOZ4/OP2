@@ -4,6 +4,10 @@
 \indexentry{getPavarde@{getPavarde}!Student1@{Student1}|hyperpage}{9}
 \indexentry{Student1@{Student1}!getVardas@{getVardas}|hyperpage}{10}
 \indexentry{getVardas@{getVardas}!Student1@{Student1}|hyperpage}{10}
-\indexentry{/home/xxmp/GitHub/OP2/program/header.h@{/home/xxmp/GitHub/OP2/program/header.h}|hyperpage}{11}
-\indexentry{/home/xxmp/GitHub/OP2/program/human.hpp@{/home/xxmp/GitHub/OP2/program/human.hpp}|hyperpage}{11}
-\indexentry{/home/xxmp/GitHub/OP2/program/student.hpp@{/home/xxmp/GitHub/OP2/program/student.hpp}|hyperpage}{12}
+\indexentry{Vector$<$ T $>$@{Vector$<$ T $>$}|hyperpage}{10}
+\indexentry{Vector$<$ T $>$@{Vector$<$ T $>$}!clear@{clear}|hyperpage}{11}
+\indexentry{clear@{clear}!Vector$<$ T $>$@{Vector$<$ T $>$}|hyperpage}{11}
+\indexentry{/home/xxmp/GitHub/OP2/program/header.h@{/home/xxmp/GitHub/OP2/program/header.h}|hyperpage}{13}
+\indexentry{/home/xxmp/GitHub/OP2/program/human.hpp@{/home/xxmp/GitHub/OP2/program/human.hpp}|hyperpage}{13}
+\indexentry{/home/xxmp/GitHub/OP2/program/student.hpp@{/home/xxmp/GitHub/OP2/program/student.hpp}|hyperpage}{14}
+\indexentry{/home/xxmp/GitHub/OP2/program/vector.hpp@{/home/xxmp/GitHub/OP2/program/vector.hpp}|hyperpage}{17}

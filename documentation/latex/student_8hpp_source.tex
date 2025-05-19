@@ -14,271 +14,278 @@
 \DoxyCodeLine{10 \textcolor{preprocessor}{\#include <chrono>}}
 \DoxyCodeLine{11 \textcolor{preprocessor}{\#include <algorithm>}}
 \DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}../program/human.hpp"{}}}
-\DoxyCodeLine{13 }
-\DoxyCodeLine{14 \textcolor{keyword}{using }std::string;}
-\DoxyCodeLine{15 \textcolor{keyword}{using }std::vector;}
-\DoxyCodeLine{16 }
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include "{}vector.hpp"{}}}
+\DoxyCodeLine{14 }
+\DoxyCodeLine{15 \textcolor{keyword}{using }std::string;}
+\DoxyCodeLine{16 \textcolor{keyword}{using }std::vector;}
 \DoxyCodeLine{17 }
-\DoxyCodeLine{18 \textcolor{keyword}{class }\mbox{\hyperlink{classStudent1}{Student1}} : \textcolor{keyword}{private} \mbox{\hyperlink{classHuman}{Human}} \{}
-\DoxyCodeLine{19 }
-\DoxyCodeLine{20     \textcolor{keyword}{private}:}
-\DoxyCodeLine{21         \textcolor{comment}{//string vardas;}}
-\DoxyCodeLine{22         \textcolor{comment}{//string pavarde;}}
-\DoxyCodeLine{23         \textcolor{keywordtype}{int} egzaminas;}
-\DoxyCodeLine{24         vector<int> mark;}
-\DoxyCodeLine{25     \textcolor{keyword}{public}:}
-\DoxyCodeLine{26 }
-\DoxyCodeLine{27     \textcolor{comment}{// konstruktorius}}
-\DoxyCodeLine{28     \mbox{\hyperlink{classStudent1}{Student1}}(\textcolor{keywordtype}{string} v = \textcolor{stringliteral}{"{}Default"{}}, \textcolor{keywordtype}{string} p = \textcolor{stringliteral}{"{}Default"{}}, \textcolor{keywordtype}{int} e = 0, vector<int> m = \{0\}) :  egzaminas(e), mark(m) \{}
-\DoxyCodeLine{29         \textcolor{comment}{//std::cout << "{}Iskviestas Konstruktorius studentui "{} << v <<std::endl;}}
-\DoxyCodeLine{30         vardas = v;}
-\DoxyCodeLine{31         pavarde = p;}
-\DoxyCodeLine{32     \}}
-\DoxyCodeLine{33     }
-\DoxyCodeLine{34     \textcolor{comment}{// destruktorius}}
-\DoxyCodeLine{35     \mbox{\hyperlink{classStudent1}{\string~Student1}}() \{}
-\DoxyCodeLine{36         \textcolor{comment}{//std::cout << "{}Iskviestas Destruktorius studentui "{}<<vardas<<std::endl;}}
-\DoxyCodeLine{37         mark.clear();}
-\DoxyCodeLine{38     \}}
-\DoxyCodeLine{39 }
-\DoxyCodeLine{40     \textcolor{comment}{// copy konstruktorius}}
-\DoxyCodeLine{41     \textcolor{comment}{//Student1 (const Student1 \&other) : Student1(other.vardas, other.pavarde, other.egzaminas, other.mark) \{ // kodel jei cia parasau : Student1 vardas = other.vardas....}}
-\DoxyCodeLine{42     \mbox{\hyperlink{classStudent1}{Student1}} (\textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}} \&other) \{ \textcolor{comment}{// kodel jei cia parasau : Student1 vardas = other.vardas....}}
-\DoxyCodeLine{43         vardas = other.vardas;}
-\DoxyCodeLine{44         pavarde = other.pavarde;}
-\DoxyCodeLine{45         egzaminas = other.egzaminas;}
-\DoxyCodeLine{46         mark = other.mark;}
-\DoxyCodeLine{47         \textcolor{comment}{//std::cout<<"{}Iskviestas Copy Konstruktorius studentui "{}<<vardas<<std::endl;}}
-\DoxyCodeLine{48     \}}
-\DoxyCodeLine{49 }
-\DoxyCodeLine{50     \textcolor{comment}{// copy assignment}}
-\DoxyCodeLine{51     \mbox{\hyperlink{classStudent1}{Student1}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}} \&other) \{}
-\DoxyCodeLine{52         \textcolor{keywordflow}{if} (\textcolor{keyword}{this} != \&other) \{ \textcolor{comment}{// Patikrinti ar ne self-\/asigninama}}
-\DoxyCodeLine{53             vardas = other.vardas;}
-\DoxyCodeLine{54             pavarde = other.pavarde;}
-\DoxyCodeLine{55             egzaminas = other.egzaminas;}
-\DoxyCodeLine{56             mark = other.mark;}
-\DoxyCodeLine{57         \}}
-\DoxyCodeLine{58         \textcolor{keywordflow}{else} std::cout << \textcolor{stringliteral}{"{}Self-\/assignment, skipping"{}} <<std::endl;}
-\DoxyCodeLine{59         \textcolor{comment}{//std::cout << "{}Iskviestas Copy Assignmentas studentui "{} << vardas <<std::endl;}}
-\DoxyCodeLine{60         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{61     \}}
-\DoxyCodeLine{62 }
-\DoxyCodeLine{63     \textcolor{comment}{//move konstruktorius}}
-\DoxyCodeLine{64     \textcolor{comment}{//Student1(Student1\&\& other) noexcept : Student1(other.vardas ,other.pavarde, other.egzaminas, other.mark) \{}}
-\DoxyCodeLine{65         \textcolor{comment}{//other = Student1();}}
-\DoxyCodeLine{66         \textcolor{comment}{//std::cout << "{}Iskviestas Move Konstruktorius studentui "{} << vardas << std::endl;}}
-\DoxyCodeLine{67     \textcolor{comment}{//\}}}
-\DoxyCodeLine{68 }
-\DoxyCodeLine{69     \mbox{\hyperlink{classStudent1}{Student1}}(\mbox{\hyperlink{classStudent1}{Student1}}\&\& other) noexcept : }
-\DoxyCodeLine{70     \mbox{\hyperlink{classHuman}{Human}}(std::move(other.vardas), std::move(other.pavarde)), \textcolor{comment}{// Move base class members}}
-\DoxyCodeLine{71       egzaminas(other.egzaminas),}
-\DoxyCodeLine{72       mark(std::move(other.mark)) \{}
-\DoxyCodeLine{73     \textcolor{comment}{// Reset the moved-\/from object}}
-\DoxyCodeLine{74     other.vardas = \textcolor{stringliteral}{"{}Default"{}};}
-\DoxyCodeLine{75     other.pavarde = \textcolor{stringliteral}{"{}Default"{}};}
-\DoxyCodeLine{76     other.egzaminas = 0;}
-\DoxyCodeLine{77     other.mark = \{0\};}
-\DoxyCodeLine{78     \textcolor{comment}{//std::cout << "{}Iskviestas Move Konstruktorius studentui "{} << vardas << std::endl;}}
-\DoxyCodeLine{79 \}}
-\DoxyCodeLine{80 }
-\DoxyCodeLine{81     \textcolor{comment}{// move assignment}}
-\DoxyCodeLine{82     \textcolor{comment}{/*}}
-\DoxyCodeLine{83 \textcolor{comment}{    Student1\& operator=(Student1\&\& other) noexcept \{}}
-\DoxyCodeLine{84 \textcolor{comment}{        if (this != \&other) \{ // Patikrinti ar ne self-\/moving}}
-\DoxyCodeLine{85 \textcolor{comment}{            vardas = other.vardas;}}
-\DoxyCodeLine{86 \textcolor{comment}{            pavarde = other.pavarde;}}
-\DoxyCodeLine{87 \textcolor{comment}{            egzaminas = other.egzaminas;}}
-\DoxyCodeLine{88 \textcolor{comment}{            mark = other.mark;}}
-\DoxyCodeLine{89 \textcolor{comment}{}}
-\DoxyCodeLine{90 \textcolor{comment}{            other = Student1();}}
-\DoxyCodeLine{91 \textcolor{comment}{        \}}}
-\DoxyCodeLine{92 \textcolor{comment}{        else std::cout <<"{}Self-\/moving, skipping"{}<<std::endl;}}
-\DoxyCodeLine{93 \textcolor{comment}{        //std::cout<<"{}Iskviestas Move Assignmentas studentui "{}<<vardas<<std::endl;}}
-\DoxyCodeLine{94 \textcolor{comment}{        return *this;}}
-\DoxyCodeLine{95 \textcolor{comment}{    \}}}
-\DoxyCodeLine{96 \textcolor{comment}{    */}}
-\DoxyCodeLine{97 }
-\DoxyCodeLine{98     \mbox{\hyperlink{classStudent1}{Student1}}\& operator=(\mbox{\hyperlink{classStudent1}{Student1}}\&\& other) \textcolor{keyword}{noexcept} \{}
-\DoxyCodeLine{99         \textcolor{keywordflow}{if} (\textcolor{keyword}{this} != \&other) \{ \textcolor{comment}{// Avoid self-\/move}}
-\DoxyCodeLine{100             \textcolor{comment}{// Move base class members}}
-\DoxyCodeLine{101             Human::operator=(std::move(other));}
-\DoxyCodeLine{102     }
-\DoxyCodeLine{103             \textcolor{comment}{// Move member variables}}
-\DoxyCodeLine{104             egzaminas = other.egzaminas;}
-\DoxyCodeLine{105             mark = std::move(other.mark);}
-\DoxyCodeLine{106     }
-\DoxyCodeLine{107             \textcolor{comment}{// Reset the moved-\/from object}}
-\DoxyCodeLine{108             other.vardas = \textcolor{stringliteral}{"{}Default"{}};}
-\DoxyCodeLine{109             other.pavarde = \textcolor{stringliteral}{"{}Default"{}};}
-\DoxyCodeLine{110             other.egzaminas = 0;}
-\DoxyCodeLine{111             other.mark = \{0\};}
-\DoxyCodeLine{112             }
-\DoxyCodeLine{113         \}}
-\DoxyCodeLine{114         \textcolor{comment}{//std::cout<<"{}Iskviestas Move Assignmentas studentui "{}<<vardas<<std::endl;}}
-\DoxyCodeLine{115         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
-\DoxyCodeLine{116     \}}
-\DoxyCodeLine{117 }
-\DoxyCodeLine{118     \textcolor{comment}{// Equality operator}}
-\DoxyCodeLine{119     \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}}\& other)\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{120         \textcolor{keywordflow}{return} (vardas == other.vardas \&\&}
-\DoxyCodeLine{121                 pavarde == other.pavarde \&\&}
-\DoxyCodeLine{122                 egzaminas == other.egzaminas \&\&}
-\DoxyCodeLine{123                 mark == other.mark);}
-\DoxyCodeLine{124     \}}
-\DoxyCodeLine{125     }
-\DoxyCodeLine{126     \textcolor{comment}{// setteriai}}
-\DoxyCodeLine{127 }
-\DoxyCodeLine{128     \textcolor{keywordtype}{void} setVardas (\textcolor{keywordtype}{string} vardas\_) \textcolor{keyword}{override};}
-\DoxyCodeLine{129 }
-\DoxyCodeLine{130     \textcolor{keywordtype}{void} setPavarde(\textcolor{keywordtype}{string} pavarde\_) \textcolor{keyword}{override};}
-\DoxyCodeLine{131 }
-\DoxyCodeLine{132     \textcolor{keywordtype}{void} setEgzaminas(\textcolor{keywordtype}{int} egzaminas\_);}
-\DoxyCodeLine{133 }
-\DoxyCodeLine{134     \textcolor{keywordtype}{void} setMark(vector<int> mark\_);}
-\DoxyCodeLine{135 }
-\DoxyCodeLine{136     \textcolor{comment}{// getteriai}}
-\DoxyCodeLine{137 }
-\DoxyCodeLine{138     \textcolor{keywordtype}{string} getVardas()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{139         \textcolor{keywordflow}{return} vardas;}
-\DoxyCodeLine{140     \}}
-\DoxyCodeLine{141 }
-\DoxyCodeLine{142     \textcolor{keywordtype}{string} getPavarde()\textcolor{keyword}{ const override }\{}
-\DoxyCodeLine{143         \textcolor{keywordflow}{return} pavarde;}
-\DoxyCodeLine{144     \}}
-\DoxyCodeLine{145 }
-\DoxyCodeLine{146     \textcolor{keywordtype}{int} getEgzaminas()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{147         \textcolor{keywordflow}{return} egzaminas;}
-\DoxyCodeLine{148     \}}
-\DoxyCodeLine{149 }
-\DoxyCodeLine{150     vector<int> getMark()\textcolor{keyword}{ const }\{}
-\DoxyCodeLine{151         \textcolor{keywordflow}{return} mark;}
-\DoxyCodeLine{152     \}}
-\DoxyCodeLine{153     }
-\DoxyCodeLine{154     \textcolor{keyword}{friend} std::ostream\& operator<<(std::ostream\& os, \textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}}\& stud) \{}
-\DoxyCodeLine{155         \textcolor{keywordtype}{int} g = 20;}
-\DoxyCodeLine{156         os << std::setw(g) << std::left << stud.getVardas() }
-\DoxyCodeLine{157         << std::setw(g) << std::left << stud.getPavarde() }
-\DoxyCodeLine{158         << std::setw(g) << std::left << std::setprecision(3) }
-\DoxyCodeLine{159         << stud.getResult() << std::setw(g) << std::left }
-\DoxyCodeLine{160         << std::setprecision(3) << stud.getMedian() << std::endl;}
-\DoxyCodeLine{161         \textcolor{keywordflow}{return} os;}
-\DoxyCodeLine{162     \}}
-\DoxyCodeLine{163     }
-\DoxyCodeLine{164     \textcolor{comment}{// ifstreama dar padaryt}}
-\DoxyCodeLine{165     \textcolor{keyword}{friend} std::ifstream\& operator>>(std::ifstream\& in, \mbox{\hyperlink{classStudent1}{Student1}}\& stud) \{}
-\DoxyCodeLine{166         std::string temp;}
-\DoxyCodeLine{167         std::getline(in, temp); \textcolor{comment}{// Read the entire line}}
-\DoxyCodeLine{168         \textcolor{comment}{//std::cout << "{}nuskaitoma eilute \(\backslash\)n"{} << std::endl;}}
-\DoxyCodeLine{169 }
-\DoxyCodeLine{170         \textcolor{keywordflow}{if} (temp.empty()) \textcolor{keywordflow}{return} in; \textcolor{comment}{// Skip empty lines}}
-\DoxyCodeLine{171         }
-\DoxyCodeLine{172         \textcolor{keywordtype}{string} random;}
-\DoxyCodeLine{173         std::istringstream stream(temp); \textcolor{comment}{// Convert the line into a string stream}}
-\DoxyCodeLine{174         \textcolor{comment}{//std::cout << "{}konvertuojama i string stream \(\backslash\)n"{} << std::endl;}}
-\DoxyCodeLine{175 }
-\DoxyCodeLine{176         stream >> stud.vardas >> stud.pavarde;}
-\DoxyCodeLine{177 }
-\DoxyCodeLine{178         \textcolor{comment}{//std::cout << "{}ivesta vardas ir pavarde"{} << std::endl;}}
-\DoxyCodeLine{179         \textcolor{comment}{//std::cout << stud.getPavarde() << "{} "{} << stud.getPavarde() << "{}\(\backslash\)n"{};}}
-\DoxyCodeLine{180         }
-\DoxyCodeLine{181         \textcolor{keywordtype}{int} marks;}
-\DoxyCodeLine{182         stud.mark.clear(); \textcolor{comment}{// Clear marks vector}}
-\DoxyCodeLine{183         \textcolor{keywordflow}{while} (stream >> marks) \{}
-\DoxyCodeLine{184             stud.mark.push\_back(marks);}
-\DoxyCodeLine{185             \textcolor{comment}{//std::cout << "{}ivestas pazymys \(\backslash\)n"{} << std::endl;}}
-\DoxyCodeLine{186 }
-\DoxyCodeLine{187         \}}
-\DoxyCodeLine{188         }
-\DoxyCodeLine{189         \textcolor{keywordflow}{if} (!stud.mark.empty()) \{}
-\DoxyCodeLine{190             stud.egzaminas = stud.mark.back();}
-\DoxyCodeLine{191             stud.mark.pop\_back();}
-\DoxyCodeLine{192         \} \textcolor{keywordflow}{else} \{}
-\DoxyCodeLine{193             stud.egzaminas = 0; \textcolor{comment}{// Default value if no marks are provided}}
-\DoxyCodeLine{194         \}}
-\DoxyCodeLine{195         \textcolor{comment}{//std::cout << "{}ivestas egzaminas \(\backslash\)n"{} << std::endl;}}
-\DoxyCodeLine{196 }
-\DoxyCodeLine{197         }
-\DoxyCodeLine{198 }
-\DoxyCodeLine{199         \textcolor{keywordflow}{return} in;}
-\DoxyCodeLine{200     \}}
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{classStudent1}{Student1}} : \textcolor{keyword}{private} \mbox{\hyperlink{classHuman}{Human}} \{}
+\DoxyCodeLine{20 }
+\DoxyCodeLine{21     \textcolor{keyword}{private}:}
+\DoxyCodeLine{22         \textcolor{comment}{//string vardas;}}
+\DoxyCodeLine{23         \textcolor{comment}{//string pavarde;}}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} egzaminas;}
+\DoxyCodeLine{25         vector<int> mark;}
+\DoxyCodeLine{26     \textcolor{keyword}{public}:}
+\DoxyCodeLine{27 }
+\DoxyCodeLine{28     \textcolor{comment}{// konstruktorius}}
+\DoxyCodeLine{29     \mbox{\hyperlink{classStudent1}{Student1}}(\textcolor{keywordtype}{string} v = \textcolor{stringliteral}{"{}Default"{}}, \textcolor{keywordtype}{string} p = \textcolor{stringliteral}{"{}Default"{}}, \textcolor{keywordtype}{int} e = 0, vector<int> m = \{0\}) :  egzaminas(e), mark(m) \{}
+\DoxyCodeLine{30         \textcolor{comment}{//std::cout << "{}Iskviestas Konstruktorius studentui "{} << v <<std::endl;}}
+\DoxyCodeLine{31         vardas = v;}
+\DoxyCodeLine{32         pavarde = p;}
+\DoxyCodeLine{33     \}}
+\DoxyCodeLine{34     }
+\DoxyCodeLine{35     \textcolor{comment}{// destruktorius}}
+\DoxyCodeLine{36     \mbox{\hyperlink{classStudent1}{\string~Student1}}() \{}
+\DoxyCodeLine{37         \textcolor{comment}{//std::cout << "{}Iskviestas Destruktorius studentui "{}<<vardas<<std::endl;}}
+\DoxyCodeLine{38         mark.clear();}
+\DoxyCodeLine{39     \}}
+\DoxyCodeLine{40 }
+\DoxyCodeLine{41     \textcolor{comment}{// copy konstruktorius}}
+\DoxyCodeLine{42     \textcolor{comment}{//Student1 (const Student1 \&other) : Student1(other.vardas, other.pavarde, other.egzaminas, other.mark) \{ // kodel jei cia parasau : Student1 vardas = other.vardas....}}
+\DoxyCodeLine{43     \mbox{\hyperlink{classStudent1}{Student1}} (\textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}} \&other) \{ \textcolor{comment}{// kodel jei cia parasau : Student1 vardas = other.vardas....}}
+\DoxyCodeLine{44         vardas = other.vardas;}
+\DoxyCodeLine{45         pavarde = other.pavarde;}
+\DoxyCodeLine{46         egzaminas = other.egzaminas;}
+\DoxyCodeLine{47         mark = other.mark;}
+\DoxyCodeLine{48         \textcolor{comment}{//std::cout<<"{}Iskviestas Copy Konstruktorius studentui "{}<<vardas<<std::endl;}}
+\DoxyCodeLine{49     \}}
+\DoxyCodeLine{50 }
+\DoxyCodeLine{51     \textcolor{comment}{// copy assignment}}
+\DoxyCodeLine{52     \mbox{\hyperlink{classStudent1}{Student1}}\& operator=(\textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}} \&other) \{}
+\DoxyCodeLine{53         \textcolor{keywordflow}{if} (\textcolor{keyword}{this} != \&other) \{ \textcolor{comment}{// Patikrinti ar ne self-\/asigninama}}
+\DoxyCodeLine{54             \textcolor{comment}{//std::cout << "{}Assigning vardas, this: "{} << this << "{}, other: "{} << \&other << std::endl;}}
+\DoxyCodeLine{55             vardas = other.vardas;}
+\DoxyCodeLine{56             \textcolor{comment}{//std::cout << "{}Assigning pavarde"{} << std::endl;}}
+\DoxyCodeLine{57             pavarde = other.pavarde;}
+\DoxyCodeLine{58             \textcolor{comment}{//std::cout << "{}Assigning egzaminas"{} << std::endl;}}
+\DoxyCodeLine{59             egzaminas = other.egzaminas;}
+\DoxyCodeLine{60             \textcolor{comment}{//std::cout << "{}Assigning mark"{} << std::endl;}}
+\DoxyCodeLine{61             mark = other.mark;}
+\DoxyCodeLine{62         \}}
+\DoxyCodeLine{63         \textcolor{keywordflow}{else} std::cout << \textcolor{stringliteral}{"{}Self-\/assignment, skipping"{}} <<std::endl;}
+\DoxyCodeLine{64         \textcolor{comment}{//std::cout << "{}Iskviestas Copy Assignmentas studentui "{} << vardas <<std::endl;}}
+\DoxyCodeLine{65         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{66     \}}
+\DoxyCodeLine{67 }
+\DoxyCodeLine{68     \textcolor{comment}{//move konstruktorius}}
+\DoxyCodeLine{69     \textcolor{comment}{//Student1(Student1\&\& other) noexcept : Student1(other.vardas ,other.pavarde, other.egzaminas, other.mark) \{}}
+\DoxyCodeLine{70         \textcolor{comment}{//other = Student1();}}
+\DoxyCodeLine{71         \textcolor{comment}{//std::cout << "{}Iskviestas Move Konstruktorius studentui "{} << vardas << std::endl;}}
+\DoxyCodeLine{72     \textcolor{comment}{//\}}}
+\DoxyCodeLine{73 }
+\DoxyCodeLine{74     \mbox{\hyperlink{classStudent1}{Student1}}(\mbox{\hyperlink{classStudent1}{Student1}}\&\& other) noexcept : }
+\DoxyCodeLine{75     \mbox{\hyperlink{classHuman}{Human}}(std::move(other.vardas), std::move(other.pavarde)), \textcolor{comment}{// Move base class members}}
+\DoxyCodeLine{76       egzaminas(other.egzaminas),}
+\DoxyCodeLine{77       mark(std::move(other.mark)) \{}
+\DoxyCodeLine{78     \textcolor{comment}{// Reset the moved-\/from object}}
+\DoxyCodeLine{79     other.vardas = \textcolor{stringliteral}{"{}Default"{}};}
+\DoxyCodeLine{80     other.pavarde = \textcolor{stringliteral}{"{}Default"{}};}
+\DoxyCodeLine{81     other.egzaminas = 0;}
+\DoxyCodeLine{82     other.mark = \{0\};}
+\DoxyCodeLine{83     \textcolor{comment}{//std::cout << "{}Iskviestas Move Konstruktorius studentui "{} << vardas << std::endl;}}
+\DoxyCodeLine{84 \}}
+\DoxyCodeLine{85 }
+\DoxyCodeLine{86     \textcolor{comment}{// move assignment}}
+\DoxyCodeLine{87     \textcolor{comment}{/*}}
+\DoxyCodeLine{88 \textcolor{comment}{    Student1\& operator=(Student1\&\& other) noexcept \{}}
+\DoxyCodeLine{89 \textcolor{comment}{        if (this != \&other) \{ // Patikrinti ar ne self-\/moving}}
+\DoxyCodeLine{90 \textcolor{comment}{            vardas = other.vardas;}}
+\DoxyCodeLine{91 \textcolor{comment}{            pavarde = other.pavarde;}}
+\DoxyCodeLine{92 \textcolor{comment}{            egzaminas = other.egzaminas;}}
+\DoxyCodeLine{93 \textcolor{comment}{            mark = other.mark;}}
+\DoxyCodeLine{94 \textcolor{comment}{}}
+\DoxyCodeLine{95 \textcolor{comment}{            other = Student1();}}
+\DoxyCodeLine{96 \textcolor{comment}{        \}}}
+\DoxyCodeLine{97 \textcolor{comment}{        else std::cout <<"{}Self-\/moving, skipping"{}<<std::endl;}}
+\DoxyCodeLine{98 \textcolor{comment}{        //std::cout<<"{}Iskviestas Move Assignmentas studentui "{}<<vardas<<std::endl;}}
+\DoxyCodeLine{99 \textcolor{comment}{        return *this;}}
+\DoxyCodeLine{100 \textcolor{comment}{    \}}}
+\DoxyCodeLine{101 \textcolor{comment}{    */}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103     \mbox{\hyperlink{classStudent1}{Student1}}\& operator=(\mbox{\hyperlink{classStudent1}{Student1}}\&\& other) \textcolor{keyword}{noexcept} \{}
+\DoxyCodeLine{104         \textcolor{keywordflow}{if} (\textcolor{keyword}{this} != \&other) \{ \textcolor{comment}{// Avoid self-\/move}}
+\DoxyCodeLine{105             \textcolor{comment}{// Move base class members}}
+\DoxyCodeLine{106             Human::operator=(std::move(other));}
+\DoxyCodeLine{107     }
+\DoxyCodeLine{108             \textcolor{comment}{// Move member variables}}
+\DoxyCodeLine{109             egzaminas = other.egzaminas;}
+\DoxyCodeLine{110             mark = std::move(other.mark);}
+\DoxyCodeLine{111     }
+\DoxyCodeLine{112             \textcolor{comment}{// Reset the moved-\/from object}}
+\DoxyCodeLine{113             other.vardas = \textcolor{stringliteral}{"{}Default"{}};}
+\DoxyCodeLine{114             other.pavarde = \textcolor{stringliteral}{"{}Default"{}};}
+\DoxyCodeLine{115             other.egzaminas = 0;}
+\DoxyCodeLine{116             other.mark = \{0\};}
+\DoxyCodeLine{117             }
+\DoxyCodeLine{118         \}}
+\DoxyCodeLine{119         \textcolor{comment}{//std::cout<<"{}Iskviestas Move Assignmentas studentui "{}<<vardas<<std::endl;}}
+\DoxyCodeLine{120         \textcolor{keywordflow}{return} *\textcolor{keyword}{this};}
+\DoxyCodeLine{121     \}}
+\DoxyCodeLine{122 }
+\DoxyCodeLine{123     \textcolor{comment}{// Equality operator}}
+\DoxyCodeLine{124     \textcolor{keywordtype}{bool} operator==(\textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}}\& other)\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{125         \textcolor{keywordflow}{return} (vardas == other.vardas \&\&}
+\DoxyCodeLine{126                 pavarde == other.pavarde \&\&}
+\DoxyCodeLine{127                 egzaminas == other.egzaminas \&\&}
+\DoxyCodeLine{128                 mark == other.mark);}
+\DoxyCodeLine{129     \}}
+\DoxyCodeLine{130     }
+\DoxyCodeLine{131     \textcolor{comment}{// setteriai}}
+\DoxyCodeLine{132 }
+\DoxyCodeLine{133     \textcolor{keywordtype}{void} setVardas (\textcolor{keywordtype}{string} vardas\_) \textcolor{keyword}{override};}
+\DoxyCodeLine{134 }
+\DoxyCodeLine{135     \textcolor{keywordtype}{void} setPavarde(\textcolor{keywordtype}{string} pavarde\_) \textcolor{keyword}{override};}
+\DoxyCodeLine{136 }
+\DoxyCodeLine{137     \textcolor{keywordtype}{void} setEgzaminas(\textcolor{keywordtype}{int} egzaminas\_);}
+\DoxyCodeLine{138 }
+\DoxyCodeLine{139     \textcolor{keywordtype}{void} setMark(vector<int> mark\_);}
+\DoxyCodeLine{140 }
+\DoxyCodeLine{141     \textcolor{comment}{// getteriai}}
+\DoxyCodeLine{142 }
+\DoxyCodeLine{143     \textcolor{keywordtype}{string} getVardas()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{144         \textcolor{keywordflow}{return} vardas;}
+\DoxyCodeLine{145     \}}
+\DoxyCodeLine{146 }
+\DoxyCodeLine{147     \textcolor{keywordtype}{string} getPavarde()\textcolor{keyword}{ const override }\{}
+\DoxyCodeLine{148         \textcolor{keywordflow}{return} pavarde;}
+\DoxyCodeLine{149     \}}
+\DoxyCodeLine{150 }
+\DoxyCodeLine{151     \textcolor{keywordtype}{int} getEgzaminas()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{152         \textcolor{keywordflow}{return} egzaminas;}
+\DoxyCodeLine{153     \}}
+\DoxyCodeLine{154 }
+\DoxyCodeLine{155     vector<int> getMark()\textcolor{keyword}{ const }\{}
+\DoxyCodeLine{156         \textcolor{keywordflow}{return} mark;}
+\DoxyCodeLine{157     \}}
+\DoxyCodeLine{158     }
+\DoxyCodeLine{159     \textcolor{keyword}{friend} std::ostream\& operator<<(std::ostream\& os, \textcolor{keyword}{const} \mbox{\hyperlink{classStudent1}{Student1}}\& stud) \{}
+\DoxyCodeLine{160         \textcolor{keywordtype}{int} g = 20;}
+\DoxyCodeLine{161         os << std::setw(g) << std::left << stud.getVardas() }
+\DoxyCodeLine{162         << std::setw(g) << std::left << stud.getPavarde() }
+\DoxyCodeLine{163         << std::setw(g) << std::left << std::setprecision(3) }
+\DoxyCodeLine{164         << stud.getResult() << std::setw(g) << std::left }
+\DoxyCodeLine{165         << std::setprecision(3) << stud.getMedian() << std::endl;}
+\DoxyCodeLine{166         \textcolor{keywordflow}{return} os;}
+\DoxyCodeLine{167     \}}
+\DoxyCodeLine{168     }
+\DoxyCodeLine{169     \textcolor{comment}{// ifstreama dar padaryt}}
+\DoxyCodeLine{170     \textcolor{keyword}{friend} std::ifstream\& operator>>(std::ifstream\& in, \mbox{\hyperlink{classStudent1}{Student1}}\& stud) \{}
+\DoxyCodeLine{171         std::string temp;}
+\DoxyCodeLine{172         std::getline(in, temp); \textcolor{comment}{// Read the entire line}}
+\DoxyCodeLine{173         \textcolor{comment}{//std::cout << "{}nuskaitoma eilute \(\backslash\)n"{} << std::endl;}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175         \textcolor{keywordflow}{if} (temp.empty()) \textcolor{keywordflow}{return} in; \textcolor{comment}{// Skip empty lines}}
+\DoxyCodeLine{176         }
+\DoxyCodeLine{177         \textcolor{keywordtype}{string} random;}
+\DoxyCodeLine{178         std::istringstream stream(temp); \textcolor{comment}{// Convert the line into a string stream}}
+\DoxyCodeLine{179         \textcolor{comment}{//std::cout << "{}konvertuojama i string stream \(\backslash\)n"{} << std::endl;}}
+\DoxyCodeLine{180 }
+\DoxyCodeLine{181         stream >> stud.vardas >> stud.pavarde;}
+\DoxyCodeLine{182 }
+\DoxyCodeLine{183         \textcolor{comment}{//std::cout << "{}ivesta vardas ir pavarde"{} << std::endl;}}
+\DoxyCodeLine{184         \textcolor{comment}{//std::cout << stud.getPavarde() << "{} "{} << stud.getPavarde() << "{}\(\backslash\)n"{};}}
+\DoxyCodeLine{185         }
+\DoxyCodeLine{186         \textcolor{keywordtype}{int} marks;}
+\DoxyCodeLine{187         stud.mark.clear(); \textcolor{comment}{// Clear marks vector}}
+\DoxyCodeLine{188         \textcolor{keywordflow}{while} (stream >> marks) \{}
+\DoxyCodeLine{189             stud.mark.push\_back(marks);}
+\DoxyCodeLine{190             \textcolor{comment}{//std::cout << "{}ivestas pazymys \(\backslash\)n"{} << std::endl;}}
+\DoxyCodeLine{191 }
+\DoxyCodeLine{192         \}}
+\DoxyCodeLine{193         }
+\DoxyCodeLine{194         \textcolor{keywordflow}{if} (!stud.mark.empty()) \{}
+\DoxyCodeLine{195             stud.egzaminas = stud.mark.back();}
+\DoxyCodeLine{196             stud.mark.pop\_back();}
+\DoxyCodeLine{197         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{198             stud.egzaminas = 0; \textcolor{comment}{// Default value if no marks are provided}}
+\DoxyCodeLine{199         \}}
+\DoxyCodeLine{200         \textcolor{comment}{//std::cout << "{}ivestas egzaminas \(\backslash\)n"{} << std::endl;}}
 \DoxyCodeLine{201 }
-\DoxyCodeLine{202     \textcolor{keyword}{friend} std::istream\& operator>>(std::istream\& is, \mbox{\hyperlink{classStudent1}{Student1}}\& stud) \{}
-\DoxyCodeLine{203         std::string egzaminas, mark\_temp;}
-\DoxyCodeLine{204         vector<int> mark \{\};}
-\DoxyCodeLine{205 }
-\DoxyCodeLine{206         std::cout << \textcolor{stringliteral}{"{}Enter name: "{}};}
-\DoxyCodeLine{207         is >> stud.vardas;}
-\DoxyCodeLine{208 }
-\DoxyCodeLine{209         std::cout << \textcolor{stringliteral}{"{}Enter surname: "{}};}
-\DoxyCodeLine{210         is >> stud.pavarde;}
-\DoxyCodeLine{211 }
-\DoxyCodeLine{212         \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
-\DoxyCodeLine{213             std::cout << \textcolor{stringliteral}{"{}Enter exam mark (0-\/10): "{}};}
-\DoxyCodeLine{214             std::cin >> egzaminas;}
-\DoxyCodeLine{215             \textcolor{keywordflow}{if} (std::stoi(egzaminas) >= 0 \&\& std::stoi(egzaminas) <= 10) \{}
-\DoxyCodeLine{216                 stud.egzaminas = std::stoi(egzaminas); }
-\DoxyCodeLine{217                 \textcolor{keywordflow}{break};}
-\DoxyCodeLine{218             \}}
-\DoxyCodeLine{219         \}}
-\DoxyCodeLine{220 }
-\DoxyCodeLine{221         \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
-\DoxyCodeLine{222             std::cout << \textcolor{stringliteral}{"{}Enter a mark (or 'q' to quit): "{}};}
-\DoxyCodeLine{223             std::cin >> mark\_temp;}
-\DoxyCodeLine{224 }
-\DoxyCodeLine{225             \textcolor{keywordflow}{if} (mark\_temp == \textcolor{stringliteral}{"{}q"{}}) \{}
-\DoxyCodeLine{226                 stud.mark = mark;}
-\DoxyCodeLine{227                 mark.clear();}
-\DoxyCodeLine{228                 system(\textcolor{stringliteral}{"{}clear"{}});}
-\DoxyCodeLine{229                 \textcolor{keywordflow}{break};}
-\DoxyCodeLine{230             \}}
-\DoxyCodeLine{231 }
-\DoxyCodeLine{232             \textcolor{keywordflow}{if} (std::stoi(mark\_temp) >= 0 \&\& std::stoi(mark\_temp) <= 10) \{}
-\DoxyCodeLine{233                 mark.push\_back(std::stoi(mark\_temp));}
-\DoxyCodeLine{234             \}}
-\DoxyCodeLine{235         \}}
+\DoxyCodeLine{202         }
+\DoxyCodeLine{203 }
+\DoxyCodeLine{204         \textcolor{keywordflow}{return} in;}
+\DoxyCodeLine{205     \}}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207     \textcolor{keyword}{friend} std::istream\& operator>>(std::istream\& is, \mbox{\hyperlink{classStudent1}{Student1}}\& stud) \{}
+\DoxyCodeLine{208         std::string egzaminas, mark\_temp;}
+\DoxyCodeLine{209         vector<int> mark \{\};}
+\DoxyCodeLine{210 }
+\DoxyCodeLine{211         std::cout << \textcolor{stringliteral}{"{}Enter name: "{}};}
+\DoxyCodeLine{212         is >> stud.vardas;}
+\DoxyCodeLine{213 }
+\DoxyCodeLine{214         std::cout << \textcolor{stringliteral}{"{}Enter surname: "{}};}
+\DoxyCodeLine{215         is >> stud.pavarde;}
+\DoxyCodeLine{216 }
+\DoxyCodeLine{217         \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{218             std::cout << \textcolor{stringliteral}{"{}Enter exam mark (0-\/10): "{}};}
+\DoxyCodeLine{219             std::cin >> egzaminas;}
+\DoxyCodeLine{220             \textcolor{keywordflow}{if} (std::stoi(egzaminas) >= 0 \&\& std::stoi(egzaminas) <= 10) \{}
+\DoxyCodeLine{221                 stud.egzaminas = std::stoi(egzaminas); }
+\DoxyCodeLine{222                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{223             \}}
+\DoxyCodeLine{224         \}}
+\DoxyCodeLine{225 }
+\DoxyCodeLine{226         \textcolor{keywordflow}{while} (\textcolor{keyword}{true}) \{}
+\DoxyCodeLine{227             std::cout << \textcolor{stringliteral}{"{}Enter a mark (or 'q' to quit): "{}};}
+\DoxyCodeLine{228             std::cin >> mark\_temp;}
+\DoxyCodeLine{229 }
+\DoxyCodeLine{230             \textcolor{keywordflow}{if} (mark\_temp == \textcolor{stringliteral}{"{}q"{}}) \{}
+\DoxyCodeLine{231                 stud.mark = mark;}
+\DoxyCodeLine{232                 mark.clear();}
+\DoxyCodeLine{233                 system(\textcolor{stringliteral}{"{}clear"{}});}
+\DoxyCodeLine{234                 \textcolor{keywordflow}{break};}
+\DoxyCodeLine{235             \}}
 \DoxyCodeLine{236 }
-\DoxyCodeLine{237         \textcolor{keywordflow}{return} is;}
-\DoxyCodeLine{238     \}}
-\DoxyCodeLine{239 }
-\DoxyCodeLine{240     \textcolor{keywordtype}{float} getMedian() \textcolor{keyword}{const};}
+\DoxyCodeLine{237             \textcolor{keywordflow}{if} (std::stoi(mark\_temp) >= 0 \&\& std::stoi(mark\_temp) <= 10) \{}
+\DoxyCodeLine{238                 mark.push\_back(std::stoi(mark\_temp));}
+\DoxyCodeLine{239             \}}
+\DoxyCodeLine{240         \}}
 \DoxyCodeLine{241 }
-\DoxyCodeLine{242     \textcolor{keywordtype}{float} getResult() \textcolor{keyword}{const};}
-\DoxyCodeLine{243 }
-\DoxyCodeLine{244     \textcolor{keywordtype}{void} GenerateNames();}
-\DoxyCodeLine{245 }
-\DoxyCodeLine{246 \};}
-\DoxyCodeLine{247 }
-\DoxyCodeLine{248 \textcolor{keywordtype}{void} print(vector<Student1> \&stud);}
-\DoxyCodeLine{249 }
-\DoxyCodeLine{250 \textcolor{keywordtype}{void} import\_file (vector<Student1> \&stud, \textcolor{keywordtype}{string} filename);}
-\DoxyCodeLine{251 }
-\DoxyCodeLine{252 \textcolor{keywordtype}{void} sort\_students (vector<Student1>\& stud);}
-\DoxyCodeLine{253 }
-\DoxyCodeLine{254 \textcolor{keywordtype}{void} choose\_printing\_method (vector<Student1>\& stud);}
-\DoxyCodeLine{255 }
-\DoxyCodeLine{256 \textcolor{keywordtype}{void} print\_marks (vector<Student1> stud);}
-\DoxyCodeLine{257 }
-\DoxyCodeLine{258 \textcolor{keywordtype}{void} write\_marks (vector<Student1> stud, \textcolor{keywordtype}{string} name);}
-\DoxyCodeLine{259 }
-\DoxyCodeLine{260 \textcolor{keywordtype}{void} divide\_file1 (vector<Student1>\& stud,vector<Student1>\& kietiakai,vector<Student1>\& nuskriaustukai, \textcolor{keywordtype}{string} filename);}
-\DoxyCodeLine{261 }
-\DoxyCodeLine{262 \textcolor{keywordtype}{void} divide\_file2 (vector<Student1>\& stud,vector<Student1>\& nuskriaustukai, \textcolor{keywordtype}{string} filename);}
-\DoxyCodeLine{263 }
-\DoxyCodeLine{264 \textcolor{keywordtype}{void} divide\_file3 (vector<Student1>\& stud,vector<Student1>\& nuskriaustukai, \textcolor{keywordtype}{string} filename);}
-\DoxyCodeLine{265 }
-\DoxyCodeLine{266 \textcolor{keywordtype}{void} pagrindinis\_divide (vector<Student1>\& stud,vector<Student1>\& kietiakai,vector<Student1>\& nuskriaustukai, \textcolor{keywordtype}{int} num);}
-\DoxyCodeLine{267 }
-\DoxyCodeLine{268 \textcolor{keywordtype}{void} pagrindinis\_divide\_choice(vector<Student1>\& stud);}
-\DoxyCodeLine{269 }
-\DoxyCodeLine{270 \textcolor{keywordtype}{void} sort\_file (vector<Student1>\& stud, \textcolor{keywordtype}{string} name);}
-\DoxyCodeLine{271 }
-\DoxyCodeLine{272 \textcolor{keywordtype}{void} rule\_of\_five();}
-\DoxyCodeLine{273 }
-\DoxyCodeLine{274 \textcolor{keywordtype}{void} print\_metrics (\textcolor{keywordtype}{string} filename, \textcolor{keywordtype}{float} data, \textcolor{keywordtype}{int} num, \textcolor{keywordtype}{int} strategija);}
-\DoxyCodeLine{275 }
-\DoxyCodeLine{276 \textcolor{keywordtype}{int} lineCount (\textcolor{keywordtype}{string} filename);}
-\DoxyCodeLine{277 }
-\DoxyCodeLine{278 \textcolor{keywordtype}{string} extractNumbers(\textcolor{keyword}{const} std::string\& str);}
+\DoxyCodeLine{242         \textcolor{keywordflow}{return} is;}
+\DoxyCodeLine{243     \}}
+\DoxyCodeLine{244 }
+\DoxyCodeLine{245     \textcolor{keywordtype}{float} getMedian() \textcolor{keyword}{const};}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247     \textcolor{keywordtype}{float} getResult() \textcolor{keyword}{const};}
+\DoxyCodeLine{248 }
+\DoxyCodeLine{249     \textcolor{keywordtype}{void} GenerateNames();}
+\DoxyCodeLine{250 }
+\DoxyCodeLine{251 \};}
+\DoxyCodeLine{252 }
+\DoxyCodeLine{253 \textcolor{keywordtype}{void} print(vector<Student1> \&stud);}
+\DoxyCodeLine{254 }
+\DoxyCodeLine{255 \textcolor{keywordtype}{void} import\_file (\mbox{\hyperlink{classVector}{Vector<Student1>}} \&stud, \textcolor{keywordtype}{string} filename);}
+\DoxyCodeLine{256 }
+\DoxyCodeLine{257 \textcolor{keywordtype}{void} sort\_students (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud);}
+\DoxyCodeLine{258 }
+\DoxyCodeLine{259 \textcolor{keywordtype}{void} choose\_printing\_method (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud);}
+\DoxyCodeLine{260 }
+\DoxyCodeLine{261 \textcolor{keywordtype}{void} print\_marks (\mbox{\hyperlink{classVector}{Vector<Student1>}} stud);}
+\DoxyCodeLine{262 }
+\DoxyCodeLine{263 \textcolor{keywordtype}{void} write\_marks (\mbox{\hyperlink{classVector}{Vector<Student1>}} stud, \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{264 }
+\DoxyCodeLine{265 \textcolor{keywordtype}{void} divide\_file1 (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud,\mbox{\hyperlink{classVector}{Vector<Student1>}}\& kietiakai,\mbox{\hyperlink{classVector}{Vector<Student1>}}\& nuskriaustukai, \textcolor{keywordtype}{string} filename);}
+\DoxyCodeLine{266 }
+\DoxyCodeLine{267 \textcolor{keywordtype}{void} divide\_file2 (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud,\mbox{\hyperlink{classVector}{Vector<Student1>}}\& nuskriaustukai, \textcolor{keywordtype}{string} filename);}
+\DoxyCodeLine{268 }
+\DoxyCodeLine{269 \textcolor{keywordtype}{void} divide\_file3 (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud,\mbox{\hyperlink{classVector}{Vector<Student1>}}\& nuskriaustukai, \textcolor{keywordtype}{string} filename);}
+\DoxyCodeLine{270 }
+\DoxyCodeLine{271 \textcolor{keywordtype}{void} pagrindinis\_divide (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud,\mbox{\hyperlink{classVector}{Vector<Student1>}}\& kietiakai,\mbox{\hyperlink{classVector}{Vector<Student1>}}\& nuskriaustukai, \textcolor{keywordtype}{int} num);}
+\DoxyCodeLine{272 }
+\DoxyCodeLine{273 \textcolor{keywordtype}{void} pagrindinis\_divide\_choice(\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud);}
+\DoxyCodeLine{274 }
+\DoxyCodeLine{275 \textcolor{keywordtype}{void} sort\_file (\mbox{\hyperlink{classVector}{Vector<Student1>}}\& stud, \textcolor{keywordtype}{string} name);}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277 \textcolor{keywordtype}{void} rule\_of\_five();}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279 \textcolor{keywordtype}{void} print\_metrics (\textcolor{keywordtype}{string} filename, \textcolor{keywordtype}{float} data, \textcolor{keywordtype}{int} num, \textcolor{keywordtype}{int} strategija);}
+\DoxyCodeLine{280 }
+\DoxyCodeLine{281 \textcolor{keywordtype}{int} lineCount (\textcolor{keywordtype}{string} filename);}
+\DoxyCodeLine{282 }
+\DoxyCodeLine{283 \textcolor{keywordtype}{string} extractNumbers(\textcolor{keyword}{const} std::string\& str);}
+\DoxyCodeLine{284 }
+\DoxyCodeLine{285 \textcolor{keywordtype}{void} compare\_vectors();}
 
 \end{DoxyCode}

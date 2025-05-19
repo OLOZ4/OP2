@@ -336,8 +336,8 @@ void pagrindinis_divide (Vector<Student1> &stud, Vector<Student1> &kietiakai, Ve
         
         if (num == 1) write_marks(kietiakai, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
         else {
-            write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-            write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
+            //write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
+            //write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
         }
         
         stud.clear();
@@ -500,7 +500,7 @@ string extractNumbers(const std::string& str) {
 }
 
 void compare_vectors() {
-    std::vector<int> size {1000,100000,1000000,10000000,100000000};
+    std::vector<int> size {10000,100000,1000000,10000000,100000000};
 
     std::vector<int> v1;
     Vector<int> v2;
@@ -511,7 +511,7 @@ void compare_vectors() {
         auto start = std::chrono::steady_clock::now();
         for (int j = 1; j <= size[i]; ++j) {
             v1.push_back(j);
-            if (v1.size() == v1.capacity()) std::cout<<v1.capacity()<<std::endl;
+            //if (v1.size() == v1.capacity()) std::cout<<v1.capacity()<<std::endl;
         }
         auto end = std::chrono::steady_clock::now();
         auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
@@ -521,7 +521,7 @@ void compare_vectors() {
         auto start1 = std::chrono::steady_clock::now();
         for (int j = 1; j <= size[i]; ++j) {
             v2.push_back(j);
-            if (v2.get_size() == v2.get_capacity()) std::cout<<v2.get_capacity()<<std::endl;   
+            //if (v2.get_size() == v2.get_capacity()) std::cout<<v2.get_capacity()<<std::endl;   
         }
         auto end1 = std::chrono::steady_clock::now();
         auto duration1 = std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1);
