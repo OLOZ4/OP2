@@ -1,6 +1,6 @@
 # Paleidimo instrukcijos
 
-+ Klonuojame arba parsisiunčiame šitą repozitoriją 
++ Klonuojame arba parsisiunčiame šitą repozitoriją  
 + Šio projekto direktorijoje atsidarome terminalą ir rašome ```make```
 + Turi atsirasti aplankas: ```obj```
 + Paleidžiame prorgamą naudodami komandą ```./main```
