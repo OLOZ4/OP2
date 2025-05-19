@@ -5,7 +5,7 @@
 int main() {
     //std::locale::global(std::locale("en_US.UTF-8")); 
     vector<string> name;
-    vector<string> txtFiles;
+    //vector<string> txtFiles;
     Vector<Student1> stud;
     char choice;
     readFile(name);
@@ -20,6 +20,7 @@ int main() {
 6) to generate files
 7) to test Rule of Five
 8) to quit
+9) to compare std::vector and custom vector 
 --> )";
         cin >> choice;
         switch (choice) {
@@ -63,6 +64,7 @@ int main() {
             }
 
             case '3': {
+                //stud.reserve(stud.get_size()+1);
                 Student1 temp_student;
                 vector<int> mark {};
 
@@ -87,7 +89,6 @@ int main() {
             }
 
             case '4': {
-                txtFiles.clear();
                 vector<string> txtFiles = listTxtFiles();
                 string filename;
 
@@ -98,13 +99,13 @@ int main() {
                     cout << i << ") " << txtFiles[i-1] << "\n";
                         }
                     cout <<"--> ";
-                    int choice;
+                    int choice2;
                     while (true) {
-                        cin >> choice;
+                        cin >> choice2;
                         system("clear");
 
-                        if (choice >=1 && choice <=  static_cast<int>(txtFiles.size())) {
-                            filename = txtFiles[choice-1];
+                        if (choice2 >=1 && choice2 <=  static_cast<int>(txtFiles.size())) {
+                            filename = txtFiles[choice2-1];
                             break; 
                         } else {
                             cout << "Invalid choice, try again:\n";
@@ -150,6 +151,10 @@ int main() {
             case '8': {
                 cout <<endl<< "quitting... bye" << endl;
                 return 0;
+            }
+
+            case '9': {
+                compare_vectors();
             }
             
             case '0': {

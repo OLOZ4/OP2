@@ -51,9 +51,13 @@ class Student1 : private Human {
     // copy assignment
     Student1& operator=(const Student1 &other) {
         if (this != &other) { // Patikrinti ar ne self-asigninama
+            //std::cout << "Assigning vardas, this: " << this << ", other: " << &other << std::endl;
             vardas = other.vardas;
+            //std::cout << "Assigning pavarde" << std::endl;
             pavarde = other.pavarde;
+            //std::cout << "Assigning egzaminas" << std::endl;
             egzaminas = other.egzaminas;
+            //std::cout << "Assigning mark" << std::endl;
             mark = other.mark;
         }
         else std::cout << "Self-assignment, skipping" <<std::endl;
@@ -277,3 +281,5 @@ void print_metrics (string filename, float data, int num, int strategija);
 int lineCount (string filename);
 
 string extractNumbers(const std::string& str);
+
+void compare_vectors();

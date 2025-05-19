@@ -4,7 +4,7 @@
 #include <ostream>
 
 template <typename T>
-class vector {
+class Vector {
     private:
         T* data;
         size_t size;
@@ -24,13 +24,13 @@ class vector {
         //-------Member-funkcijos----------//
         
         // Konstruktorius
-        vector() : data(nullptr), size(0), capacity(0) {std::cout << "Iskviestas konstruktorius"<< std::endl;}
+        Vector() : data(nullptr), size(0), capacity(0) {std::cout << "Iskviestas konstruktorius"<< std::endl;}
 
         // Konstruktorius su nustatytu dydziu 
-        explicit vector(size_t initial_capacity) : data(new T[initial_capacity]), size(0), capacity(initial_capacity) {std::cout << "Iskviestas konstruktorius"<< std::endl;}
+        explicit Vector(size_t initial_capacity) : data(new T[initial_capacity]), size(0), capacity(initial_capacity) {}//std::cout << "Iskviestas konstruktorius"<< std::endl;}
 
         // Move konstruktorius
-        vector(vector&& other) noexcept
+        Vector(Vector&& other) noexcept
          : data(other.data), size(other.size), capacity(other.capacity) {
                 other.data = nullptr;
                 other.size = 0;
@@ -38,21 +38,21 @@ class vector {
             }
         
         // Copy konstuktorius
-        vector(const vector& other) : size(other.size), capacity(other.capacity) {
+        Vector(const Vector& other) : size(other.size), capacity(other.capacity) {
             data = new T[capacity];
             for (size_t i = 0; i < size; ++i) {
                 data[i] = other.data[i];
             }
         }
         // Destrukorius
-        ~vector() {
+        ~Vector() {
             delete[] data;
             std::cout<< "Iskviestas destruktorius"<< std::endl;
         }
 
         // Copy asignment
         // operatorius= pvz b = a
-        vector& operator=(const vector& other) {
+        Vector& operator=(const Vector& other) {
             if (this != &other) { 
                 delete[] data;
         
@@ -68,7 +68,7 @@ class vector {
 
         // Move asignment
         // operatorius= pvz b = std::move(a)
-        vector& operator=(vector&& other) {
+        Vector& operator=(Vector&& other) {
             if (this != &other) {
                 delete[] data;
         

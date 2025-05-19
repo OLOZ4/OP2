@@ -1,4 +1,5 @@
 #include "../program/student.hpp"
+#include <vector>
 
 float Student1::getMedian() const {
     vector<int> marks = mark;
@@ -291,9 +292,12 @@ void divide_file3(Vector<Student1>& stud, Vector<Student1>& nuskriaustukai, stri
     // Partition the students based on the result
     auto partition_point = std::stable_partition(stud.begin(), stud.end(), [](const Student1& s) { return s.getResult() >= 5.0; });
     //print_marks(stud);
+    std::cout<<partition_point<<std::endl;
+    std::cout<<stud.end()<<std::endl;
     
     // Move the failing students to nuskriaustukai
     nuskriaustukai = Vector<Student1>(std::make_move_iterator(partition_point), std::make_move_iterator(stud.end()));
+
     stud.erase(partition_point, stud.end());
     
     // Shrink to fit
@@ -303,7 +307,7 @@ void divide_file3(Vector<Student1>& stud, Vector<Student1>& nuskriaustukai, stri
     auto end = std::chrono::high_resolution_clock::now();
     std::chrono::duration<double> diff = end - start;
     std::cout << "Dividing file " << filename << " was successful. Took: " << diff.count() << " s" << std::endl;
-    //print_metrics(filename, diff.count(), 0);
+    print_metrics(filename, diff.count(), 0,3);
 }
 
 void pagrindinis_divide (Vector<Student1> &stud, Vector<Student1> &kietiakai, Vector<Student1> &nuskriaustukai, int num) {
@@ -331,8 +335,11 @@ void pagrindinis_divide (Vector<Student1> &stud, Vector<Student1> &kietiakai, Ve
         */
         
         if (num == 1) write_marks(kietiakai, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-        else write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
-        write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
+        else {
+            write_marks(stud, "studentai"+std::to_string(file_size[i])+"_kietiakai.txt");
+            write_marks(nuskriaustukai, "studentai"+std::to_string(file_size[i])+"_nuskriaustukai.txt");
+        }
+        
         stud.clear();
         nuskriaustukai.clear();
         
@@ -490,4 +497,38 @@ string extractNumbers(const std::string& str) {
         }
     }
     return result;
+}
+
+void compare_vectors() {
+    std::vector<int> size {1000,100000,1000000,10000000,100000000};
+
+    std::vector<int> v1;
+    Vector<int> v2;
+
+    for (int i = 0; i <size.size(); i++) {
+        std::cout<< std::setw(10) << std::left<<"<<---------Size: "<<size[i]<<"--------->>"<<std::endl;
+
+        auto start = std::chrono::steady_clock::now();
+        for (int j = 1; j <= size[i]; ++j) {
+            v1.push_back(j);
+            if (v1.size() == v1.capacity()) std::cout<<v1.capacity()<<std::endl;
+        }
+        auto end = std::chrono::steady_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+        std::cout << "Elapsed time: " << duration.count() << " ms" << std::endl;
+        v1.clear();
+
+        auto start1 = std::chrono::steady_clock::now();
+        for (int j = 1; j <= size[i]; ++j) {
+            v2.push_back(j);
+            if (v2.get_size() == v2.get_capacity()) std::cout<<v2.get_capacity()<<std::endl;   
+        }
+        auto end1 = std::chrono::steady_clock::now();
+        auto duration1 = std::chrono::duration_cast<std::chrono::milliseconds>(end1 - start1);
+        std::cout << "Elapsed time (custom): " << duration1.count() << " ms" << std::endl;
+        std::cout << "Difference: " << duration.count()-duration1.count() << " ms" << std::endl << std::endl;
+
+       
+        v2.clear();
+    }
 }
