@@ -57,7 +57,7 @@ Leidžia pasiekti elementą taip pat kaip ir **operator[]**, tačiau dar patikri
 Testus galite rasti: ``` unit_tests/main.cpp```
 Naudojimosi instrukcija yra aprašyta **V2.0** aprašyme
 
-### Atlikta spartumo analizė (Vector klasė vs std::vector)
+## Atlikta spartumo analizė (Vector klasė vs std::vector)
 
 + **Analizės metodas**
 Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std::vector ir nuosavo Vector tipo tuščius vektorius : 10000, 100000, 1000000, 10000000 ir 100000000 int tipo elementų naudojant ```push_back()``` funkciją
@@ -84,7 +84,7 @@ Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std::vector ir nuos
 |**Vector**|1.15|13.4||
 |Difference|-0.58|-8.65||
 
-+**Išvadaos**
++ **Išvadaos**
 Savadarbis Vector pagrindu sukurtas konteineris yra neefektyvus saugant kompleksines duomenų struktūras lyginant su vektorium iš STL bibliotekos
   
 
