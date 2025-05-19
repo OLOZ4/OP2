@@ -10,21 +10,23 @@ class Vector {
         size_t size;
         size_t capacity;
 
-        void resize (size_t new_capacity) {
-            T* new_data = new T[new_capacity];
-            for (size_t i = 0; i < size; ++i) {
-                new_data[i] = data[i];
+        void resize(size_t new_size) {
+            if (new_size <= size) {
+                return; // Tik sumazinti dydi aij bbz kas cia zodziu palikt vietoj
+            } 
+            else {
+                reserve(new_size); // Rezervuoja vieta jeigu reikia
+                for (size_t i = size; i < new_size; ++i)
+                    data[i] = T(); // Naudoja default konstruktoriu naujiems objektams
+                size = new_size;
             }
-            delete[] data;
-            data = new_data;
-            capacity = new_capacity;
         }
 
     public:
         //-------Member-funkcijos----------//
         
         // Konstruktorius
-        Vector() : data(nullptr), size(0), capacity(0) {std::cout << "Iskviestas konstruktorius"<< std::endl;}
+        Vector() : data(nullptr), size(0), capacity(0) {}//std::cout << "Iskviestas konstruktorius"<< std::endl;}
 
         // Konstruktorius su nustatytu dydziu 
         explicit Vector(size_t initial_capacity) : data(new T[initial_capacity]), size(0), capacity(initial_capacity) {}//std::cout << "Iskviestas konstruktorius"<< std::endl;}
@@ -44,10 +46,11 @@ class Vector {
                 data[i] = other.data[i];
             }
         }
+
         // Destrukorius
         ~Vector() {
             delete[] data;
-            std::cout<< "Iskviestas destruktorius"<< std::endl;
+            //std::cout<< "Iskviestas destruktorius"<< std::endl;
         }
 
         // Copy asignment
@@ -55,13 +58,14 @@ class Vector {
         Vector& operator=(const Vector& other) {
             if (this != &other) { 
                 delete[] data;
-        
                 size = other.size;
                 capacity = other.capacity;
                 data = new T[capacity];
                 for (size_t i = 0; i < size; ++i) {
                     data[i] = other.data[i];
                 }
+                
+
             }
             return *this;
         }
@@ -79,6 +83,7 @@ class Vector {
                 other.data = nullptr;
                 other.size = 0;
                 other.capacity = 0;
+                
             }
             return *this;
         }
@@ -161,12 +166,23 @@ class Vector {
 
         // Rezervuoti vieta atmintyje
         void reserve(size_t new_capacity) {
-            if (new_capacity > capacity) resize(new_capacity);
+            if (new_capacity <= capacity) return;
+            // Grow at least double to avoid frequent allocations
+            size_t new_cap = (capacity == 0) ? 1 : capacity;
+            while (new_cap < new_capacity) new_cap *= 2;
+            T* new_data = new T[new_cap];
+            for (size_t i = 0; i < size; ++i)
+                new_data[i] = data[i];
+            delete[] data;
+            data = new_data;
+            capacity = new_cap;
         }
 
         // Sushrinkinti capacity
         void shrink_to_fit() {
-            resize(size);
+            if (capacity > size) {
+                resize(size);
+            }
         }
         
         // Max dydis
@@ -177,11 +193,11 @@ class Vector {
         //---------Modifiers-----------//
 
         // Isvalyti vektoriu
-        void clear() {
-            for (size_t i = 0; i < size; ++i) {
-                data[i].~T(); // Iskvieciamas destruktorius kiekvienam vektoriui
-            }
+        void clear() {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //delete[] data;
+            //data = nullptr;
             size = 0;
+            //capacity = 0;
         }
 
         // Ideti elementa x i y vieta
@@ -191,7 +207,7 @@ class Vector {
             }
     
             if (size == capacity) {
-                resize(capacity == 0 ? 1 : capacity * 2);
+                reserve(capacity == 0 ? 1 : capacity * 2);
             }
 
             for (size_t i = size; i > index; --i) {
@@ -208,7 +224,7 @@ class Vector {
             }
     
             if (size == capacity) {
-                resize(capacity == 0 ? 1 : capacity * 2);
+                reserve(capacity == 0 ? 1 : capacity * 2);
             }
 
             // Visus egzistuojancius elementus perkelia i desine
@@ -225,9 +241,10 @@ class Vector {
         // Prideti elementa i gala
         void push_back(const T& value) {
             if (size == capacity) {
-                resize(capacity == 0 ? 1 : capacity * 2);
+                reserve(capacity == 0 ? 1 : capacity * 2);
             }
             data[size++] = value;
+            //size++;
         }
 
         // Istrinti elementa is galo
@@ -253,21 +270,24 @@ class Vector {
         }
 
         // Istrinti elementu aibe is pasirinktos vietos 
-        T* erase(T* first, T* last) {
-            //assert(first >= begin() && last <= end() && first <= last);
-    
+        T*erase(T* first, T* last) {
+            //
+            //
+            //std::cout << "Erase from index: " << (first - data) << " to index: " << (last - data) << " (size=" << size << ")" << std::endl;
+            //
+            // Bounds check (optional, but for debugging it's helpful)
+            if (first < data || last > data + size || first > last) {
+                throw std::out_of_range("Invalid erase range");
+            }
+        
             size_t erase_count = last - first;
-            T* new_end = data + size - erase_count;
-    
-            for (T* it = first; last != end(); ++it, ++last) {
+            if (erase_count == 0) return first;
+        
+            // Move trailing elements forward
+            for (T* it = first; last != data + size; ++it, ++last) {
                 *it = std::move(*last);
             }
-            
-            // Sunaikinti senas reiksmes
-            for (T* it = new_end; it != end(); ++it) {
-                it->~T();
-            }
-    
+        
             size -= erase_count;
             return first;
         }

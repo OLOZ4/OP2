@@ -20,6 +20,15 @@ class Human {
         //std::cout << "Virtual destructor Human was called"<<std::endl;
     }
 
+    // Copy assignment operator
+    Human& operator=(const Human& other) {
+        if (this != &other) {
+            vardas = other.vardas;
+            pavarde = other.pavarde;
+        }
+        return *this;
+    }
+
     //virtualus setteriai
     virtual void setVardas(std::string vardas_) = 0;
 
