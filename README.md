@@ -9,6 +9,17 @@
 
 # v3.0 Aprašymas
 
+## Sukurtas .exe failas instaliuoti programą Windows operacinėse sistemose
+
+### Instaliavimo instrukcijos
+
++ Parsisiunčiame ```Setup_BenediktasJuozapaitis.exe``` iš šios repozitorijos
++ Parsisiuntus failui, spaudžiame ant jo
++ Suteikiame administratoriaus privilegijas
++ Visur spaudžiame mygtuką "next"
++ Programa turėtų automatiškai susinstaliuoti "C:\Program Files (x86)\VU\Benediktas-Juozapaitis"
++ Programą galima paleisti ant ikonėles du kartus paspaudus darbalaukyje arba meniu juostoje VU->Benediktas Juozapaitis
+
 ## Sukurta Vector klasė Student1 klasės objektų saugojimui
 
 ### Vector klasės bazinės funkcijos ir jų aprašymai
