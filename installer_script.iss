@@ -9,8 +9,9 @@ Compression=lzma
 SolidCompression=yes
 
 [Files]
-Source: "main.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "program\main.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\Benediktas-Juozapaitis"; Filename: "{app}\MyApp.exe"
-Name: "{commondesktop}\Benediktas-Juozapaitis"; Filename: "{app}\MyApp.exe"
+Name: "{group}\Benediktas-Juozapaitis"; Filename: "{app}\program\main.exe"
+Name: "{commondesktop}\Benediktas-Juozapaitis"; Filename: "{app}\program\main.exe"
