@@ -1,0 +1,1224 @@
+
+\begin{DoxyItemize}
+\item Klonuojame arba parsisiunčiame šitą repozitoriją ~\newline
+
+\item Šio projekto direktorijoje atsidarome terminalą ir rašome {\ttfamily make}
+\item Turi atsirasti aplankas\+: {\ttfamily obj}
+\item Paleidžiame prorgamą naudodami komandą {\ttfamily ./main}
+\item Baigus darbą ištriname visus komandos {\ttfamily make} sugeneruotus failus naudodami komandą {\ttfamily make clean}
+\item Kilus klausimams ar nesusipratimams, prašome sukurti naują issue github sistemoje
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md1}{}\doxysection{v3.\+0 Aprašymas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md1}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md2}{}\doxysubsection{Sukurtas .\+exe failas instaliuoti programą Windows operacinėse sistemose}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md2}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md3}{}\doxysubsubsection{Instaliavimo instrukcijos}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md3}
+
+\begin{DoxyItemize}
+\item Parsisiunčiame {\ttfamily Setup\+\_\+\+Benediktas\+Juozapaitis.\+exe} iš šios repozitorijos
+\item Parsisiuntus failui, spaudžiame ant jo
+\item Suteikiame administratoriaus privilegijas
+\item Visur spaudžiame mygtuką \char`\"{}next\char`\"{}
+\item Programa turėtų automatiškai susinstaliuoti \char`\"{}\+C\+:\textbackslash{}\+Program Files (x86)\textbackslash{}\+VU\textbackslash{}\+Benediktas-\/\+Juozapaitis\char`\"{}
+\item Programą galima paleisti ant ikonėles du kartus paspaudus darbalaukyje arba meniu juostoje VU-\/\texorpdfstring{$>$}{>}Benediktas Juozapaitis
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md4}{}\doxysubsection{Sukurta Vector klasė Student1 klasės objektų saugojimui}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md4}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md5}{}\doxysubsubsection{Vector klasės bazinės funkcijos ir jų aprašymai}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\bfseries{Konstruktorius}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Vector() : data(nullptr), size(0), capacity(0) \{\}}
+
+\end{DoxyCode}
+
+\item {\bfseries{Move konstruktorius}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Vector(Vector\&\& other) noexcept}
+\DoxyCodeLine{  : data(other.data), size(other.size), capacity(other.capacity) \{}
+\DoxyCodeLine{        other.data = nullptr;}
+\DoxyCodeLine{        other.size = 0;}
+\DoxyCodeLine{        other.capacity = 0;}
+\DoxyCodeLine{    \}}
+
+\end{DoxyCode}
+ Duomenys iš kito vektoriaus perkeliami į dabartinį vektorių ir duomenys yra pašalinami (other.\+data = nullptr)
+\item {\bfseries{Destrukorius}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\string~Vector() \{}
+\DoxyCodeLine{  delete[] data;}
+\DoxyCodeLine{\}            }
+
+\end{DoxyCode}
+ Ištrinamas masyvas -\/ atlaisvinama nenaudojama vieta
+\item {\bfseries{operator\mbox{[}\mbox{]}}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{T\& operator[](size\_t index) \{}
+\DoxyCodeLine{  return data[index];}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ Leidžia pasiekti elementą naudojant \mbox{[}\mbox{]} operatorių
+\item $\ast$$\ast$.at()$\ast$$\ast$ 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{T\& at(size\_t index) \{}
+\DoxyCodeLine{    if (index >= size) \{}
+\DoxyCodeLine{        throw std::out\_of\_range("{}Index out of range"{});}
+\DoxyCodeLine{    \}}
+\DoxyCodeLine{    return data[index];}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ Leidžia pasiekti elementą taip pat kaip ir {\bfseries{operator\mbox{[}\mbox{]}}}, tačiau dar patikrina ar vartotojo indeksas teisingas. Jei yra neteisingas, vartotojas yra informuojamas pranešimu
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md6}{}\doxysubsubsection{Papildyti unit testai dabar testuoja ir naująją Vector klasę}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md6}
+Testus galite rasti\+: {\ttfamily unit\+\_\+tests/main.\+cpp} Naudojimosi instrukcija yra aprašyta {\bfseries{V2.\+0}} aprašyme\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md7}{}\doxysubsection{Atlikta spartumo analizė (\+Vector klasė vs std\+::vector)}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md7}
+
+\begin{DoxyItemize}
+\item {\bfseries{Analizės metodas}} Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std\+::vector ir nuosavo \mbox{\hyperlink{classVector}{Vector}} tipo tuščius vektorius \+: 10000, 100000, 1000000, 10000000 ir 100000000 int tipo elementų naudojant {\ttfamily push\+\_\+back()} funkciją
+\item {\bfseries{Duomenys (average in milliseconds)}}
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{6}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Container type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000000    }\\\cline{1-6}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Container type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000000    }\\\cline{1-6}
+\endhead
+{\bfseries{std\+::vector}}   &0   &7   &41   &202   &2055    \\\cline{1-6}
+{\bfseries{\mbox{\hyperlink{classVector}{Vector}}}}   &0   &3   &14   &110   &1388    \\\cline{1-6}
+Difference   &0   &4   &27   &92   &667   \\\cline{1-6}
+\end{longtabu}
+
+
++$\ast$$\ast$\+Išvadaos$\ast$$\ast$ Savadarbis \mbox{\hyperlink{classVector}{Vector}} pagrindu sukurtas konteineris yra beveik dvigubai efektyvesnis kai yra naudojama {\ttfamily push\+\_\+back()} funkcija lyginant su vektorium iš STL bibliotekos
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Analizės metodas}} Lyginama kiek vidutiniškai laiko užtrunka laiko užpildyti std\+::vector ir nuosavo \mbox{\hyperlink{classVector}{Vector}} tipo tuščius vektorius \+: 1000000, 10000000 ir 100000000 \mbox{\hyperlink{classStudent1}{Student1}} elementų
+\item {\bfseries{Duomenys (average in seconds)}}
+\end{DoxyItemize}
+
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Container type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000000    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Container type   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 1000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 10000000   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ 100000000    }\\\cline{1-4}
+\endhead
+{\bfseries{std\+::vector}}   &0.\+57   &5.\+15   &54.\+86    \\\cline{1-4}
+{\bfseries{\mbox{\hyperlink{classVector}{Vector}}}}   &1.\+15   &13.\+4   &168    \\\cline{1-4}
+Difference   &-\/0.\+58   &-\/8.\+65   &-\/113.\+14   \\\cline{1-4}
+\end{longtabu}
+
+
+
+\begin{DoxyItemize}
+\item {\bfseries{Išvadaos}} Savadarbis \mbox{\hyperlink{classVector}{Vector}} pagrindu sukurtas konteineris yra neefektyvus saugant kompleksines duomenų struktūras lyginant su vektorium iš STL bibliotekos
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md8}{}\doxysection{v2.\+0 Aprašymas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md8}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md9}{}\doxysubsection{Sukurti unit testai naudojant $<$a href=\char`\"{}https\+://github.\+com/catchorg/\+Catch2\char`\"{} $>$\+Catch2$<$/a$>$}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md9}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md10}{}\doxysubsubsection{Kas yra tikrinama unit testuose?}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md10}
+Unit testuose yra tikrinamas klasės {\bfseries{\mbox{\hyperlink{classStudent1}{Student1}}}} funkcionalumas ir veikimas.
+
+Specifiškai yra tikrinami\+:
+
+
+\begin{DoxyItemize}
+\item Setter\textquotesingle{}iai
+\item Default konstruktorius
+\item Copy konstruktorius
+\item Copy assignment operatorius
+\item Move konstruktorius
+\item Move assignment operatorius
+\item Objektų skaitymas iš failo
+\item Objektų saugojimas {\ttfamily std\+::vector} konteineryje
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md11}{}\doxysubsubsection{Kaip paleisti unit testus}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md11}
+
+\begin{DoxyItemize}
+\item Pirmiausia reikia nueiti į aplanką {\bfseries{unit\+\_\+tests}}. Tai galima padaryti naudojant\textbackslash{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+ Sukompiliuoti jame esančius failus. Tam galima naudoti komandą \(\backslash\)}
+\DoxyCodeLine{   ```g++ *.cpp -\/o unit\_tests}
+
+\end{DoxyCode}
+
+\item Tada paleidžiame sukompiliuotus unit testus naudodami komandą \textbackslash{} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{/unit\_tests```\}}
+\DoxyCodeLine{+ Jei testai buvo įvykdyti **sėkmingai**, po programos paleidimo turėtumėte matyti šį tekstą:}
+
+\end{DoxyCode}
+ 
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md12}{}\doxysection{Randomness seeded to\+: 2873484529}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md12}
+All tests passed (34 assertions in 8 test cases) 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\_* "{}Randomness seeded to:"{} skaičius gali skirtis\_}
+\DoxyCodeLine{+ Jei testai buvo įvykdyti **nesėkmingai**, po programos paleidimo turėtumėte matyti šį tekstą:}
+
+\end{DoxyCode}
+ Randomness seeded to\+: 1317810014
+
+$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$$\sim$ unit\+\_\+tests is a Catch2 v3.\+8.\+1 host application. Run with -\/? for options
+
+\DoxyHorRuler{0}
+ \hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md14}{}\doxysubsection{Setters}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md14}
+main.\+cpp\+:4 ...............................................................................
+
+main.\+cpp\+:12\+: FAILED\+: REQUIRE( studentas.\+get\+Vardas() == \char`\"{}\+Admas\char`\"{} ) with expansion\+: \char`\"{}\+Adomas\char`\"{} == \char`\"{}\+Admas\char`\"{}
+
+\DoxyHorRuler{0}
+ \hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md16}{}\doxysubsection{Move Constructor}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md16}
+main.\+cpp\+:42 ...............................................................................
+
+main.\+cpp\+:47\+: FAILED\+: REQUIRE( b.\+get\+Vardas() == \char`\"{}\+Gente\char`\"{} ) with expansion\+: \char`\"{}\+Genute\char`\"{} == \char`\"{}\+Gente\char`\"{}
+
+\DoxyHorRuler{0}
+ \hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md18}{}\doxysubsection{Reading from file}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md18}
+main.\+cpp\+:70 ...............................................................................
+
+main.\+cpp\+:77\+: FAILED\+: REQUIRE( studentas.\+get\+Pavarde() == \char`\"{}\+Pavrde0\char`\"{} ) with expansion\+: \char`\"{}\+Pavarde0\char`\"{} == \char`\"{}\+Pavrde0\char`\"{}
+
+\DoxyHorRuler{0}
+ test cases\+: 8 $\vert$ 5 passed $\vert$ 3 failed assertions\+: 25 $\vert$ 22 passed $\vert$ 3 failed 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{Programos išvestis parodo, ko test case'as tikėjosi, ir kokią reikšmę gavo. T.y. parodo kur testai įvyko nesėkmingai.\(\backslash\)}
+\DoxyCodeLine{Išvesties apačioje galima matyti bendrą statistiką -\/ kiek testų įvyko sėkmingai ir kiek nesėkmingai. }
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\# Sukurta dokumentacija naudojant [Doxygen](https://www.doxygen.nl/index.html)}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\# Kaip naudotis šia dokumentacija?}
+\DoxyCodeLine{}
+\DoxyCodeLine{Dokumentaciją galima peržiūrėti dviejais būdais:}
+\DoxyCodeLine{}
+\DoxyCodeLine{+ Kaip ```.html``` failą}
+\DoxyCodeLine{+ Kaip ```.pdf``` failą}
+\DoxyCodeLine{}
+\DoxyCodeLine{+ Norint dokumentaciją peržiūrėti kaip ```.html``` failą, jums reikės jį atsidaryti bet kurioje naršyklėje.\(\backslash\)}
+\DoxyCodeLine{Šis failas yra šioje lokacijoje: ```/documentation/hmtl/index.html}
+
+\end{DoxyCode}
+
+\begin{DoxyItemize}
+\item Norint dokumentaciją peržiūrėti kaip {\ttfamily .pdf} failą, jums reikės jį atsidaryti bet kurioje {\ttfamily .pdf} failus skaitančioje programoje.\textbackslash{} Šis failas yra šioje lokacijoje\+: {\ttfamily /documentation/latex/refman.pdf}
+\end{DoxyItemize}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md20}{}\doxysubsubsection{Dokumentacijos generavimas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md20}
+
+\begin{DoxyEnumerate}
+\item Pirmiausia reikia turėti šiuos įrankius\+:
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item {\ttfamily doxygen}
+\item {\ttfamily graphviz}
+\item {\ttfamily texlive texlive-\/latex-\/extra texlive-\/fonts-\/recommended}
+\item {\ttfamily make}
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Reikia nueiti į direktoriją {\ttfamily documentation}
+\item Tada terminale parašome komandą\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{4. Turi atsirasti du aplankai:}
+\DoxyCodeLine{+ ```html}
+
+\end{DoxyCode}
+
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item {\ttfamily latex}
+\end{DoxyItemize}
+\begin{DoxyEnumerate}
+\item Nueiname į {\ttfamily latex} direktoriją ir parašome terminale komandą\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ \{make```\}}
+\DoxyCodeLine{}
+\DoxyCodeLine{Tada sekdami žingsnius nurodytus anksčiau galima bus atsidaryti dokumentaciją norimu formatu}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# v1.5 Aprašymas}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\# Human klasė}
+\DoxyCodeLine{}
+\DoxyCodeLine{Sukurta bazinę (abstrakti) klasė skirta bendrai aprašyti žmogų.\(\backslash\)}
+\DoxyCodeLine{Iš jos išeina (dervied) klasė Student1.}
+\DoxyCodeLine{}
+\DoxyCodeLine{\# v1.2 Aprašymas}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\# Implementuota "{}Rule of Five"{} Studentų klasei}
+\DoxyCodeLine{}
+\DoxyCodeLine{| Funkcijos pavadinimas | Funkcijos implementacija | }
+\DoxyCodeLine{|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|}
+\DoxyCodeLine{|Destruktorius|![](images/destruktorius.png)|}
+\DoxyCodeLine{|Copy konstruktorius|![](images/copy\%20konstruktorius.png)|}
+\DoxyCodeLine{|Copy assignmentas|![](images/copy\%20assignmentas.png)|}
+\DoxyCodeLine{|Move konstruktorius|![](images/move\%20konstruktorius.png)|}
+\DoxyCodeLine{|Move assignmentas|![](images/move\%20assignmentas.png)|}
+\DoxyCodeLine{}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\# Perdengti įvesties ir išvesties metodai}
+\DoxyCodeLine{|||}
+\DoxyCodeLine{|-\/|-\/|}
+\DoxyCodeLine{|Įvestis|![](images/operator>>.png)|}
+\DoxyCodeLine{|Išvestis|![](images/operator<<.png)|}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\# **Klasės Student1** Objektų įvestis / išvestis}
+\DoxyCodeLine{}
+\DoxyCodeLine{\#\#\# Įvestis}
+\DoxyCodeLine{}
+\DoxyCodeLine{+ Obejktus galima įvesti naudotjat įvesties operatorių `>>`:}
+
+\end{DoxyCode}
+ \mbox{\hyperlink{classStudent1}{Student1}} studentas; // inicializuojame studentą su defaultinėmis reikšmėmis std\+::cin \texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>} studentas; // užpildome norimomis reikšmėmis 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+ Taip pat galima įvesti duomenis į objektus juos inicializuojant:}
+
+\end{DoxyCode}
+ \mbox{\hyperlink{classStudent1}{Student1}} studentas (\char`\"{}\+Vardenis\char`\"{}, \char`\"{}\+Pavardenis\char`\"{}, 10, \{9,8,7\}); 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+ Galima naudoti Setterius:}
+
+\end{DoxyCode}
+ \mbox{\hyperlink{classStudent1}{Student1}} studentas; // inicializuojame studenta su defaultinėmis reikšmėmis // priskiriame reikšmes\+: studentas.\+Set\+Vardas(\char`\"{}\+Tomas\char`\"{}); studentas.\+Set\+Pavarde(\char`\"{}\+Tomaitis\char`\"{}); studentas.\+Set\+Egzaminas(10); studentas.\+Set\+Mark(\{1,2,3,4\}); 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#\#\# Išvestis}
+\DoxyCodeLine{}
+\DoxyCodeLine{+ Obejktus galima išvesti naudotjat įvesties operatorių `<<`:}
+
+\end{DoxyCode}
+ // Išvedimas į ekraną
+
+\mbox{\hyperlink{classStudent1}{Student1}} studentas; // inicializuojame studentą su defaultinėmis reikšmėmis std\+::cout \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} studentas; // kadangi objektui nebuvo priskirta jokių reikšmių, bus išvestos defaultinės reikšmės
+
+// Išvedimas į failą
+
+\mbox{\hyperlink{classStudent1}{Student1}} studentas; // inicializuojame studentą su defaultinėmis reikšmėmis std\+::ofstream out (\char`\"{}output.\+txt\char`\"{}); out \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} studentas; // kadangi objektui nebuvo priskirta jokių reikšmių, bus išvestos defaultinės reikšmės 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{+ Objektus galima taip pat išvesti / gauti naudojant Getterius:}
+
+\end{DoxyCode}
+ \mbox{\hyperlink{classStudent1}{Student1}} studentas (\char`\"{}\+Vardenis\char`\"{}, \char`\"{}\+Pavardenis\char`\"{}, 10, \{9,8,7\}); // sukuriame objektą ir priskiriame jam reikšmes
+
+std\+::string vardas = studentas.\+Get\+Vardas() // result\+: Vardenis std\+::string pavarde = studentas.\+Get\+Pavarde() // result\+: Pavardenis int egzaminas = studentas.\+Get\+Egzaminas() // result\+: 10 std\+::vector$<$int$>$ mark = studentas.\+Get\+Mark() // result\+: \{9,8,7\} \`{}\`{}\`{}
+\end{DoxyEnumerate}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md21}{}\doxysubsubsection{Apibendrinimas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md21}
+Duomenis apie objektus galima labai paprastai išvesti tiek į failą tiek į ekraną/terminalą naudojant operatorių \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}, arba getterius, norint failus nuskaityti iš failo, naudojami setteriai, jeigu duomenys generuojami pačios programos, taip pat yra naudojami setteriai, tačiau jei vartotojas nori įvesti duomenis programos eigoje galima naudoti įvesties operatorių \texorpdfstring{$>$}{>}\texorpdfstring{$>$}{>}.\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md22}{}\doxysection{v1.\+1 Tyrimas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md22}
+{\bfseries{Struct vs class (vector)}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Implementacijos tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Laikas 1000000.\+txt   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Laikas 10000000.\+txt    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Implementacijos tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Laikas 1000000.\+txt   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Laikas 10000000.\+txt    }\\\cline{1-3}
+\endhead
+Class   &9.\+04668   &102.\+168    \\\cline{1-3}
+Struct   &5.\+157186   &54.\+86644   \\\cline{1-3}
+\end{longtabu}
+
+
+{\bfseries{Optimizacijos veliaveles}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{3}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Veliavele   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Laikas (s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failo dydis (kB)    }\\\cline{1-3}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Veliavele   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Laikas (s)   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Failo dydis (kB)    }\\\cline{1-3}
+\endhead
+None   &100   &262.\+5    \\\cline{1-3}
+O1   &25.\+34   &123.\+4    \\\cline{1-3}
+O2   &24.\+64   &145.\+6    \\\cline{1-3}
+O3   &23.\+54   &147.\+6   \\\cline{1-3}
+\end{longtabu}
+\DoxyHorRuler{0}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md23}{}\doxysubsection{Pirma strategija}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md23}
+{\itshape Bendro studentai konteinerio (vector, list ir deque tipų) skaidymas (rūšiavimas) į du naujus to paties tipo konteinerius\+: \char`\"{}vargšiukų\char`\"{} ir \char`\"{}kietiakų\char`\"{}. Tokiu būdu tas pats studentas yra dvejuose konteineriuose\+: bendrame studentai ir viename iš suskaidytų (vargšiukai arba kietiakai). Nesunku pastebėti, kad tokia strategija yra neefektyvi užimamos atminties atžvilgiu (įsitikinkite tuo!), tačiau šiame žingsnyje svarbiausia yra patyrinėti, kaip programos veikimo sparta priklauso nuo konteinerio tipo?}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md24}{}\doxysection{Vektorius}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md24}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0157612   &0.\+00297164   &0.\+00109384   &0.\+035876    \\\cline{1-5}
+2   &0.\+00500573   &0.\+00170572   &0.\+0869301   &0.\+0991567    \\\cline{1-5}
+3   &0.\+00541565   &0.\+00165097   &0.\+0409119   &0.\+0534136    \\\cline{1-5}
+4   &0.\+00515032   &0.\+00174594   &0.\+0447787   &0.\+0571739    \\\cline{1-5}
+5   &0.\+00514549   &0.\+00164459   &0.\+042081   &0.\+0553084    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+06018572   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0465477   &0.\+0218913   &0.\+00751638   &0.\+0835118    \\\cline{1-5}
+2   &0.\+0387483   &0.\+0188099   &0.\+00303522   &0.\+103406    \\\cline{1-5}
+3   &0.\+0505536   &0.\+0180376   &0.\+00315221   &0.\+104323    \\\cline{1-5}
+4   &0.\+0509217   &0.\+0185617   &0.\+00295333   &0.\+107807    \\\cline{1-5}
+5   &0.\+0442961   &0.\+0196937   &0.\+00486322   &0.\+101467    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+10010296   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+294555   &0.\+205679   &0.\+0498312   &0.\+555141    \\\cline{1-5}
+2   &0.\+248458   &0.\+207416   &0.\+0480726   &0.\+509017    \\\cline{1-5}
+3   &0.\+250679   &0.\+206326   &0.\+0411719   &0.\+503209    \\\cline{1-5}
+4   &0.\+258195   &0.\+206838   &0.\+0394575   &0.\+512261    \\\cline{1-5}
+5   &0.\+242133   &0.\+20773   &0.\+040613   &0.\+495552    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+515036   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &2.\+01091   &3.\+13237   &0.\+592756   &5.\+74805    \\\cline{1-5}
+2   &2.\+03059   &2.\+76148   &0.\+377035   &5.\+1739    \\\cline{1-5}
+3   &1.\+96574   &2.\+76007   &0.\+368503   &5.\+09911    \\\cline{1-5}
+4   &1.\+95757   &2.\+75842   &0.\+364877   &5.\+08575    \\\cline{1-5}
+5   &1.\+95784   &2.\+78063   &0.\+369691   &5.\+11322    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &5.\+244066   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &21.\+268   &31.\+3564   &4.\+9157   &57.\+5453    \\\cline{1-5}
+2   &18.\+6642   &31.\+192   &4.\+2402   &54.\+1014    \\\cline{1-5}
+3   &18.\+5695   &31.\+0392   &4.\+27658   &53.\+8901    \\\cline{1-5}
+4   &18.\+5498   &31.\+0862   &4.\+27511   &53.\+9161    \\\cline{1-5}
+5   &18.\+646   &31.\+1166   &4.\+20896   &53.\+9763    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &54.\+68584   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md25}{}\doxysection{Listas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md25}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+028673   &0.\+00224555   &0.\+0065434   &0.\+0485917    \\\cline{1-5}
+2   &0.\+0141865   &0.\+000592377   &0.\+00445487   &0.\+0398903    \\\cline{1-5}
+3   &0.\+0127271   &0.\+000681703   &0.\+00467639   &0.\+0307993    \\\cline{1-5}
+4   &0.\+015389   &0.\+000613232   &0.\+00423966   &0.\+0390246    \\\cline{1-5}
+5   &0.\+010633   &0.\+00124906   &0.\+00620234   &0.\+0344741    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+038556   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0755908   &0.\+00776333   &0.\+0379893   &0.\+12623    \\\cline{1-5}
+2   &0.\+112248   &0.\+00799475   &0.\+0344115   &0.\+16415    \\\cline{1-5}
+3   &0.\+0982861   &0.\+00723372   &0.\+0412163   &0.\+160044    \\\cline{1-5}
+4   &0.\+108907   &0.\+00826699   &0.\+0383505   &0.\+168245    \\\cline{1-5}
+5   &0.\+134019   &0.\+00846876   &0.\+0349826   &0.\+19223    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+1621798   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+396517   &0.\+132524   &0.\+215003   &0.\+74913    \\\cline{1-5}
+2   &0.\+750414   &0.\+113464   &0.\+216181   &1.\+08489    \\\cline{1-5}
+3   &0.\+735554   &0.\+146832   &0.\+218128   &1.\+10574    \\\cline{1-5}
+4   &0.\+67686   &0.\+123267   &0.\+224174   &1.\+03264    \\\cline{1-5}
+5   &0.\+721461   &0.\+137419   &0.\+218994   &1.\+08686    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &1.\+01146   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &3.\+33569   &1.\+49648   &1.\+81773   &6.\+65532    \\\cline{1-5}
+2   &3.\+94941   &1.\+52792   &1.\+82485   &7.\+3076    \\\cline{1-5}
+3   &3.\+50662   &1.\+4599   &1.\+80844   &6.\+78118    \\\cline{1-5}
+4   &3.\+59917   &1.\+45591   &1.\+83417   &6.\+89438    \\\cline{1-5}
+5   &3.\+53286   &1.\+45816   &1.\+80034   &6.\+79671    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &6.\+887438   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &38.\+3839   &17.\+0501   &30.\+2436   &85.\+7153    \\\cline{1-5}
+2   &36.\+2216   &16.\+6287   &46.\+4983   &99.\+3648    \\\cline{1-5}
+3   &36.\+2565   &16.\+5871   &36.\+9609   &89.\+8366    \\\cline{1-5}
+4   &36.\+2117   &16.\+7599   &39.\+9306   &92.\+9319    \\\cline{1-5}
+5   &36.\+1921   &16.\+6807   &41.\+8136   &94.\+7047    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &92.\+91066   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md26}{}\doxysection{Dekas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md26}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0284543   &0.\+00478177   &0.\+00666952   &0.\+0683668    \\\cline{1-5}
+2   &0.\+0217629   &0.\+00367485   &0.\+00142868   &0.\+0324457    \\\cline{1-5}
+3   &0.\+0397455   &0.\+00363872   &0.\+0116896   &0.\+0629371    \\\cline{1-5}
+4   &0.\+02948   &0.\+00360505   &0.\+0126408   &0.\+0526156    \\\cline{1-5}
+5   &0.\+0415463   &0.\+0042363   &0.\+0109747   &0.\+063883    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+05684944   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+148513   &0.\+0358707   &0.\+0138857   &0.\+204631    \\\cline{1-5}
+2   &0.\+100335   &0.\+0327386   &0.\+0161345   &0.\+154735    \\\cline{1-5}
+3   &0.\+230075   &0.\+0421036   &0.\+16088   &0.\+438552    \\\cline{1-5}
+4   &0.\+341478   &0.\+0379575   &0.\+181016   &0.\+566294    \\\cline{1-5}
+5   &0.\+232374   &0.\+0413409   &0.\+12454   &0.\+404222    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+3532868   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+551   &0.\+406492   &0.\+123125   &1.\+08569    \\\cline{1-5}
+2   &0.\+55789   &0.\+410391   &0.\+121526   &1.\+09505    \\\cline{1-5}
+3   &1.\+40657   &0.\+608874   &0.\+979027   &3.\+00015    \\\cline{1-5}
+4   &1.\+59498   &0.\+606944   &1.\+33788   &3.\+546    \\\cline{1-5}
+5   &1.\+55368   &0.\+648659   &1.\+17013   &3.\+3781    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &2.\+421398   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &4.\+72384   &5.\+48063   &1.\+39846   &11.\+6081    \\\cline{1-5}
+2   &4.\+90894   &5.\+5603   &1.\+43335   &11.\+9075    \\\cline{1-5}
+3   &11.\+6045   &5.\+46964   &11.\+9079   &28.\+9872    \\\cline{1-5}
+4   &13.\+4975   &5.\+48779   &11.\+3384   &30.\+3287    \\\cline{1-5}
+5   &13.\+4702   &5.\+65318   &10.\+7591   &29.\+8875    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &22.\+9448   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &169.\+44   &190.\+127   &931.\+583   &1291.\+33    \\\cline{1-5}
+2   &281.\+898   &222.\+961   &1434.\+5   &1940.\+28    \\\cline{1-5}
+3   &426.\+143   &256.\+178   &1347.\+28   &2029.\+72    \\\cline{1-5}
+4   &326.\+435   &218.\+653   &1228.\+2   &1773.\+56    \\\cline{1-5}
+5   &367.\+112   &218.\+5   &1334.\+59   &1920.\+86    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &1791.\+95   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md27}{}\doxysubsection{Pirmosios strategijos išvados}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md27}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+06018572}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+038556}}    \\\cline{1-2}
+Dekas   &{\bfseries{0.\+05684944}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+10010296}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+1621798}}    \\\cline{1-2}
+Dekas   &{\bfseries{0.\+3532868}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+515036}}    \\\cline{1-2}
+Listas   &{\bfseries{1.\+01146}}    \\\cline{1-2}
+Dekas   &{\bfseries{2.\+421398}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{5.\+244066}}    \\\cline{1-2}
+Listas   &{\bfseries{6.\+887438}}    \\\cline{1-2}
+Dekas   &{\bfseries{22.\+9448}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{54.\+68584}}    \\\cline{1-2}
+Listas   &{\bfseries{92.\+91066}}    \\\cline{1-2}
+Dekas   &{\bfseries{1791.\+95}}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md28}{}\doxysubsection{Antra strategija}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md28}
+{\itshape Bendro studentų konteinerio (vector, list ir deque) skaidymas (rūšiavimas) panaudojant tik vieną naują konteinerį\+: \char`\"{}vargšiukai\char`\"{}. Tokiu būdu, jei studentas yra vargšiukas, jį turime įkelti į naująjį \char`\"{}vargšiukų\char`\"{} konteinerį ir ištrinti iš bendro studentai konteinerio. Po šio žingsnio studentai konteineryje liks vien tik kietiakai. Atminties atveju tai efektyviau, tačiau dažni trynimai gali būti \char`\"{}skausmingi\char`\"{}, ypač tam tikro tipo konteineriams.}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md29}{}\doxysection{Vektorius}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md29}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0224947   &0.\+00333382   &0.\+000640099   &0.\+0353559    \\\cline{1-5}
+2   &0.\+0188831   &0.\+00490042   &0.\+000791805   &0.\+0364902    \\\cline{1-5}
+3   &0.\+0153758   &0.\+006616   &0.\+0674435   &0.\+105337    \\\cline{1-5}
+4   &0.\+0115664   &0.\+00495628   &0.\+00162373   &0.\+0324051    \\\cline{1-5}
+5   &0.\+0176274   &0.\+00496394   &0.\+00389951   &0.\+0409249    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+05090222   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0435087   &0.\+018539   &0.\+00678181   &0.\+0759039    \\\cline{1-5}
+2   &0.\+0521218   &0.\+0155541   &0.\+00347023   &0.\+0763377    \\\cline{1-5}
+3   &0.\+0429066   &0.\+0185378   &0.\+00252914   &0.\+068913    \\\cline{1-5}
+4   &0.\+0582204   &0.\+0198764   &0.\+00720329   &0.\+0923209    \\\cline{1-5}
+5   &0.\+0540278   &0.\+0183224   &0.\+00711938   &0.\+0852504    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+07974518   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+235309   &0.\+214016   &0.\+0395527   &0.\+496738    \\\cline{1-5}
+2   &0.\+229319   &0.\+210091   &0.\+039566   &0.\+483699    \\\cline{1-5}
+3   &0.\+224111   &0.\+212939   &0.\+0354294   &0.\+477368    \\\cline{1-5}
+4   &0.\+228269   &0.\+209659   &0.\+0376307   &0.\+480509    \\\cline{1-5}
+5   &0.\+225   &0.\+209522   &0.\+0317681   &0.\+471047    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+4810722   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &1.\+84954   &2.\+71316   &0.\+294114   &4.\+86164    \\\cline{1-5}
+2   &1.\+94441   &2.\+93612   &0.\+321887   &5.\+20739    \\\cline{1-5}
+3   &1.\+85822   &2.\+88551   &0.\+307638   &5.\+05856    \\\cline{1-5}
+4   &1.\+70701   &2.\+72363   &0.\+288937   &4.\+72445    \\\cline{1-5}
+5   &1.\+68065   &2.\+68732   &0.\+289074   &4.\+66199    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &4.\+902806   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &21.\+1653   &32.\+1014   &3.\+52579   &56.\+7974    \\\cline{1-5}
+2   &21.\+913   &38.\+631   &4.\+05256   &64.\+6025    \\\cline{1-5}
+3   &20.\+9693   &32.\+4221   &3.\+67551   &57.\+0718    \\\cline{1-5}
+4   &20.\+2851   &32.\+0449   &3.\+11768   &55.\+4525    \\\cline{1-5}
+5   &20.\+9391   &32.\+0266   &3.\+07497   &56.\+0454    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &57.\+99392   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md30}{}\doxysection{Listas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md30}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0246861   &0.\+00162019   &0.\+00176294   &0.\+0411177    \\\cline{1-5}
+2   &0.\+0308339   &0.\+00167676   &0.\+00340816   &0.\+0539312    \\\cline{1-5}
+3   &0.\+218818   &0.\+000461914   &0.\+000941641   &0.\+224631    \\\cline{1-5}
+4   &0.\+235189   &0.\+000424114   &0.\+00104226   &0.\+24108    \\\cline{1-5}
+5   &0.\+00694151   &0.\+000404591   &0.\+000952493   &0.\+187131    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+1495786   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0890261   &0.\+00774911   &0.\+0122458   &0.\+114153    \\\cline{1-5}
+2   &0.\+113501   &0.\+0067795   &0.\+0141554   &0.\+139493    \\\cline{1-5}
+3   &0.\+0854599   &0.\+00712458   &0.\+0141996   &0.\+111854    \\\cline{1-5}
+4   &0.\+0774984   &0.\+00736629   &0.\+011981   &0.\+101658    \\\cline{1-5}
+5   &0.\+0760125   &0.\+00714243   &0.\+0118847   &0.\+100492    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+1139308   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+402168   &0.\+102229   &0.\+0701497   &0.\+579658    \\\cline{1-5}
+2   &0.\+403838   &0.\+103182   &0.\+0752006   &0.\+587199    \\\cline{1-5}
+3   &0.\+417029   &0.\+103555   &0.\+0720878   &0.\+597918    \\\cline{1-5}
+4   &0.\+392518   &0.\+111442   &0.\+0726875   &0.\+581787    \\\cline{1-5}
+5   &0.\+409746   &0.\+101969   &0.\+0711279   &0.\+587922    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+5868968   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &3.\+54817   &1.\+7907   &0.\+671718   &6.\+01564    \\\cline{1-5}
+2   &3.\+73584   &1.\+70472   &0.\+506568   &5.\+95222    \\\cline{1-5}
+3   &3.\+87421   &2.\+01056   &0.\+686919   &6.\+57708    \\\cline{1-5}
+4   &3.\+70923   &1.\+95394   &0.\+629358   &6.\+29851    \\\cline{1-5}
+5   &3.\+46178   &1.\+71935   &0.\+487398   &5.\+67413    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &6.\+103116   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &41.\+3789   &22.\+1313   &6.\+00292   &69.\+5215    \\\cline{1-5}
+2   &41.\+1692   &25.\+2102   &5.\+8939   &72.\+2804    \\\cline{1-5}
+3   &44.\+8078   &23.\+7313   &5.\+77993   &74.\+3261    \\\cline{1-5}
+4   &40.\+9516   &18.\+5867   &7.\+20607   &66.\+7555    \\\cline{1-5}
+5   &37.\+5642   &16.\+8478   &5.\+33181   &59.\+7492    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &68.\+92654   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md31}{}\doxysection{Dekas}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md31}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+0298667   &0.\+00483818   &0.\+000675241   &0.\+0436806    \\\cline{1-5}
+2   &0.\+0286584   &0.\+00367079   &0.\+000706936   &0.\+0458477    \\\cline{1-5}
+3   &0.\+0381032   &0.\+00310144   &0.\+000646202   &0.\+0540752    \\\cline{1-5}
+4   &0.\+0334661   &0.\+00399885   &0.\+000914481   &0.\+0472957    \\\cline{1-5}
+5   &0.\+037506   &0.\+00519079   &0.\+000790669   &0.\+0529864    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+04837712   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+127815   &0.\+0432774   &0.\+00428575   &0.\+186936    \\\cline{1-5}
+2   &0.\+193597   &0.\+0390235   &0.\+00530735   &0.\+242876    \\\cline{1-5}
+3   &0.\+209365   &0.\+0338897   &0.\+00878288   &0.\+262004    \\\cline{1-5}
+4   &0.\+0938933   &0.\+0345508   &0.\+00622441   &0.\+139556    \\\cline{1-5}
+5   &0.\+282808   &0.\+0361259   &0.\+0048835   &0.\+329362    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &0.\+2323468   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &0.\+566389   &0.\+605203   &0.\+0671125   &1.\+2517    \\\cline{1-5}
+2   &1.\+19945   &0.\+433904   &0.\+0548006   &1.\+693    \\\cline{1-5}
+3   &1.\+04132   &0.\+405345   &0.\+0509681   &1.\+50256    \\\cline{1-5}
+4   &0.\+544427   &0.\+408635   &0.\+0501242   &1.\+00812    \\\cline{1-5}
+5   &0.\+994666   &0.\+39916   &0.\+0515276   &1.\+45062    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &1.\+3812   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &4.\+70215   &6.\+3279   &0.\+453336   &11.\+4895    \\\cline{1-5}
+2   &4.\+42072   &6.\+3346   &0.\+463191   &11.\+2232    \\\cline{1-5}
+3   &4.\+92799   &5.\+38096   &0.\+454459   &10.\+7683    \\\cline{1-5}
+4   &4.\+35941   &5.\+22606   &0.\+443794   &10.\+0342    \\\cline{1-5}
+5   &4.\+72555   &5.\+23286   &0.\+435385   &10.\+3991    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &10.\+78286   \\\cline{1-5}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{5}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bandymo numeris   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nuskaitymas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Rūšiavimas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Skrstymas į konteinerius   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Bendras laikas    }\\\cline{1-5}
+\endhead
+1   &215.\+697   &392.\+367   &415.\+62   &1023.\+74    \\\cline{1-5}
+2   &3067.\+47   &456.\+818   &652.\+337   &4177.\+23    \\\cline{1-5}
+3   &213.\+666   &390.\+526   &335.\+602   &939.\+9    \\\cline{1-5}
+4   &216.\+16   &229.\+551   &187.\+215   &633.\+343    \\\cline{1-5}
+5   &177.\+097   &219.\+953   &178.\+219   &575.\+358    \\\cline{1-5}
+Vid.   &-\/   &-\/   &-\/   &1270.\+3142   \\\cline{1-5}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md32}{}\doxysubsection{Antrosios strategijos išvados}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md32}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+05090222}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+1495786}}    \\\cline{1-2}
+Dekas   &{\bfseries{0.\+04837712}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+07974518}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+1139308}}    \\\cline{1-2}
+Dekas   &{\bfseries{0.\+2323468}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+4810722}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+5868968}}    \\\cline{1-2}
+Dekas   &{\bfseries{1.\+3812}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{4.\+902806}}    \\\cline{1-2}
+Listas   &{\bfseries{6.\+103116}}    \\\cline{1-2}
+Dekas   &{\bfseries{10.\+78286}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{57.\+99392}}    \\\cline{1-2}
+Listas   &{\bfseries{68.\+92654}}    \\\cline{1-2}
+Dekas   &{\bfseries{1270.\+3142}}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md33}{}\doxysubsection{Trečia strategija}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md33}
+{\itshape Bendro studentų konteinerio (vector, list ir deque) skaidymas (rūšiavimas) panaudojant greičiausiai veikianti 1 arba 2 strategiją įtraukiant į ją \char`\"{}efektyvius\char`\"{} darbo su konteineriais metodus}\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md34}{}\doxysubsection{Trečiosios strategijos išvados}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md34}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+0321626}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+02778266}}    \\\cline{1-2}
+Dekas   &{\bfseries{0.\+03375468}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+10179046}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+08829786}}    \\\cline{1-2}
+Dekas   &{\bfseries{0.\+148642}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{0.\+5735542}}    \\\cline{1-2}
+Listas   &{\bfseries{0.\+543196}}    \\\cline{1-2}
+Dekas   &{\bfseries{1.\+051894}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{5.\+157186}}    \\\cline{1-2}
+Listas   &{\bfseries{4.\+589734}}    \\\cline{1-2}
+Dekas   &{\bfseries{10.\+72832}}   \\\cline{1-2}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Vid. laikas sekundėmis    }\\\cline{1-2}
+\endhead
+Vektorius   &{\bfseries{54.\+86644}}    \\\cline{1-2}
+Listas   &{\bfseries{54.\+11488}}    \\\cline{1-2}
+Dekas   &{\bfseries{-\/}}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md35}{}\doxysubsection{Visų strategijų išvados}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md35}
+{\bfseries{1000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endhead
+Vektorius   &{\bfseries{0.\+06018572}}   &{\bfseries{0.\+05090222}}   &{\bfseries{0.\+0321626}}    \\\cline{1-4}
+Listas   &{\bfseries{0.\+038556}}   &{\bfseries{0.\+1495786}}   &{\bfseries{0.\+02778266}}    \\\cline{1-4}
+Dekas   &{\bfseries{0.\+05684944}}   &{\bfseries{0.\+04837712}}   &{\bfseries{0.\+03375468}}   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{10000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endhead
+Vektorius   &{\bfseries{0.\+10010296}}   &{\bfseries{0.\+07974518}}   &{\bfseries{0.\+10179046}}    \\\cline{1-4}
+Listas   &{\bfseries{0.\+1621798}}   &{\bfseries{0.\+1139308}}   &{\bfseries{0.\+08829786}}    \\\cline{1-4}
+Dekas   &{\bfseries{0.\+3532868}}   &{\bfseries{0.\+2323468}}   &{\bfseries{0.\+148642}}   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{100000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endhead
+Vektorius   &{\bfseries{0.\+515036}}   &{\bfseries{0.\+4810722}}   &{\bfseries{0.\+5735542}}    \\\cline{1-4}
+Listas   &{\bfseries{1.\+01146}}   &{\bfseries{0.\+5868968}}   &{\bfseries{0.\+543196}}    \\\cline{1-4}
+Dekas   &{\bfseries{2.\+421398}}   &{\bfseries{1.\+3812}}   &{\bfseries{1.\+051894}}   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{1000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endhead
+Vektorius   &{\bfseries{5.\+244066}}   &{\bfseries{4.\+902806}}   &{\bfseries{5.\+157186}}    \\\cline{1-4}
+Listas   &{\bfseries{6.\+887438}}   &{\bfseries{6.\+103116}}   &{\bfseries{4.\+589734}}    \\\cline{1-4}
+Dekas   &{\bfseries{22.\+9448}}   &{\bfseries{10.\+78286}}   &{\bfseries{10.\+72832}}   \\\cline{1-4}
+\end{longtabu}
+
+
+{\bfseries{10000000}} \tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{4}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Konteinerio tipas   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Pirma strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Antra strategija   }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Trečia strategija    }\\\cline{1-4}
+\endhead
+Vektorius   &{\bfseries{54.\+68584}}   &{\bfseries{57.\+99392}}   &{\bfseries{54.\+86644}}    \\\cline{1-4}
+Listas   &{\bfseries{92.\+91066}}   &{\bfseries{68.\+92654}}   &{\bfseries{54.\+11488}}    \\\cline{1-4}
+Dekas   &{\bfseries{1791.\+95}}   &{\bfseries{1270.\+3142}}   &{\bfseries{-\/}}   \\\cline{1-4}
+\end{longtabu}
+\hypertarget{md__home_xxmp_GitHub_OP2_README_autotoc_md36}{}\doxysubsection{Kompiuterio komponentai}\label{md__home_xxmp_GitHub_OP2_README_autotoc_md36}
+
+\begin{DoxyItemize}
+\item OS\+: GNU/\+Linux
+\item CPU\+: Intel i7-\/7500U
+\item GPU\+: Intel HD Graphics 620
+\item RAM\+: 8GB 
+\end{DoxyItemize}

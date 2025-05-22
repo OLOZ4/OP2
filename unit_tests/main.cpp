@@ -115,6 +115,15 @@ TEST_CASE("Vector default constructor and get_size/capacity") {
     REQUIRE(v.empty());
 }
 
+TEST_CASE("Vector default constructor as array") {
+    Vector<int> v {1,2,3};
+    REQUIRE(v.get_size() == 3);
+    REQUIRE(!v.empty());
+    REQUIRE(v[0] == 1);
+    REQUIRE(v[1] == 2);
+    REQUIRE(v[2] == 3);
+}
+
 TEST_CASE("Vector(size_t) creates vector with reserved capacity") {
     Vector<int> v(10);
     REQUIRE(v.get_size() == 0);

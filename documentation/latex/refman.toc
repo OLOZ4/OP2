@@ -1,22 +1,53 @@
 \@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
-\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
-\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
-\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
-\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
-\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Human Class Reference}{7}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Student1 Class Reference}{8}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Member Function Documentation}{9}{subsection.4.2.1}%
-\contentsline {subsubsection}{\numberline {4.2.1.1}getPavarde()}{10}{subsubsection.4.2.1.1}%
-\contentsline {subsubsection}{\numberline {4.2.1.2}getVardas()}{10}{subsubsection.4.2.1.2}%
-\contentsline {section}{\numberline {4.3}Vector$<$ T $>$ Class Template Reference}{10}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Member Function Documentation}{11}{subsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.1.1}clear()}{11}{subsubsection.4.3.1.1}%
-\contentsline {chapter}{\numberline {5}File Documentation}{13}{chapter.5}%
-\contentsline {section}{\numberline {5.1}header.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{13}{section.5.1}%
-\contentsline {section}{\numberline {5.2}human.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{13}{section.5.2}%
-\contentsline {section}{\numberline {5.3}student.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{14}{section.5.3}%
-\contentsline {section}{\numberline {5.4}vector.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{17}{section.5.4}%
-\contentsline {chapter}{Index}{23}{section*.10}%
+\contentsline {chapter}{\numberline {1}Paleidimo instrukcijos}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}v3.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}0 Aprašymas}{1}{section.1.1}%
+\contentsline {subsection}{\numberline {1.1.1}Sukurtas .\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}exe failas instaliuoti programą Windows operacinėse sistemose}{1}{subsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1.1}Instaliavimo instrukcijos}{1}{subsubsection.1.1.1.1}%
+\contentsline {subsection}{\numberline {1.1.2}Sukurta Vector klasė Student1 klasės objektų saugojimui}{2}{subsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.2.1}Vector klasės bazinės funkcijos ir jų aprašymai}{2}{subsubsection.1.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.1.2.2}Papildyti unit testai dabar testuoja ir naująją Vector klasę}{2}{subsubsection.1.1.2.2}%
+\contentsline {subsection}{\numberline {1.1.3}Atlikta spartumo analizė (\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Vector klasė vs std\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}::vector)}{2}{subsection.1.1.3}%
+\contentsline {section}{\numberline {1.2}v2.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}0 Aprašymas}{3}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Sukurti unit testai naudojant $<$a href=\char `\"{}https\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}://github.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/catchorg/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Catch2\char `\"{} $>$\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Catch2$<$/a$>$}{3}{subsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.1.1}Kas yra tikrinama unit testuose?}{3}{subsubsection.1.2.1.1}%
+\contentsline {subsubsection}{\numberline {1.2.1.2}Kaip paleisti unit testus}{3}{subsubsection.1.2.1.2}%
+\contentsline {section}{\numberline {1.3}Randomness seeded to\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}: 2873484529}{4}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Setters}{4}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Move Constructor}{4}{subsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.3.3}Reading from file}{4}{subsection.1.3.3}%
+\contentsline {subsubsection}{\numberline {1.3.3.1}Dokumentacijos generavimas}{4}{subsubsection.1.3.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.3.2}Apibendrinimas}{5}{subsubsection.1.3.3.2}%
+\contentsline {section}{\numberline {1.4}v1.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}1 Tyrimas}{5}{section.1.4}%
+\contentsline {subsection}{\numberline {1.4.1}Pirma strategija}{6}{subsection.1.4.1}%
+\contentsline {section}{\numberline {1.5}Vektorius}{6}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Listas}{7}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Dekas}{8}{section.1.7}%
+\contentsline {subsection}{\numberline {1.7.1}Pirmosios strategijos išvados}{9}{subsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.7.2}Antra strategija}{9}{subsection.1.7.2}%
+\contentsline {section}{\numberline {1.8}Vektorius}{9}{section.1.8}%
+\contentsline {section}{\numberline {1.9}Listas}{10}{section.1.9}%
+\contentsline {section}{\numberline {1.10}Dekas}{11}{section.1.10}%
+\contentsline {subsection}{\numberline {1.10.1}Antrosios strategijos išvados}{12}{subsection.1.10.1}%
+\contentsline {subsection}{\numberline {1.10.2}Trečia strategija}{13}{subsection.1.10.2}%
+\contentsline {subsection}{\numberline {1.10.3}Trečiosios strategijos išvados}{13}{subsection.1.10.3}%
+\contentsline {subsection}{\numberline {1.10.4}Visų strategijų išvados}{14}{subsection.1.10.4}%
+\contentsline {subsection}{\numberline {1.10.5}Kompiuterio komponentai}{14}{subsection.1.10.5}%
+\contentsline {chapter}{\numberline {2}Hierarchical Index}{17}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class Hierarchy}{17}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Class Index}{19}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Class List}{19}{section.3.1}%
+\contentsline {chapter}{\numberline {4}File Index}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}File List}{21}{section.4.1}%
+\contentsline {chapter}{\numberline {5}Class Documentation}{23}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Human Class Reference}{23}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Student1 Class Reference}{24}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Member Function Documentation}{25}{subsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.1}getPavarde()}{25}{subsubsection.5.2.1.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.2}getVardas()}{25}{subsubsection.5.2.1.2}%
+\contentsline {section}{\numberline {5.3}Vector$<$ T $>$ Class Template Reference}{25}{section.5.3}%
+\contentsline {chapter}{\numberline {6}File Documentation}{27}{chapter.6}%
+\contentsline {section}{\numberline {6.1}header.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{27}{section.6.1}%
+\contentsline {section}{\numberline {6.2}human.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{27}{section.6.2}%
+\contentsline {section}{\numberline {6.3}student.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{28}{section.6.3}%
+\contentsline {section}{\numberline {6.4}vector.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{31}{section.6.4}%
+\contentsline {chapter}{Index}{37}{section*.10}%

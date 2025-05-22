@@ -1,7 +1,6 @@
 #include <cstddef>
 #include <iostream>
 #include <limits>
-#include <ostream>
 
 template <typename T>
 class Vector {
@@ -30,6 +29,15 @@ class Vector {
 
         // Konstruktorius su nustatytu dydziu 
         explicit Vector(size_t initial_capacity) : data(new T[initial_capacity]), size(0), capacity(initial_capacity) {}//std::cout << "Iskviestas konstruktorius"<< std::endl;}
+
+        // Konstruktorius su aibe
+        Vector(std::initializer_list<T> list) : size(list.size()) {
+            data = new T[size];
+            size_t i = 0;
+            for (const auto& elem : list) {
+                data[i++] = elem;
+            }
+        }
 
         // Move konstruktorius
         Vector(Vector&& other) noexcept
@@ -88,6 +96,7 @@ class Vector {
             return *this;
         }
 
+        // Konstruktorius is dvieju operatoriu ar pointeriu
         template<typename input>
         Vector(input first, input last) {
             size = std::distance(first, last);
@@ -193,7 +202,7 @@ class Vector {
         //---------Modifiers-----------//
 
         // Isvalyti vektoriu
-        void clear() {//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        void clear() {//?
             //delete[] data;
             //data = nullptr;
             size = 0;
@@ -212,8 +221,8 @@ class Vector {
 
             for (size_t i = size; i > index; --i) {
                 data[i] = data[i - 1];
-                data[index] = value;
             }
+            data[index] = value;
             ++size;
         }
 

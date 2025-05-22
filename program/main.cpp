@@ -155,42 +155,9 @@ int main() {
 
             case '9': {
                 compare_vectors();
-            }
-            
-            case '0': {
-                // Open the file
-                std::ifstream in("/home/xxmp/GitHub/OP2/5vectors/studentai10000.txt");
-                if (!in) {
-                    std::cerr << "Error: Could not open the file." << std::endl;
-                    return 1;
-                }
-            
-                // Skip the header line
-                std::string header;
-                if (!std::getline(in, header)) {
-                    std::cerr << "Error: File is empty or missing header." << std::endl;
-                    return 1;
-                }
-                //vector<Student1> studentai;
-                // Read student data
-                Student1 temp_student1;
-                while (in >> temp_student1) {
-                    stud.push_back(temp_student1);
-                }
-            
-                // Check for errors during file reading
-                if (in.bad()) {
-                    std::cerr << "Error: An I/O error occurred while reading the file." << std::endl;
-                    return 1;
-                } else if (!in.eof()) {
-                    std::cerr << "Error: Failed to parse the file. Check its format." << std::endl;
-                    return 1;
-                }
-            
-                std::cout << "Successfully imported " << stud.get_size() << " students." << std::endl;
                 break;
             }
-
+            
             default: {
                 cout << "\n\nInvalid choice. Please try again.\n";
             }
